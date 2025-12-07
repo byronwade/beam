@@ -15,6 +15,8 @@ import { spawn, execSync as execSync2 } from "child_process";
 import { writeFileSync as writeFileSync2, mkdtempSync } from "fs";
 import os from "os";
 import path from "path";
+import readline from "readline/promises";
+import { stdin as input, stdout as output } from "process";
 import open from "open";
 import clipboard from "clipboardy";
 import qrcode from "qrcode-terminal";
@@ -1497,7 +1499,7 @@ function startHTTPSProxyWithAuth(targetPort, proxyPort, credentials, options = {
 // package.json
 var package_default = {
   name: "@byronwade/beam",
-  version: "1.1.6",
+  version: "1.1.7",
   description: "Expose localhost to the internet in seconds. Zero-config tunneling for Next.js, Vite, Astro, and more.",
   bin: {
     beam: "dist/index.js"
@@ -1660,6 +1662,36 @@ async function updateTunnelStatus(token, tunnelId, status, quickTunnelUrl) {
     return response.ok;
   } catch {
     return false;
+  }
+}
+async function chooseZoneOrDefault(authToken, label) {
+  try {
+    const res = await fetch(`${API_URL}/api/cloudflare/zones`, {
+      headers: { Authorization: `Bearer ${authToken}` }
+    });
+    const data = await res.json();
+    const zones = data.success && Array.isArray(data.zones) ? data.zones : [];
+    const rl = readline.createInterface({ input, output });
+    console.log();
+    console.log(chalk7.bold("Select destination for subdomain:"));
+    console.log(chalk7.dim("  0) Use default Cloudflare tunnel URL (no DNS)"));
+    zones.forEach((z, idx) => {
+      console.log(`  ${idx + 1}) ${z.name}`);
+    });
+    console.log();
+    const answer = await rl.question(chalk7.cyan("Enter choice [0]: "));
+    rl.close();
+    const choice = answer.trim() === "" ? 0 : Number(answer.trim());
+    if (!Number.isInteger(choice) || choice < 0 || choice > zones.length) {
+      console.log(chalk7.yellow("Invalid choice, using default tunnel URL."));
+      return void 0;
+    }
+    if (choice === 0) return void 0;
+    const zone = zones[choice - 1];
+    return `${label}.${zone.name}`;
+  } catch {
+    console.log(chalk7.yellow("Could not fetch zones; using default tunnel URL."));
+    return void 0;
   }
 }
 async function displayTunnelUrl(url, port, options) {
@@ -1830,21 +1862,34 @@ async function handleTunnel(ports, options) {
       console.log(chalk7.dim("  Run: beam login"));
       return;
     }
-    const subdomainCheck = await fetch(`${API_URL}/api/subdomains`, {
-      headers: { Authorization: `Bearer ${auth.token}` }
-    });
-    const subdomainData = await subdomainCheck.json();
-    if (!subdomainData.success) {
-      console.log(chalk7.red("Failed to check subdomain availability"));
-      return;
+    if (!options.subdomain.includes(".")) {
+      const chosen = await chooseZoneOrDefault(auth.token, options.subdomain);
+      if (!chosen) {
+        console.log(chalk7.dim("Using default tunnel URL (no custom hostname)."));
+        options.subdomain = void 0;
+      } else {
+        options.subdomain = chosen;
+        console.log(chalk7.dim(`Using hostname ${options.subdomain}`));
+      }
     }
-    const hasSubdomain = subdomainData.subdomains?.some(
-      (s) => s.subdomain === options.subdomain
-    );
-    if (!hasSubdomain) {
-      console.log(chalk7.red(`Subdomain "${options.subdomain}" not reserved.`));
-      console.log(chalk7.dim(`  Reserve it first: beam reserve ${options.subdomain}`));
-      return;
+    if (!options.subdomain) {
+    } else {
+      const subdomainCheck = await fetch(`${API_URL}/api/subdomains`, {
+        headers: { Authorization: `Bearer ${auth.token}` }
+      });
+      const subdomainData = await subdomainCheck.json();
+      if (!subdomainData.success) {
+        console.log(chalk7.red("Failed to check subdomain availability"));
+        return;
+      }
+      const hasSubdomain = subdomainData.subdomains?.some(
+        (s) => s.subdomain === options.subdomain
+      );
+      if (!hasSubdomain) {
+        console.log(chalk7.red(`Subdomain "${options.subdomain}" not reserved.`));
+        console.log(chalk7.dim(`  Reserve it first: beam reserve ${options.subdomain}`));
+        return;
+      }
     }
   }
   const hasSecurityOptions = options.auth || options.token || options.allowIp;
@@ -2456,43 +2501,62 @@ program.command("stop").description("Stop/delete a tunnel").argument("<name>", "
     spinner.fail(chalk7.red("Failed to connect to Beam"));
   }
 });
-program.command("reserve").description("Reserve a subdomain (e.g., my-app.beam.byronwade.com)").argument("<name>", "Subdomain name").action(async (name) => {
+program.command("reserve").description("Reserve a hostname on your Cloudflare zone (or skip to default tunnel)").argument("<name>", "Hostname or label (e.g., app or app.example.com)").option("--zone <zone>", "Customer Cloudflare zone (e.g., example.com)").action(async (name) => {
   const auth = requireLogin();
   if (!auth) return;
-  const spinner = ora(`Reserving ${name}.beam.byronwade.com...`).start();
-  try {
-    const response = await fetch(`${API_URL}/api/subdomains`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${auth.token}`
-      },
-      body: JSON.stringify({ subdomain: name })
-    });
-    const raw = await response.text();
-    let data = {};
-    try {
-      data = raw ? JSON.parse(raw) : {};
-    } catch {
-      data = { success: false, error: raw || `${response.status} ${response.statusText}` };
-    }
-    if (response.ok && data.success) {
-      spinner.succeed(chalk7.green("Subdomain reserved!"));
-      console.log();
-      console.log(`  ${chalk7.bold("Your subdomain:")} ${chalk7.cyan.underline(data.url)}`);
-      console.log();
-      console.log(chalk7.dim("  Use it with: beam 3000 --subdomain " + name));
+  const options = program.opts();
+  const isFqdn = name.includes(".");
+  let hostname = name.toLowerCase();
+  if (!isFqdn) {
+    const chosen = options.zone ? `${name.toLowerCase()}.${options.zone.toLowerCase()}` : await chooseZoneOrDefault(auth.token, name.toLowerCase());
+    if (!chosen) {
+      console.log(chalk7.dim("Using default tunnel URL (no custom hostname)."));
+      hostname = "";
     } else {
-      const message = data.error || (raw ? raw.trim() : "") || `${response.status} ${response.statusText}` || "Failed to reserve subdomain";
-      spinner.fail(chalk7.red(message));
-      console.log(chalk7.dim(`  status: ${response.status}`));
-      if (response.statusText) {
-        console.log(chalk7.dim(`  statusText: ${response.statusText}`));
+      hostname = chosen;
+      console.log(chalk7.dim(`Using hostname ${hostname}`));
+    }
+  }
+  const spinner = ora(
+    hostname ? `Reserving ${hostname}...` : "Skipping hostname (will use default tunnel URL)..."
+  ).start();
+  try {
+    if (hostname) {
+      const response = await fetch(`${API_URL}/api/subdomains`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.token}`
+        },
+        body: JSON.stringify({ subdomain: hostname })
+      });
+      const raw = await response.text();
+      let data = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch {
+        data = { success: false, error: raw || `${response.status} ${response.statusText}` };
       }
-      if (raw) {
-        console.log(chalk7.dim("  body:"));
-        console.log(chalk7.dim(raw));
+      if (response.ok && data.success) {
+        spinner.succeed(chalk7.green("Hostname reserved!"));
+        console.log();
+        console.log(`  ${chalk7.bold("Your hostname:")} ${chalk7.cyan.underline(data.url || hostname)}`);
+        console.log();
+        console.log(chalk7.dim("  Use it with: beam 3000 --subdomain " + (data.url || hostname)));
+      } else {
+        const message = data.error || (raw ? raw.trim() : "") || `${response.status} ${response.statusText}` || "Failed to reserve hostname";
+        spinner.fail(chalk7.red(message));
+        console.log(chalk7.dim(`  status: ${response.status}`));
+        if (response.statusText) {
+          console.log(chalk7.dim(`  statusText: ${response.statusText}`));
+        }
+        if (raw) {
+          console.log(chalk7.dim("  body:"));
+          console.log(chalk7.dim(raw));
+        }
       }
+    } else {
+      spinner.succeed(chalk7.green("Skipping hostname; default tunnel URL will be used at connect time."));
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to connect to Beam";
@@ -2529,6 +2593,33 @@ program.command("subdomains").description("List your reserved subdomains").actio
     }
   } catch {
     spinner.fail(chalk7.red("Failed to fetch subdomains"));
+  }
+});
+program.command("domains").description("List Cloudflare zones available to your token").action(async () => {
+  const auth = requireLogin();
+  if (!auth) return;
+  const spinner = ora("Fetching zones...").start();
+  try {
+    const res = await fetch(`${API_URL}/api/cloudflare/zones`, {
+      headers: { Authorization: `Bearer ${auth.token}` }
+    });
+    const data = await res.json();
+    if (!data.success) {
+      spinner.fail(chalk7.red(data.error || "Failed to fetch zones"));
+      return;
+    }
+    spinner.stop();
+    const zones = data.zones || [];
+    if (!zones.length) {
+      console.log(chalk7.dim("No zones available for this token."));
+      return;
+    }
+    console.log(chalk7.bold("Your Cloudflare zones:\n"));
+    zones.forEach((z) => {
+      console.log(`  \u2022 ${z.name}`);
+    });
+  } catch (error) {
+    spinner.fail(chalk7.red(error instanceof Error ? error.message : "Failed to fetch zones"));
   }
 });
 program.command("release").description("Release a reserved subdomain").argument("<name>", "Subdomain name").action(async (name) => {

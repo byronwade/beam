@@ -27,7 +27,11 @@ export async function POST(request: NextRequest) {
 
     const { name, port, subdomain, hostname } = await request.json();
     const tunnelName = name || `beam-${Date.now()}`;
-    const targetHost = (hostname || subdomain)?.toLowerCase();
+    let targetHost = (hostname || subdomain)?.toLowerCase();
+    if (targetHost && !targetHost.includes(".")) {
+      // If no zone provided, fall back to default tunnel (no custom DNS)
+      targetHost = undefined;
+    }
 
     if (!port) {
       return NextResponse.json(

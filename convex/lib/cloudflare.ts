@@ -89,6 +89,34 @@ export async function getZoneId(
   }
 }
 
+export async function listZones(
+  token: string
+): Promise<{ zones?: Array<{ id: string; name: string }>; error?: string }> {
+  try {
+    const response = await fetch(
+      `${CLOUDFLARE_API_BASE}/zones?status=active&per_page=50`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = (await response.json()) as CloudflareResponse<
+      Array<{ id: string; name: string }>
+    >;
+
+    if (!data.success) {
+      return { error: data.errors?.[0]?.message || "Failed to list zones" };
+    }
+
+    return { zones: data.result || [] };
+  } catch {
+    return { error: "Failed to list zones" };
+  }
+}
+
 export async function listTunnels(
   token: string,
   accountId: string

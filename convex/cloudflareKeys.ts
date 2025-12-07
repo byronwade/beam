@@ -4,7 +4,7 @@ import { v } from "convex/values";
 import { action } from "./_generated/server";
 import { api, internal } from "./_generated/api";
 import { encrypt, decrypt } from "./lib/crypto";
-import { verifyToken, createTunnel, deleteTunnel, listTunnels, createDnsRecord, deleteDnsRecord, getZoneId } from "./lib/cloudflare";
+import { verifyToken, createTunnel, deleteTunnel, listTunnels, createDnsRecord, deleteDnsRecord, getZoneId, listZones } from "./lib/cloudflare";
 
 type VerifyResult = { success: true; accountId: string } | { success: false; error: string };
 type GetKeyResult = { success: true; accountId: string; token: string; isVerified: boolean } | { success: false; error: string };
@@ -70,6 +70,30 @@ export const getKey = action({
       token,
       isVerified: key.isVerified,
     };
+  },
+});
+
+// List zones available to the user's Cloudflare token
+export const listZonesForUser = action({
+  args: { userId: v.id("users") },
+  handler: async (ctx, args) => {
+    const key = await ctx.runQuery(internal.cloudflareHelpers.getKeyByUser, {
+      userId: args.userId,
+    });
+
+    if (!key) {
+      return { success: false, error: "Cloudflare credentials not configured." };
+    }
+
+    const [encrypted, authTag] = key.encryptedToken.split(":");
+    const token = decrypt(encrypted, key.iv, authTag);
+
+    const result = await listZones(token);
+    if (result.error) {
+      return { success: false, error: result.error };
+    }
+
+    return { success: true, zones: result.zones || [] };
   },
 });
 
