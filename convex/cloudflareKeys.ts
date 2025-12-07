@@ -215,6 +215,7 @@ export const ensureSubdomainTunnel = action({
     userId: v.id("users"),
     subdomain: v.string(),
     zoneId: v.optional(v.string()), // Optional: will be auto-discovered if missing
+    zoneName: v.optional(v.string()), // Optional explicit zone name (apex)
   },
   handler: async (ctx, args): Promise<ProvisionSubdomainResult> => {
     const subdomain = args.subdomain.toLowerCase().trim();
@@ -232,22 +233,47 @@ export const ensureSubdomainTunnel = action({
     const [encrypted, authTag] = key.encryptedToken.split(":");
     const token = decrypt(encrypted, key.iv, authTag);
 
-    // Resolve zone ID if not provided (default to beam.byronwade.com)
-    const zoneName = "beam.byronwade.com";
-    let zoneId = args.zoneId;
-    if (!zoneId) {
-      const zoneLookup = await getZoneId(token, zoneName);
-      if (!zoneLookup.zoneId) {
-        return { success: false, error: zoneLookup.error || `Unable to resolve Cloudflare zone for ${zoneName}` };
+    // Resolve zone ID and record name automatically
+    const baseDomain = process.env.BEAM_BASE_DOMAIN || "beam.byronwade.com";
+    const explicitZoneName = args.zoneName;
+    const candidates: string[] = [];
+
+    if (explicitZoneName) {
+      candidates.push(explicitZoneName);
+    } else {
+      // Try baseDomain as-is, then walk up labels (beam.byronwade.com -> byronwade.com)
+      const parts = baseDomain.split(".");
+      for (let i = 0; i < parts.length - 1; i++) {
+        candidates.push(parts.slice(i).join("."));
       }
-      zoneId = zoneLookup.zoneId;
     }
 
-    if (!zoneId) {
-      return { success: false, error: `Unable to resolve Cloudflare zone for ${zoneName}` };
+    let resolvedZoneId: string | undefined;
+    let resolvedZoneName: string | undefined;
+
+    for (const candidate of candidates) {
+      const lookup = await getZoneId(token, candidate);
+      if (lookup.zoneId) {
+        resolvedZoneId = lookup.zoneId;
+        resolvedZoneName = candidate;
+        break;
+      }
     }
 
-    const resolvedZoneId = zoneId;
+    if (!resolvedZoneId || !resolvedZoneName) {
+      return { success: false, error: `Unable to resolve Cloudflare zone for ${explicitZoneName || baseDomain}` };
+    }
+
+    // Determine record name relative to the resolved zone
+    let recordName = subdomain;
+    if (baseDomain.endsWith(resolvedZoneName)) {
+      const prefix = baseDomain.slice(0, baseDomain.length - resolvedZoneName.length).replace(/\.$/, "").replace(/\.$/, "");
+      const trimmedPrefix = prefix.replace(/\.$/, "").replace(/\.$/, "");
+      const basePrefix = trimmedPrefix.replace(/\.$/, "");
+      if (basePrefix) {
+        recordName = `${subdomain}.${basePrefix.replace(/\.$/, "")}`;
+      }
+    }
 
     // See if subdomain already has a tunnel
     const existing = await ctx.runQuery(api.subdomains.getByName, { subdomain });
@@ -268,7 +294,7 @@ export const ensureSubdomainTunnel = action({
     }
 
     // Create DNS record for the subdomain -> tunnel
-    const dns = await createDnsRecord(token, resolvedZoneId, tunnelResult.tunnel.id, subdomain);
+    const dns = await createDnsRecord(token, resolvedZoneId, recordName, tunnelResult.tunnel.id);
     if (!dns.success) {
       // Best-effort cleanup: delete tunnel
       await deleteTunnel(token, key.accountId, tunnelResult.tunnel.id);

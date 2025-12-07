@@ -186,8 +186,8 @@ export async function deleteTunnel(
 export async function createDnsRecord(
   token: string,
   zoneId: string,
-  tunnelId: string,
-  subdomain: string
+  recordName: string,
+  tunnelId: string
 ): Promise<{ success: boolean; dnsRecordId?: string; error?: string }> {
   try {
     const response = await fetch(
@@ -200,7 +200,7 @@ export async function createDnsRecord(
         },
         body: JSON.stringify({
           type: "CNAME",
-          name: subdomain,
+          name: recordName,
           content: `${tunnelId}.cfargotunnel.com`,
           proxied: true,
         }),
