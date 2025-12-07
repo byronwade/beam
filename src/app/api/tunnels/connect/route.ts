@@ -25,8 +25,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, port, subdomain } = await request.json();
+    const { name, port, subdomain, hostname } = await request.json();
     const tunnelName = name || `beam-${Date.now()}`;
+    const targetHost = (hostname || subdomain)?.toLowerCase();
 
     if (!port) {
       return NextResponse.json(
@@ -35,10 +36,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // If a subdomain is provided, ensure it is reserved by this user and then create a named tunnel + DNS
-    if (subdomain) {
+    // If a subdomain/hostname is provided, ensure it is reserved by this user and then create a named tunnel + DNS
+    if (targetHost) {
       // Verify ownership of the subdomain
-      const record = await convex.query(api.subdomains.getByName, { subdomain });
+      const record = await convex.query(api.subdomains.getByName, { subdomain: targetHost });
       if (!record || record.userId !== session.userId) {
         return NextResponse.json(
           { success: false, error: "Subdomain not reserved by this account" },
@@ -48,8 +49,7 @@ export async function POST(request: NextRequest) {
 
       const provision = await convex.action(api.cloudflareKeys.ensureSubdomainTunnel, {
         userId: session.userId,
-        subdomain,
-        zoneId: process.env.CLOUDFLARE_ZONE_ID || undefined,
+        hostname: targetHost,
       });
 
       if (!provision.success) {

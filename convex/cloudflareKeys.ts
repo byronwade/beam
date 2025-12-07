@@ -213,12 +213,13 @@ export const provisionTunnel = action({
 export const ensureSubdomainTunnel = action({
   args: {
     userId: v.id("users"),
-    subdomain: v.string(),
-    zoneId: v.optional(v.string()), // Optional: will be auto-discovered if missing
-    zoneName: v.optional(v.string()), // Optional explicit zone name (apex)
+    hostname: v.string(), // full hostname to provision, e.g. app.example.com
   },
   handler: async (ctx, args): Promise<ProvisionSubdomainResult> => {
-    const subdomain = args.subdomain.toLowerCase().trim();
+    const hostname = args.hostname.toLowerCase().trim();
+    if (!hostname.includes(".")) {
+      return { success: false, error: "Hostname must include a zone, e.g. app.example.com" };
+    }
 
     // Get Cloudflare credentials
     const key = await ctx.runQuery(internal.cloudflareHelpers.getKeyByUser, {
@@ -233,24 +234,15 @@ export const ensureSubdomainTunnel = action({
     const [encrypted, authTag] = key.encryptedToken.split(":");
     const token = decrypt(encrypted, key.iv, authTag);
 
-    // Resolve zone ID and record name automatically
-    const baseDomain = process.env.BEAM_BASE_DOMAIN || "beam.byronwade.com";
-    const explicitZoneName = args.zoneName;
+    // Resolve zone by walking hostname suffixes (customer-owned zones only)
+    const labels = hostname.split(".");
     const candidates: string[] = [];
-
-    if (explicitZoneName) {
-      candidates.push(explicitZoneName);
-    } else {
-      // Try baseDomain as-is, then walk up labels (beam.byronwade.com -> byronwade.com)
-      const parts = baseDomain.split(".");
-      for (let i = 0; i < parts.length - 1; i++) {
-        candidates.push(parts.slice(i).join("."));
-      }
+    for (let i = 0; i < labels.length - 1; i++) {
+      candidates.push(labels.slice(i).join("."));
     }
 
     let resolvedZoneId: string | undefined;
     let resolvedZoneName: string | undefined;
-
     for (const candidate of candidates) {
       const lookup = await getZoneId(token, candidate);
       if (lookup.zoneId) {
@@ -261,22 +253,13 @@ export const ensureSubdomainTunnel = action({
     }
 
     if (!resolvedZoneId || !resolvedZoneName) {
-      return { success: false, error: `Unable to resolve Cloudflare zone for ${explicitZoneName || baseDomain}` };
+      return { success: false, error: `Unable to resolve Cloudflare zone for ${hostname}` };
     }
 
-    // Determine record name relative to the resolved zone
-    let recordName = subdomain;
-    if (baseDomain.endsWith(resolvedZoneName)) {
-      const prefix = baseDomain.slice(0, baseDomain.length - resolvedZoneName.length).replace(/\.$/, "").replace(/\.$/, "");
-      const trimmedPrefix = prefix.replace(/\.$/, "").replace(/\.$/, "");
-      const basePrefix = trimmedPrefix.replace(/\.$/, "");
-      if (basePrefix) {
-        recordName = `${subdomain}.${basePrefix.replace(/\.$/, "")}`;
-      }
-    }
+    const recordName = hostname;
 
     // See if subdomain already has a tunnel
-    const existing = await ctx.runQuery(api.subdomains.getByName, { subdomain });
+    const existing = await ctx.runQuery(api.subdomains.getByName, { subdomain: hostname });
     if (existing && existing.tunnelId && existing.tunnelSecret && existing.accountId && existing.zoneId) {
       return {
         success: true,
@@ -288,7 +271,7 @@ export const ensureSubdomainTunnel = action({
     }
 
     // Create tunnel via Cloudflare API
-    const tunnelResult = await createTunnel(token, key.accountId, subdomain);
+    const tunnelResult = await createTunnel(token, key.accountId, hostname);
     if (!tunnelResult.tunnel || !tunnelResult.secret) {
       return { success: false, error: tunnelResult.error || "Failed to create tunnel" };
     }
@@ -303,7 +286,7 @@ export const ensureSubdomainTunnel = action({
 
     // Save linkage to subdomain record
     await ctx.runMutation(api.subdomains.attachTunnel, {
-      subdomain,
+      subdomain: hostname,
       tunnelId: tunnelResult.tunnel.id,
       tunnelSecret: tunnelResult.secret,
       accountId: key.accountId,

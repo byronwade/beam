@@ -1271,9 +1271,19 @@ program
   .command("reserve")
   .description("Reserve a subdomain (e.g., my-app.beam.byronwade.com)")
   .argument("<name>", "Subdomain name")
+  .option("--zone <zone>", "Customer Cloudflare zone (e.g., example.com)")
   .action(async (name) => {
     const auth = requireLogin();
     if (!auth) return;
+
+    const options = program.opts<{ zone?: string }>();
+    const isFqdn = name.includes(".");
+    if (!isFqdn && !options.zone) {
+      console.log(chalk.red("Zone is required. Use --zone <your-zone>, e.g., --zone example.com"));
+      return;
+    }
+
+    const hostname = isFqdn ? name.toLowerCase() : `${name.toLowerCase()}.${options.zone!.toLowerCase()}`;
 
     const spinner = ora(`Reserving ${name}.beam.byronwade.com...`).start();
 
@@ -1284,7 +1294,7 @@ program
           "Content-Type": "application/json",
           Authorization: `Bearer ${auth.token}`,
         },
-        body: JSON.stringify({ subdomain: name }),
+        body: JSON.stringify({ subdomain: hostname }),
       });
 
       const raw = await response.text();
