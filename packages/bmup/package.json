@@ -1,0 +1,31 @@
+{
+  "name": "bmup",
+  "version": "1.1.0",
+  "description": "Expose localhost to the internet in seconds. Alias for @byronwade/beam.",
+  "bin": {
+    "beam": "./bin.js",
+    "bmup": "./bin.js"
+  },
+  "keywords": [
+    "beam",
+    "tunnel",
+    "localhost",
+    "expose",
+    "ngrok",
+    "cloudflare",
+    "dev",
+    "development"
+  ],
+  "author": "Byron Wade",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byronwade/beam.git"
+  },
+  "dependencies": {
+    "@byronwade/beam": "^1.1.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
