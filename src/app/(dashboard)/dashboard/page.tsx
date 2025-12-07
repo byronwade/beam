@@ -1,11 +1,39 @@
 "use client";
 
-import { useQuery } from "convex/react";
+import { useQuery, useAction } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useAuth } from "@/lib/auth-context";
-import { formatDistanceToNow, format, subDays, startOfDay } from "date-fns";
-import { Clock, Cable, ArrowRight, Globe } from "lucide-react";
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { formatDistanceToNow } from "date-fns";
+import {
+  Activity,
+  Server,
+  Clock,
+  TrendingUp,
+  Zap,
+  Globe,
+  Copy,
+  Trash2,
+  ExternalLink,
+  Loader2,
+  ChevronRight,
+  Terminal,
+  Globe2,
+  Shield,
+} from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface Tunnel {
   _id: string;
@@ -14,6 +42,8 @@ interface Tunnel {
   status: "active" | "inactive" | "pending";
   port: number;
   tunnelType: "quick" | "persistent" | "named";
+  quickTunnelUrl?: string;
+  domain?: string;
   lastHeartbeat: number;
   createdAt: number;
 }
@@ -25,240 +55,389 @@ interface Stats {
   pending: number;
 }
 
-function generateActivityData(tunnels: Tunnel[] | undefined) {
-  const days = 182; // 26 weeks
-  const data: { date: Date; count: number }[] = [];
-
-  for (let i = days - 1; i >= 0; i--) {
-    const date = startOfDay(subDays(new Date(), i));
-    let count = 0;
-
-    if (tunnels) {
-      tunnels.forEach(tunnel => {
-        const createdDate = startOfDay(new Date(tunnel.createdAt));
-        const heartbeatDate = startOfDay(new Date(tunnel.lastHeartbeat));
-        if (createdDate.getTime() === date.getTime() || heartbeatDate.getTime() === date.getTime()) {
-          count++;
-        }
-      });
-    }
-
-    data.push({ date, count });
-  }
-
-  return data;
-}
-
-function ActivityHeatmap({ tunnels }: { tunnels: Tunnel[] | undefined }) {
-  const activityData = generateActivityData(tunnels);
-  const weeks: { date: Date; count: number }[][] = [];
-
-  for (let i = 0; i < activityData.length; i += 7) {
-    weeks.push(activityData.slice(i, i + 7));
-  }
-
-  const getIntensity = (count: number) => {
-    if (count === 0) return "bg-neutral-100 dark:bg-neutral-800/50";
-    if (count === 1) return "bg-emerald-200 dark:bg-emerald-900";
-    if (count <= 3) return "bg-emerald-400 dark:bg-emerald-700";
-    return "bg-emerald-600 dark:bg-emerald-500";
-  };
-
-  const totalEvents = activityData.reduce((sum, d) => sum + d.count, 0);
-
-  return (
-    <div>
-      <div className="mb-3 flex items-center justify-between">
-        <span className="text-sm font-medium text-neutral-900 dark:text-white">Activity</span>
-        <span className="text-xs text-neutral-500">{totalEvents} events in the last 6 months</span>
-      </div>
-      <div className="flex gap-[3px] overflow-hidden">
-        {weeks.map((week, weekIndex) => (
-          <div key={weekIndex} className="flex flex-col gap-[3px]">
-            {week.map((day, dayIndex) => (
-              <div
-                key={dayIndex}
-                className={`h-[10px] w-[10px] rounded-[2px] ${getIntensity(day.count)}`}
-                title={`${format(day.date, "MMM d, yyyy")}: ${day.count} events`}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export default function DashboardPage() {
   const { user } = useAuth();
   const tunnels = useQuery(api.tunnels.list, user?.id ? { userId: user.id } : "skip") as Tunnel[] | undefined;
   const stats = useQuery(api.tunnels.getStats, user?.id ? { userId: user.id } : "skip") as Stats | undefined;
+  const subdomains = useQuery(api.subdomains.listByUser, user?.id ? { userId: user.id } : "skip");
+  const hasCloudflareKey = useQuery(api.tunnels.hasCloudflareKey, user?.id ? { userId: user.id } : "skip");
+  const deleteTunnelAction = useAction(api.cloudflareKeys.deleteTunnelAction);
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [tunnelToDelete, setTunnelToDelete] = useState<Tunnel | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [greeting, setGreeting] = useState("Welcome");
 
   const isLoading = tunnels === undefined || stats === undefined;
 
-  const tunnelsByDate = tunnels?.reduce((acc, tunnel) => {
-    const dateKey = format(new Date(tunnel.lastHeartbeat), "MMMM d, yyyy");
-    if (!acc[dateKey]) acc[dateKey] = [];
-    acc[dateKey].push(tunnel);
-    return acc;
-  }, {} as Record<string, Tunnel[]>) || {};
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour < 12) setGreeting("Good morning");
+    else if (hour < 17) setGreeting("Good afternoon");
+    else setGreeting("Good evening");
+  }, []);
+
+  const handleDelete = async () => {
+    if (!user?.id || !tunnelToDelete) return;
+    setDeletingId(tunnelToDelete.tunnelId);
+    try {
+      const result = await deleteTunnelAction({
+        userId: user.id,
+        tunnelId: tunnelToDelete.tunnelId,
+      });
+      if (result.success) {
+        toast.success("Tunnel deleted");
+      } else {
+        toast.error(result.error);
+      }
+    } catch {
+      toast.error("Failed to delete");
+    } finally {
+      setDeletingId(null);
+      setDeleteDialogOpen(false);
+      setTunnelToDelete(null);
+    }
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success("Copied");
+  };
+
+  const activeTunnels = stats?.active ?? 0;
+
+  const metrics = [
+    { label: "Active", value: stats?.active ?? 0, icon: Activity, color: "text-emerald-500" },
+    { label: "Total", value: stats?.total ?? 0, icon: Server, color: "text-blue-500" },
+    { label: "Pending", value: stats?.pending ?? 0, icon: Clock, color: "text-amber-500" },
+    { label: "Uptime", value: "99.9%", icon: TrendingUp, color: "text-violet-500" },
+  ];
 
   return (
-    <div className="flex min-h-[calc(100vh-56px)] pb-24">
-      {/* Left Panel */}
-      <div className="w-[320px] shrink-0 p-8">
-        {/* Avatar */}
-        <div className="h-20 w-20 rounded-full bg-gradient-to-br from-rose-400 via-fuchsia-500 to-indigo-500" />
-
-        {/* User Info */}
-        <div className="mt-5">
-          <h2 className="flex items-center gap-2 text-lg font-semibold text-neutral-900 dark:text-white">
-            {user?.name || user?.email?.split("@")[0] || "User"}
-            <Cable className="h-4 w-4 text-neutral-400" />
-          </h2>
-          <p className="mt-1 flex items-center gap-1.5 text-sm text-neutral-500">
-            <Clock className="h-3.5 w-3.5" />
-            {isLoading ? "..." : `${stats?.active || 0} active`}
+    <div className="min-h-screen bg-background">
+      <div className="mx-auto max-w-3xl px-4 py-12 pb-24">
+        {/* Header */}
+        <motion.header
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="mb-12 text-center"
+        >
+          <h1 className="text-2xl font-semibold text-foreground">
+            {greeting}, <span className="text-beam-rainbow">{user?.name || user?.email?.split("@")[0] || "there"}</span>
+          </h1>
+          <p className="mt-2 text-muted-foreground">
+            {isLoading
+              ? "Loading your dashboard..."
+              : activeTunnels > 0
+              ? `${activeTunnels} tunnel${activeTunnels > 1 ? "s" : ""} running`
+              : "No active tunnels"}
           </p>
-        </div>
+        </motion.header>
 
-        {/* Tags */}
-        <div className="mt-5 flex gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400">
-            <Globe className="h-3 w-3" />
-            Direct
-          </span>
-        </div>
-
-        {/* Stats */}
-        <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4">
-          <div>
-            <p className="text-xs text-neutral-500">First seen</p>
-            <p className="mt-1 text-sm font-medium text-neutral-900 dark:text-white">
-              {isLoading ? "..." : tunnels && tunnels.length > 0
-                ? format(new Date(Math.min(...tunnels.map(t => t.createdAt))), "MMM d, yyyy")
-                : "—"}
-            </p>
-          </div>
-          <div>
-            <p className="text-xs text-neutral-500">Tunnels</p>
-            <p className="mt-1 text-sm font-medium text-neutral-900 dark:text-white">
-              {isLoading ? "..." : stats?.total || 0}
-            </p>
-          </div>
-        </div>
-
-        {/* Activity */}
-        <div className="mt-8">
-          <ActivityHeatmap tunnels={tunnels} />
-        </div>
-      </div>
-
-      {/* Right Panel - Timeline */}
-      <div className="flex-1 p-8">
-        {/* Top Icon */}
-        <div className="flex justify-end">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800">
-            <Cable className="h-4 w-4 text-neutral-400" />
-          </div>
-        </div>
-
-        {/* Timeline */}
-        {isLoading ? (
-          <div className="mt-8 space-y-6">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="animate-pulse">
-                <div className="flex justify-center">
-                  <div className="h-6 w-32 rounded-full bg-neutral-100 dark:bg-neutral-800" />
-                </div>
-                <div className="mt-4 rounded-2xl bg-neutral-50 p-5 dark:bg-neutral-900">
-                  <div className="h-4 w-48 rounded bg-neutral-200 dark:bg-neutral-700" />
-                </div>
+        {/* Stats - with rainbow top line */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mb-12"
+        >
+          <div className="grid grid-cols-4 divide-x divide-border rounded-2xl border border-border bg-card overflow-hidden rainbow-top-line">
+            {metrics.map((metric, index) => (
+              <div key={metric.label} className="px-4 py-6 text-center">
+                {isLoading ? (
+                  <div className="mx-auto h-8 w-12 animate-pulse rounded bg-muted" />
+                ) : (
+                  <p className={`text-2xl font-semibold tabular-nums ${index === 0 ? "text-beam-rainbow" : "text-foreground"}`}>
+                    {metric.value}
+                  </p>
+                )}
+                <p className="mt-1 text-xs text-muted-foreground">{metric.label}</p>
               </div>
             ))}
           </div>
-        ) : Object.keys(tunnelsByDate).length > 0 ? (
-          <div className="mt-6 space-y-8">
-            {Object.entries(tunnelsByDate).map(([date, dateTunnels]) => (
-              <div key={date}>
-                {/* Date */}
-                <div className="flex justify-center">
-                  <span className="rounded-full bg-neutral-100 px-4 py-1.5 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400">
-                    {date}
-                  </span>
+        </motion.section>
+
+        {/* Quick Start */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="mb-12"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-medium text-foreground">Quick Start</h2>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {[
+              { cmd: "beam login", desc: "Authenticate CLI" },
+              { cmd: "beam 3000", desc: "Start quick tunnel" },
+            ].map((item) => (
+              <button
+                key={item.cmd}
+                onClick={() => copyToClipboard(item.cmd)}
+                className="group flex items-center justify-between rounded-xl border border-border bg-card p-4 text-left transition-all hover-rainbow-border"
+              >
+                <div>
+                  <code className="font-mono text-sm text-foreground">{item.cmd}</code>
+                  <p className="mt-0.5 text-xs text-muted-foreground">{item.desc}</p>
                 </div>
+                <Copy className="h-4 w-4 text-muted-foreground/50 transition-colors group-hover:text-muted-foreground" />
+              </button>
+            ))}
+          </div>
+        </motion.section>
 
-                {/* Cards */}
-                <div className="mt-4 space-y-3">
-                  {dateTunnels.map((tunnel) => (
-                    <div
-                      key={tunnel._id}
-                      className="rounded-2xl bg-neutral-50 p-5 dark:bg-neutral-900"
-                    >
-                      {/* Duration */}
-                      <p className="text-xs text-neutral-500">
-                        {tunnel.status === "active" ? (
-                          <>Tunnel active for <span className="font-medium text-neutral-900 dark:text-white">{formatDistanceToNow(tunnel.lastHeartbeat)}</span></>
-                        ) : (
-                          <>Session lasted <span className="font-medium text-neutral-900 dark:text-white">{formatDistanceToNow(tunnel.createdAt)}</span></>
-                        )}
-                      </p>
+        {/* Tunnels */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-12"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-medium text-foreground">Tunnels</h2>
+            <span className="text-xs text-muted-foreground">{tunnels?.length ?? 0} total</span>
+          </div>
 
-                      {/* Tunnel Row */}
-                      <div className="mt-3 flex items-center justify-between">
+          {isLoading ? (
+            <div className="rounded-2xl border border-border p-8 text-center">
+              <Loader2 className="mx-auto h-5 w-5 animate-spin text-muted-foreground" />
+            </div>
+          ) : tunnels && tunnels.length > 0 ? (
+            <div className="divide-y divide-border rounded-2xl border border-border bg-card overflow-hidden">
+              {tunnels.slice(0, 5).map((tunnel) => {
+                const url = tunnel.quickTunnelUrl || tunnel.domain;
+                const isActive = tunnel.status === "active";
+                return (
+                  <div key={tunnel._id} className="group flex items-center justify-between p-4 hover:bg-accent/50 transition-colors">
+                    <div className="flex items-center gap-4 min-w-0">
+                      {/* Rainbow status indicator for active tunnels */}
+                      {isActive ? (
+                        <span className="relative h-2.5 w-2.5 rounded-full bg-[linear-gradient(135deg,#FF0000,#00FF00,#0000FF)]">
+                          <span className="absolute inset-0 rounded-full bg-[linear-gradient(135deg,#FF0000,#00FF00,#0000FF)] animate-ping opacity-75" />
+                        </span>
+                      ) : (
+                        <span
+                          className={`h-2.5 w-2.5 rounded-full ${
+                            tunnel.status === "pending"
+                              ? "bg-amber-500"
+                              : "bg-muted-foreground/30"
+                          }`}
+                        />
+                      )}
+                      <div className="min-w-0">
                         <div className="flex items-center gap-2">
-                          <div className={`h-2 w-2 rounded-full ${
-                            tunnel.status === "active" ? "bg-emerald-500" : "bg-neutral-300 dark:bg-neutral-600"
-                          }`} />
-                          <span className="text-sm font-medium text-neutral-900 dark:text-white">{tunnel.name}</span>
+                          <Link
+                            href={`/dashboard/tunnels/${tunnel.tunnelId}`}
+                            className="font-medium text-foreground hover:underline"
+                          >
+                            {tunnel.name}
+                          </Link>
+                          {tunnel.tunnelType === "quick" ? (
+                            <Zap className="h-3.5 w-3.5 text-amber-500" />
+                          ) : (
+                            <Globe className="h-3.5 w-3.5 text-blue-500" />
+                          )}
+                          <span className="text-xs text-muted-foreground">:{tunnel.port}</span>
                         </div>
-                        <span className="text-xs text-neutral-500">:{tunnel.port}</span>
-                      </div>
-
-                      {/* Footer */}
-                      <div className="mt-4 flex items-center justify-between text-xs text-neutral-500">
-                        <div className="flex items-center gap-1">
-                          <ArrowRight className="h-3 w-3" />
-                          <span className="capitalize">{tunnel.tunnelType}</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <span className={`h-1.5 w-1.5 rounded-full ${tunnel.status === "active" ? "bg-blue-500" : "bg-neutral-300"}`} />
-                          <span>{format(new Date(tunnel.lastHeartbeat), "h:mm a")}</span>
-                        </div>
+                        {url && (
+                          <p className="mt-0.5 truncate text-xs text-muted-foreground">
+                            {url.replace("https://", "")}
+                          </p>
+                        )}
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="mt-20 text-center">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800">
-              <Cable className="h-7 w-7 text-neutral-400" />
+                    <div className="flex items-center gap-2">
+                      <span className={`text-xs ${isActive ? "text-beam-rainbow" : "text-muted-foreground"}`}>
+                        {isActive ? "Live" : formatDistanceToNow(tunnel.lastHeartbeat, { addSuffix: true })}
+                      </span>
+                      <div className="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                        {url && (
+                          <>
+                            <button
+                              onClick={() => copyToClipboard(url)}
+                              className="rounded-md p-1.5 text-muted-foreground hover:bg-accent hover:text-foreground"
+                            >
+                              <Copy className="h-3.5 w-3.5" />
+                            </button>
+                            <a
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="rounded-md p-1.5 text-muted-foreground hover:bg-accent hover:text-foreground"
+                            >
+                              <ExternalLink className="h-3.5 w-3.5" />
+                            </a>
+                          </>
+                        )}
+                        <button
+                          onClick={() => {
+                            setTunnelToDelete(tunnel);
+                            setDeleteDialogOpen(true);
+                          }}
+                          disabled={deletingId === tunnel.tunnelId}
+                          className="rounded-md p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                        >
+                          {deletingId === tunnel.tunnelId ? (
+                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                          ) : (
+                            <Trash2 className="h-3.5 w-3.5" />
+                          )}
+                        </button>
+                      </div>
+                      <Link
+                        href={`/dashboard/tunnels/${tunnel.tunnelId}`}
+                        className="rounded-md p-1.5 text-muted-foreground hover:bg-accent hover:text-foreground"
+                      >
+                        <ChevronRight className="h-4 w-4" />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+              {tunnels.length > 5 && (
+                <Link
+                  href="/dashboard/tunnels"
+                  className="flex items-center justify-center gap-2 p-4 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                >
+                  View all {tunnels.length} tunnels
+                  <ChevronRight className="h-4 w-4" />
+                </Link>
+              )}
             </div>
-            <p className="mt-5 text-sm text-neutral-600 dark:text-neutral-400">No tunnels yet</p>
-            <p className="mt-1 text-xs text-neutral-400">This is where your tunnel history begins</p>
+          ) : (
+            <div className="rounded-2xl border border-dashed border-border p-8 text-center hover-rainbow-border">
+              <Terminal className="mx-auto h-8 w-8 text-muted-foreground/50" />
+              <p className="mt-3 text-sm text-muted-foreground">No tunnels yet</p>
+              <p className="mt-1 text-xs text-muted-foreground/70">
+                Run <code className="rounded bg-muted px-1.5 py-0.5">beam 3000</code>
+              </p>
+            </div>
+          )}
+        </motion.section>
+
+        {/* Subdomains */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="mb-12"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-medium text-foreground">Subdomains</h2>
             <Link
-              href="/dashboard/tunnels"
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:underline dark:text-white"
+              href="/dashboard/subdomains"
+              className="text-xs text-muted-foreground hover:text-foreground"
             >
-              Create your first tunnel
-              <ArrowRight className="h-4 w-4" />
+              Manage →
             </Link>
           </div>
-        )}
 
-        {/* Bottom */}
-        {tunnels && tunnels.length > 0 && (
-          <div className="mt-12 flex flex-col items-center">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800">
-              <Cable className="h-5 w-5 text-neutral-400" />
+          {!subdomains ? (
+            <div className="rounded-2xl border border-border p-6 text-center">
+              <Loader2 className="mx-auto h-5 w-5 animate-spin text-muted-foreground" />
             </div>
-            <p className="mt-3 text-xs text-neutral-400">This is where your journey begins</p>
+          ) : subdomains.length > 0 ? (
+            <div className="divide-y divide-border rounded-2xl border border-border bg-card overflow-hidden">
+              {subdomains.slice(0, 3).map((sub) => (
+                <div key={sub.id} className="flex items-center justify-between p-4 hover:bg-accent/50 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Globe2 className="h-4 w-4 text-muted-foreground" />
+                    <div>
+                      <p className="font-medium text-foreground">{sub.subdomain}</p>
+                      <p className="text-xs text-muted-foreground">{sub.url.replace("https://", "")}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {sub.status === "active" ? (
+                      <span className="h-2 w-2 rounded-full bg-[linear-gradient(135deg,#FF0000,#00FF00,#0000FF)]" />
+                    ) : (
+                      <span className="h-2 w-2 rounded-full bg-amber-500" />
+                    )}
+                    <Link
+                      href={`/dashboard/subdomains/${sub.subdomain}`}
+                      className="rounded-md p-1.5 text-muted-foreground hover:bg-accent hover:text-foreground"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+              {subdomains.length > 3 && (
+                <Link
+                  href="/dashboard/subdomains"
+                  className="flex items-center justify-center gap-2 p-4 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                >
+                  View all {subdomains.length} subdomains
+                  <ChevronRight className="h-4 w-4" />
+                </Link>
+              )}
+            </div>
+          ) : (
+            <Link
+              href="/dashboard/subdomains"
+              className="flex items-center justify-center gap-3 rounded-2xl border border-dashed border-border p-6 text-muted-foreground transition-all hover-rainbow-border hover:text-foreground"
+            >
+              <Globe2 className="h-5 w-5" />
+              <span className="text-sm">Reserve your first subdomain</span>
+            </Link>
+          )}
+        </motion.section>
+
+        {/* Status */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-medium text-foreground">Status</h2>
           </div>
-        )}
+          <div className="rounded-2xl border border-border bg-card p-4 rainbow-top-line overflow-hidden">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Shield className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm text-foreground">System Status</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[linear-gradient(135deg,#FF0000,#00FF00,#0000FF)]" />
+                <span className="text-xs text-beam-rainbow">Operational</span>
+              </div>
+            </div>
+            {!hasCloudflareKey && (
+              <Link
+                href="/dashboard/settings"
+                className="mt-4 flex items-center justify-between rounded-xl bg-amber-50 p-3 text-sm text-amber-700 transition-colors hover:bg-amber-100 dark:bg-amber-950/50 dark:text-amber-400 dark:hover:bg-amber-950"
+              >
+                <span>Configure Cloudflare API key for full features</span>
+                <ChevronRight className="h-4 w-4" />
+              </Link>
+            )}
+          </div>
+        </motion.section>
       </div>
+
+      {/* Delete Dialog */}
+      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete tunnel?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will permanently delete &quot;{tunnelToDelete?.name}&quot;
+              {tunnelToDelete?.tunnelType !== "quick" && " and remove it from Cloudflare"}.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDelete}
+              className="bg-red-600 text-white hover:bg-red-700"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

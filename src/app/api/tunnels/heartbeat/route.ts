@@ -34,8 +34,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const tunnel = await convex.query(api.tunnels.getById, { tunnelId });
+
+    if (!tunnel) {
+      return NextResponse.json(
+        { success: false, error: "Tunnel not found" },
+        { status: 404 }
+      );
+    }
+
+    if (tunnel.userId !== session.userId) {
+      return NextResponse.json(
+        { success: false, error: "Forbidden" },
+        { status: 403 }
+      );
+    }
+
     // Update heartbeat
-    await convex.mutation(api.tunnels.heartbeat, { tunnelId });
+    await convex.mutation(api.tunnels.heartbeat, { userId: session.userId, tunnelId });
 
     return NextResponse.json({ success: true });
   } catch (error) {

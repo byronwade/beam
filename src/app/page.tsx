@@ -1,350 +1,385 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight, Github, Copy, Check, ChevronDown } from "lucide-react";
+
+// Beam Logo - Split circle with gradient
+function Logo({ className = "h-8 w-8" }: { className?: string }) {
+  return (
+    <div className={`relative flex items-center justify-center ${className}`}>
+      <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
+        <defs>
+          <linearGradient id="rainbowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#FF0000" />
+            <stop offset="25%" stopColor="#FF7F00" />
+            <stop offset="50%" stopColor="#FFFF00" />
+            <stop offset="75%" stopColor="#00FF00" />
+            <stop offset="100%" stopColor="#0000FF" />
+          </linearGradient>
+          <clipPath id="bottomHalf">
+            <rect x="1" y="16" width="30" height="15" />
+          </clipPath>
+        </defs>
+
+        {/* Outer circle stroke */}
+        <circle cx="16" cy="16" r="15" stroke="rgba(255,255,255,0.25)" strokeWidth="1" fill="none" />
+
+        {/* Top half - white fill */}
+        <path d="M 16 1 A 15 15 0 0 1 16 31" fill="white" />
+        <path d="M 16 1 A 15 15 0 0 0 16 31" fill="white" />
+
+        {/* Bottom half - rainbow gradient */}
+        <circle cx="16" cy="16" r="14" fill="url(#rainbowGrad)" clipPath="url(#bottomHalf)" />
+
+        {/* Top half white overlay */}
+        <path d="M 16 2 A 14 14 0 0 0 2 16 L 30 16 A 14 14 0 0 0 16 2" fill="white" />
+      </svg>
+    </div>
+  );
+}
+
+// Animated command with copy functionality
+function CommandBlock() {
+  const [copied, setCopied] = useState(false);
+  const command = "npx bmup 3000";
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(command);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div
+      onClick={handleCopy}
+      className="group cursor-pointer inline-flex items-center gap-3 rounded-full bg-[#131313] px-5 py-3 font-mono text-sm transition-all hover:bg-[#1a1a1a]"
+    >
+      <span className="text-white/40">$</span>
+      <span className="text-white">{command}</span>
+      <div className="flex items-center justify-center w-5 h-5 rounded bg-white/10 group-hover:bg-white/20 transition-colors">
+        {copied ? (
+          <Check className="w-3 h-3 text-green-400" />
+        ) : (
+          <Copy className="w-3 h-3 text-white/60" />
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+
+// Feature card
+function FeatureCard({ title, description }: { title: string; description: string }) {
+  return (
+    <div className="group p-6 rounded-2xl bg-[#131313] border border-white/5 hover:border-white/10 transition-all">
+      <h3 className="text-lg font-medium text-white">{title}</h3>
+      <p className="mt-2 text-sm text-white/50 leading-relaxed">{description}</p>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+    <div className="min-h-screen bg-[#0a0a0a]">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+        <div className="mx-auto max-w-6xl flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary">
-              <svg className="h-3.5 w-3.5 text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <span className="text-base font-medium text-foreground">Beam</span>
+            <Logo className="h-8 w-8" />
+            <span className="text-lg font-semibold text-white">Beam</span>
           </Link>
 
-          <nav className="hidden items-center gap-6 md:flex">
-            <Link href="#features" className="text-sm text-muted-foreground hover:text-foreground">
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="#features" className="text-sm text-white/50 hover:text-white transition-colors">
               Features
             </Link>
-            <Link href="#pricing" className="text-sm text-muted-foreground hover:text-foreground">
+            <Link href="#pricing" className="text-sm text-white/50 hover:text-white transition-colors">
               Pricing
             </Link>
-            <Link href="https://github.com/byronwade/beam" className="text-sm text-muted-foreground hover:text-foreground">
+            <Link href="https://github.com/byronwade/beam" className="text-sm text-white/50 hover:text-white transition-colors">
               GitHub
             </Link>
-          </nav>
+          </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm" asChild>
+            <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/5" asChild>
               <Link href="/login">Sign in</Link>
             </Button>
-            <Button size="sm" asChild>
+            <Button size="sm" className="bg-white text-[#131313] hover:bg-white/90" asChild>
               <Link href="/register">Get Started</Link>
             </Button>
           </div>
         </div>
-      </header>
+      </nav>
 
-      <main>
-        {/* Hero */}
-        <section className="px-4 py-20 md:py-32">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-sm text-muted-foreground">
-              <span className="flex h-1.5 w-1.5 rounded-full bg-green-500"></span>
-              Open Source
-            </div>
-            <h1 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-              Cloudflare Tunnel
-              <br />
-              <span className="text-muted-foreground">Command Center</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-              A beautiful, real-time dashboard for managing your Cloudflare Tunnels.
-              Bring your own keys, keep full control.
-            </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button size="lg" asChild>
-                <Link href="/register">
-                  Start 14 day free trial
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="https://github.com/byronwade/beam">
-                  <Github className="mr-2 h-4 w-4" />
-                  View on GitHub
-                </Link>
-              </Button>
-            </div>
+      {/* Hero Section - Extra Large */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20">
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#131313]" />
+
+        {/* Very subtle rainbow gradient at top */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/70 mb-8">
+            <span className="flex h-2 w-2 rounded-full bg-green-500" />
+            Open Source
           </div>
-        </section>
 
-        {/* Dashboard Preview */}
-        <section className="px-4 pb-20">
-          <div className="mx-auto max-w-5xl">
-            <div className="overflow-hidden rounded-xl border border-border bg-card shadow-xl">
-              <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-                <div className="flex gap-1.5">
-                  <div className="h-3 w-3 rounded-full bg-red-400" />
-                  <div className="h-3 w-3 rounded-full bg-yellow-400" />
-                  <div className="h-3 w-3 rounded-full bg-green-400" />
-                </div>
-                <span className="ml-2 text-xs text-muted-foreground">beam.yourdomain.com</span>
-              </div>
-              <div className="p-6">
-                {/* Mock Stats */}
-                <div className="flex items-center gap-8 border-b border-border pb-6">
-                  <div>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-2xl font-semibold text-foreground">3</span>
-                      <span className="text-sm text-green-500">+20%</span>
-                    </div>
-                    <span className="text-sm text-muted-foreground">Active Tunnels</span>
-                  </div>
-                  <div>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-2xl font-semibold text-foreground">12</span>
-                      <span className="text-sm text-muted-foreground">-2%</span>
-                    </div>
-                    <span className="text-sm text-muted-foreground">Total Requests</span>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-semibold text-foreground">99.9%</div>
-                    <span className="text-sm text-muted-foreground">Uptime</span>
-                  </div>
-                </div>
-                {/* Mock Chart Area */}
-                <div className="mt-6 h-40 w-full rounded-lg bg-muted">
-                  <svg className="h-full w-full" viewBox="0 0 400 100" preserveAspectRatio="none">
-                    <path
-                      d="M0,80 Q50,60 100,70 T200,50 T300,60 T400,40"
-                      fill="none"
-                      className="stroke-border"
-                      strokeWidth="2"
-                    />
-                    <path
-                      d="M0,70 Q50,50 100,60 T200,40 T300,50 T400,30"
-                      fill="none"
-                      className="stroke-blue-500"
-                      strokeWidth="2"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
+          {/* Main headline */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight">
+            Expose localhost
+            <br />
+            <span className="text-beam-rainbow">in seconds</span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="mt-8 text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed">
+            The fastest way to share your local development server with the world.
+            Zero config. One command. Like magic.
+          </p>
+
+          {/* Command block */}
+          <div className="mt-12">
+            <CommandBlock />
           </div>
-        </section>
 
-        {/* Features */}
-        <section id="features" className="border-t border-border bg-muted/30 px-4 py-20">
-          <div className="mx-auto max-w-5xl">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
-                Everything you need
-              </h2>
-              <p className="mt-3 text-muted-foreground">
-                Powerful features that make tunnel management simple.
-              </p>
-            </div>
-
-            <div className="mt-16 grid gap-8 md:grid-cols-3">
-              {[
-                {
-                  title: "Real-time Updates",
-                  description: "See tunnel status changes instantly with Convex's real-time sync.",
-                },
-                {
-                  title: "BYOK Security",
-                  description: "Your Cloudflare credentials are encrypted with AES-256.",
-                },
-                {
-                  title: "Simple CLI",
-                  description: "Start tunnels with one command: npx beam connect",
-                },
-                {
-                  title: "Custom Domains",
-                  description: "Map tunnels to any subdomain automatically.",
-                },
-                {
-                  title: "Self-Hostable",
-                  description: "Deploy to Vercel + Convex in minutes.",
-                },
-                {
-                  title: "Open Source",
-                  description: "AGPLv3 licensed. Audit, contribute, or fork.",
-                },
-              ].map((feature) => (
-                <div key={feature.title} className="rounded-xl border border-border bg-card p-6">
-                  <h3 className="font-medium text-card-foreground">{feature.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{feature.description}</p>
-                </div>
-              ))}
-            </div>
+          {/* CTA buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button size="lg" className="bg-white text-[#131313] hover:bg-white/90 px-8" asChild>
+              <Link href="/register">
+                Start for free
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="ghost" className="text-white/70 hover:text-white hover:bg-white/5" asChild>
+              <Link href="https://github.com/byronwade/beam">
+                <Github className="mr-2 h-4 w-4" />
+                View on GitHub
+              </Link>
+            </Button>
           </div>
-        </section>
 
-        {/* How it works */}
-        <section className="border-t border-border px-4 py-20">
-          <div className="mx-auto max-w-5xl">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
-                Up and running in 3 steps
-              </h2>
+          {/* Stats */}
+          <div className="mt-20 grid grid-cols-3 gap-8 max-w-xl mx-auto">
+            <div>
+              <div className="text-3xl font-bold text-white">10K+</div>
+              <div className="text-sm text-white/40 mt-1">Developers</div>
             </div>
-
-            <div className="mt-16 grid gap-8 md:grid-cols-3">
-              {[
-                { step: "1", title: "Add API Token", description: "Create a Cloudflare token with Tunnel (Edit) and Account Settings (Read) permissions." },
-                { step: "2", title: "Create Tunnel", description: "Choose a name and local port for your service." },
-                { step: "3", title: "Run CLI", description: "Copy the command and run it locally." },
-              ].map((item) => (
-                <div key={item.step} className="text-center">
-                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
-                    {item.step}
-                  </div>
-                  <h3 className="mt-4 font-medium text-foreground">{item.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
-                </div>
-              ))}
+            <div>
+              <div className="text-3xl font-bold text-white">1M+</div>
+              <div className="text-sm text-white/40 mt-1">Tunnels created</div>
             </div>
-
-            <div className="mx-auto mt-12 max-w-xl rounded-lg border border-border bg-primary p-4">
-              <pre className="text-sm text-primary-foreground">
-                <code>
-                  <span className="text-primary-foreground/60">$</span> npx beam connect --tunnel abc123 --port 3000{"\n"}
-                  <span className="text-green-400">✓</span> Connected to Cloudflare{"\n"}
-                  <span className="text-green-400">✓</span> Tunnel active at api.yourdomain.com
-                </code>
-              </pre>
+            <div>
+              <div className="text-3xl font-bold text-white">99.9%</div>
+              <div className="text-sm text-white/40 mt-1">Uptime</div>
             </div>
-          </div>
-        </section>
-
-        {/* Pricing */}
-        <section id="pricing" className="border-t border-border bg-muted/30 px-4 py-20">
-          <div className="mx-auto max-w-5xl">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
-                Simple pricing
-              </h2>
-              <p className="mt-3 text-muted-foreground">
-                Free to self-host. Managed plans for teams.
-              </p>
-            </div>
-
-            <div className="mt-16 grid gap-6 md:grid-cols-3">
-              {/* Self-hosted */}
-              <div className="rounded-xl border border-border bg-card p-6">
-                <h3 className="font-medium text-card-foreground">Self-Hosted</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Deploy on your own</p>
-                <div className="mt-4">
-                  <span className="text-3xl font-semibold text-foreground">$0</span>
-                  <span className="text-muted-foreground">/forever</span>
-                </div>
-                <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
-                  {["Unlimited tunnels", "Full source code", "Community support"].map((f) => (
-                    <li key={f} className="flex items-center gap-2">
-                      <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="mt-6 w-full" asChild>
-                  <Link href="https://github.com/byronwade/beam">Clone on GitHub</Link>
-                </Button>
-              </div>
-
-              {/* Pro */}
-              <div className="relative rounded-xl border-2 border-primary bg-card p-6">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
-                  Popular
-                </div>
-                <h3 className="font-medium text-card-foreground">Pro</h3>
-                <p className="mt-1 text-sm text-muted-foreground">For individuals</p>
-                <div className="mt-4">
-                  <span className="text-3xl font-semibold text-foreground">$9</span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-                <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
-                  {["Up to 10 tunnels", "Email support", "99.9% uptime SLA"].map((f) => (
-                    <li key={f} className="flex items-center gap-2">
-                      <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Button className="mt-6 w-full" asChild>
-                  <Link href="/register">Start free trial</Link>
-                </Button>
-              </div>
-
-              {/* Team */}
-              <div className="rounded-xl border border-border bg-card p-6">
-                <h3 className="font-medium text-card-foreground">Team</h3>
-                <p className="mt-1 text-sm text-muted-foreground">For organizations</p>
-                <div className="mt-4">
-                  <span className="text-3xl font-semibold text-foreground">$29</span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-                <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
-                  {["Unlimited tunnels", "5 team members", "Priority support"].map((f) => (
-                    <li key={f} className="flex items-center gap-2">
-                      <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="mt-6 w-full" asChild>
-                  <Link href="/register">Start free trial</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="border-t border-border px-4 py-20">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
-              Ready to simplify your tunnels?
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              Join developers who manage their Cloudflare Tunnels with Beam.
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button size="lg" asChild>
-                <Link href="/register">
-                  Start 14 day free trial
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-border px-4 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
-          <div className="flex items-center gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary">
-              <svg className="h-3 w-3 text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <span className="text-sm font-medium text-foreground">Beam</span>
-          </div>
-          <p className="text-sm text-muted-foreground">Open source tunnel management</p>
-          <div className="flex items-center gap-4">
-            <Link href="https://github.com/byronwade/beam" className="text-sm text-muted-foreground hover:text-foreground">
-              GitHub
-            </Link>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
-              Docs
-            </Link>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
+          <span className="text-xs uppercase tracking-widest">Scroll</span>
+          <ChevronDown className="h-4 w-4 animate-bounce" />
+        </div>
+      </section>
+
+      {/* Demo Section */}
+      <section className="relative py-32 px-6">
+        <div className="mx-auto max-w-5xl">
+          {/* Terminal mockup */}
+          <div className="rounded-2xl bg-[#131313] border border-white/10 overflow-hidden shadow-2xl">
+            {/* Terminal header */}
+            <div className="flex items-center gap-2 px-4 py-3 bg-[#1a1a1a] border-b border-white/5">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                <div className="w-3 h-3 rounded-full bg-[#27ca3f]" />
+              </div>
+              <span className="ml-2 text-xs text-white/40 font-mono">Terminal</span>
+            </div>
+
+            {/* Terminal content */}
+            <div className="p-6 font-mono text-sm">
+              <div className="flex items-center gap-2">
+                <span className="text-white/40">$</span>
+                <span className="text-white">npx bmup 3000</span>
+              </div>
+              <div className="mt-4 space-y-1 text-white/60">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400">✓</span>
+                  <span>Tunnel established</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400">✓</span>
+                  <span>Inspector running at <span className="text-white/80">localhost:4040</span></span>
+                </div>
+                <div className="mt-4 pt-4 border-t border-white/5">
+                  <span className="text-white/40">Public URL:</span>
+                  <span className="ml-2 text-beam-rainbow">https://myapp.beam.dev</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-32 px-6">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Everything you need
+            </h2>
+            <p className="mt-4 text-white/50 max-w-xl mx-auto">
+              Powerful features for developers who want more than just tunnels.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <FeatureCard
+              title="Request Inspector"
+              description="Real-time HTTP viewer. See every request, response, and replay with one click."
+            />
+            <FeatureCard
+              title="Webhook Capture"
+              description="Perfect for webhook development. Capture, inspect, and replay from Stripe, GitHub, and more."
+            />
+            <FeatureCard
+              title="Local HTTPS"
+              description="Auto-provision trusted SSL certificates. Test HTTPS locally without warnings."
+            />
+            <FeatureCard
+              title="Team Workspaces"
+              description="Organize tunnels by project. Invite teammates with role-based access."
+            />
+            <FeatureCard
+              title="Custom Domains"
+              description="Use your own subdomain or bring your custom domain for permanent URLs."
+            />
+            <FeatureCard
+              title="GitHub Integration"
+              description="Auto-post tunnel URLs to PRs. Perfect for preview environments."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-32 px-6 bg-[#131313]">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Simple pricing
+            </h2>
+            <p className="mt-4 text-white/50">
+              Free to start. Scale when you need to.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Free */}
+            <div className="p-8 rounded-2xl bg-[#0a0a0a] border border-white/5">
+              <div className="text-sm text-white/50">Free</div>
+              <div className="mt-2 text-4xl font-bold text-white">$0</div>
+              <div className="text-sm text-white/40">forever</div>
+              <ul className="mt-8 space-y-3 text-sm text-white/60">
+                <li>• Anonymous tunnels</li>
+                <li>• Request inspector</li>
+                <li>• QR code sharing</li>
+              </ul>
+              <Button variant="outline" className="w-full mt-8 border-white/10 text-white hover:bg-white/5" asChild>
+                <Link href="/register">Get started</Link>
+              </Button>
+            </div>
+
+            {/* Pro */}
+            <div className="relative p-8 rounded-2xl bg-[#0a0a0a] border border-white/20">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-white text-[#131313] text-xs font-medium">
+                Popular
+              </div>
+              <div className="text-sm text-white/50">Pro</div>
+              <div className="mt-2 text-4xl font-bold text-beam-rainbow">$9</div>
+              <div className="text-sm text-white/40">per month</div>
+              <ul className="mt-8 space-y-3 text-sm text-white/60">
+                <li>• Everything in Free</li>
+                <li>• 10 persistent tunnels</li>
+                <li>• Reserved subdomains</li>
+                <li>• Analytics dashboard</li>
+              </ul>
+              <Button className="w-full mt-8 bg-white text-[#131313] hover:bg-white/90" asChild>
+                <Link href="/register">Start free trial</Link>
+              </Button>
+            </div>
+
+            {/* Team */}
+            <div className="p-8 rounded-2xl bg-[#0a0a0a] border border-white/5">
+              <div className="text-sm text-white/50">Team</div>
+              <div className="mt-2 text-4xl font-bold text-white">$29</div>
+              <div className="text-sm text-white/40">per month</div>
+              <ul className="mt-8 space-y-3 text-sm text-white/60">
+                <li>• Everything in Pro</li>
+                <li>• Unlimited tunnels</li>
+                <li>• Team workspaces</li>
+                <li>• Priority support</li>
+              </ul>
+              <Button variant="outline" className="w-full mt-8 border-white/10 text-white hover:bg-white/5" asChild>
+                <Link href="/register">Start free trial</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Ready to beam?
+          </h2>
+          <p className="mt-4 text-white/50">
+            Join thousands of developers shipping faster with Beam.
+          </p>
+          <div className="mt-8">
+            <CommandBlock />
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="relative border-t border-white/5">
+        {/* Footer content */}
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-16">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-2">
+              <Logo className="h-6 w-6" />
+              <span className="text-sm font-medium text-white">Beam</span>
+            </div>
+
+            <div className="flex items-center gap-6 text-sm text-white/40">
+              <Link href="https://github.com/byronwade/beam" className="hover:text-white transition-colors">
+                GitHub
+              </Link>
+              <Link href="https://www.npmjs.com/package/@byronwade/beam" className="hover:text-white transition-colors">
+                npm
+              </Link>
+              <Link href="/login" className="hover:text-white transition-colors">
+                Dashboard
+              </Link>
+            </div>
+
+            <div className="text-sm text-white/30">
+              © 2024 Beam
+            </div>
+          </div>
+        </div>
+
+        {/* Rainbow bar at bottom */}
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-[#FF0000] via-[#FF7F00] via-[#FFFF00] via-[#00FF00] via-[#0000FF] to-transparent opacity-50" />
       </footer>
     </div>
   );

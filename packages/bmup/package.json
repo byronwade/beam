@@ -1,10 +1,11 @@
 {
   "name": "bmup",
-  "version": "1.1.0",
+  "version": "1.1.5",
+  "type": "module",
   "description": "Expose localhost to the internet in seconds. Alias for @byronwade/beam.",
   "bin": {
-    "beam": "./bin.js",
-    "bmup": "./bin.js"
+    "beam": "bin.js",
+    "bmup": "bin.js"
   },
   "keywords": [
     "beam",
@@ -23,9 +24,16 @@
     "url": "git+https://github.com/byronwade/beam.git"
   },
   "dependencies": {
-    "@byronwade/beam": "^1.1.0"
+    "@byronwade/beam": "^1.1.5"
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "scripts": {
+    "postinstall": "node setup-path.js"
+  },
+  "files": [
+    "bin.js",
+    "setup-path.js"
+  ]
 }

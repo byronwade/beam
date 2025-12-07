@@ -45,71 +45,107 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+
+  /* Base: Off-white #FAFAFA */
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.075 0 0); /* #131313 */
+
+  /* Cards/Popovers: Same off-white */
+  --card: oklch(0.98 0 0);
+  --card-foreground: oklch(0.075 0 0);
+  --popover: oklch(0.98 0 0);
+  --popover-foreground: oklch(0.075 0 0);
+
+  /* Primary: Dark #131313 */
+  --primary: oklch(0.075 0 0);
+  --primary-foreground: oklch(0.98 0 0);
+
+  /* Secondary/Muted/Accent: Light grays */
+  --secondary: oklch(0.95 0 0);
+  --secondary-foreground: oklch(0.075 0 0);
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.95 0 0);
+  --accent-foreground: oklch(0.075 0 0);
+
+  /* Destructive */
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Borders/Input */
+  --border: oklch(0.90 0 0);
+  --input: oklch(0.90 0 0);
+  --ring: oklch(0.075 0 0);
+
+  /* Chart colors - rainbow themed */
+  --chart-1: oklch(0.65 0.28 25); /* Red */
+  --chart-2: oklch(0.75 0.18 65); /* Orange */
+  --chart-3: oklch(0.85 0.18 95); /* Yellow */
+  --chart-4: oklch(0.70 0.20 145); /* Green */
+  --chart-5: oklch(0.55 0.25 265); /* Blue */
+
+  /* Sidebar */
+  --sidebar: oklch(0.98 0 0);
+  --sidebar-foreground: oklch(0.075 0 0);
+  --sidebar-primary: oklch(0.075 0 0);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.95 0 0);
+  --sidebar-accent-foreground: oklch(0.075 0 0);
+  --sidebar-border: oklch(0.90 0 0);
+  --sidebar-ring: oklch(0.075 0 0);
+
+  /* Rainbow gradient system */
+  --beam-rainbow: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF);
+  --beam-rainbow-reverse: linear-gradient(90deg, #8B00FF, #0000FF, #00FF00, #FFFF00, #FF7F00, #FF0000);
+  --beam-rainbow-vertical: linear-gradient(180deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /* Base: Dark #131313 */
+  --background: oklch(0.075 0 0);
+  --foreground: oklch(0.98 0 0);
+
+  /* Cards: Slightly lighter than background */
+  --card: oklch(0.12 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.12 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+
+  /* Primary: Light for contrast */
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.075 0 0);
+
+  /* Secondary/Muted/Accent */
+  --secondary: oklch(0.18 0 0);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.18 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+
+  /* Destructive */
   --destructive: oklch(0.704 0.191 22.216);
+
+  /* Borders */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.98 0 0);
+
+  /* Chart colors - rainbow themed (brighter for dark mode) */
+  --chart-1: oklch(0.70 0.30 25); /* Red */
+  --chart-2: oklch(0.80 0.20 65); /* Orange */
+  --chart-3: oklch(0.90 0.20 95); /* Yellow */
+  --chart-4: oklch(0.75 0.22 145); /* Green */
+  --chart-5: oklch(0.65 0.28 265); /* Blue */
+
+  /* Sidebar */
+  --sidebar: oklch(0.12 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.98 0 0);
+  --sidebar-primary-foreground: oklch(0.075 0 0);
+  --sidebar-accent: oklch(0.18 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(0.98 0 0);
 }
 
 @layer base {
@@ -118,5 +154,488 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================
+   BEAM RAINBOW UTILITY CLASSES
+   Light dispersion spectrum: Red → Orange → Yellow → Green → Blue → Violet
+   NEVER use individual colors - always use the full gradient
+   ============================================ */
+
+/* Rainbow gradient background */
+.bg-beam-rainbow {
+  background: var(--beam-rainbow);
+}
+
+/* Rainbow gradient text */
+.text-beam-rainbow {
+  background: var(--beam-rainbow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Rainbow border using border-image */
+.border-beam-rainbow {
+  border-image: var(--beam-rainbow) 1;
+}
+
+/* Rainbow border with solid background (for buttons/cards) */
+.rainbow-border {
+  position: relative;
+  background: var(--background);
+}
+.rainbow-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: var(--beam-rainbow);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Rainbow glow effect */
+.rainbow-glow {
+  box-shadow:
+    0 0 20px rgba(255, 0, 0, 0.15),
+    0 0 40px rgba(255, 127, 0, 0.1),
+    0 0 60px rgba(0, 255, 0, 0.1),
+    0 0 80px rgba(0, 0, 255, 0.1),
+    0 0 100px rgba(139, 0, 255, 0.15);
+}
+
+/* Intense rainbow glow for dark mode */
+.rainbow-glow-intense {
+  box-shadow:
+    0 0 30px rgba(255, 0, 0, 0.25),
+    0 0 60px rgba(255, 127, 0, 0.2),
+    0 0 90px rgba(0, 255, 0, 0.15),
+    0 0 120px rgba(0, 0, 255, 0.15),
+    0 0 150px rgba(139, 0, 255, 0.25);
+}
+
+/* Rainbow underline */
+.rainbow-underline {
+  position: relative;
+}
+.rainbow-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--beam-rainbow);
+  border-radius: 1px;
+}
+
+/* Rainbow top accent line */
+.rainbow-top-line {
+  position: relative;
+}
+.rainbow-top-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--beam-rainbow);
+  border-radius: 2px 2px 0 0;
+}
+
+/* Animated rainbow gradient */
+@keyframes rainbow-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.rainbow-animated {
+  background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF, #FF0000);
+  background-size: 200% 100%;
+  animation: rainbow-shift 3s ease infinite;
+}
+
+/* Rainbow animated text */
+.text-rainbow-animated {
+  background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF, #FF0000);
+  background-size: 200% 100%;
+  animation: rainbow-shift 3s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Rainbow pulse animation for active states */
+@keyframes rainbow-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.rainbow-pulse {
+  animation: rainbow-pulse 2s ease-in-out infinite;
+}
+
+/* Subtle rainbow hover effect for cards */
+.hover-rainbow-border {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.hover-rainbow-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: var(--beam-rainbow);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.hover-rainbow-border:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   RAINBOW BEAM BUTTON EFFECT
+   Distinct colored rays emanate from button on hover
+   ============================================ */
+
+.rainbow-beam-button {
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Container for the beam rays */
+.rainbow-beam-button::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background:
+    /* Red beam - top left */
+    linear-gradient(135deg, #FF0000 0%, transparent 60%),
+    /* Orange beam - top */
+    linear-gradient(180deg, #FF7F00 0%, transparent 50%),
+    /* Yellow beam - top right */
+    linear-gradient(225deg, #FFFF00 0%, transparent 60%),
+    /* Green beam - right */
+    linear-gradient(270deg, #00FF00 0%, transparent 50%),
+    /* Blue beam - bottom right */
+    linear-gradient(315deg, #0000FF 0%, transparent 60%),
+    /* Violet beam - bottom */
+    linear-gradient(0deg, #8B00FF 0%, transparent 50%);
+  filter: blur(8px);
+}
+
+.rainbow-beam-button:hover::before {
+  opacity: 0.7;
+}
+
+/* Individual beam rays using box-shadow for sharper effect */
+.rainbow-beam-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow:
+    /* Red ray - left */
+    -20px 0 20px -10px rgba(255, 0, 0, 0.6),
+    /* Orange ray - top-left */
+    -14px -14px 20px -10px rgba(255, 127, 0, 0.6),
+    /* Yellow ray - top */
+    0 -20px 20px -10px rgba(255, 255, 0, 0.6),
+    /* Green ray - top-right */
+    14px -14px 20px -10px rgba(0, 255, 0, 0.6),
+    /* Blue ray - right */
+    20px 0 20px -10px rgba(0, 0, 255, 0.6),
+    /* Violet ray - bottom */
+    0 20px 20px -10px rgba(139, 0, 255, 0.6);
+}
+
+.rainbow-beam-button:hover::after {
+  opacity: 1;
+}
+
+/* Rainbow badge glow - always visible beam rays for badges */
+.rainbow-badge-glow {
+  position: relative;
+  z-index: 1;
+}
+
+.rainbow-badge-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow:
+    /* Distinct colored rays shooting outward */
+    -12px 0 12px -6px rgba(255, 0, 0, 0.7),
+    -8px -8px 12px -6px rgba(255, 127, 0, 0.7),
+    0 -12px 12px -6px rgba(255, 255, 0, 0.7),
+    8px -8px 12px -6px rgba(0, 255, 0, 0.7),
+    12px 0 12px -6px rgba(0, 0, 255, 0.7),
+    0 12px 12px -6px rgba(139, 0, 255, 0.7);
+}
+
+/* ============================================
+   LIGHT BEAM SCROLL ANIMATION
+   Beam of light that travels down the page and disperses through a prism
+   ============================================ */
+
+/* Entrance animation - beam shoots from header */
+@keyframes beam-entrance {
+  0% {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Light beam element - original fixed version */
+.light-beam {
+  position: fixed;
+  left: 50%;
+  top: 0;
+  width: 4px;
+  height: 200px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 10%,
+    rgba(255, 255, 255, 0.9) 30%,
+    #FFFFFF 50%,
+    rgba(255, 255, 255, 0.9) 70%,
+    rgba(255, 255, 255, 0.3) 90%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 40px rgba(255, 255, 255, 0.4),
+    0 0 60px rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 50;
+  animation: beam-entrance 0.8s ease-out forwards;
+  will-change: transform;
+}
+
+/* Light beam - growing version that extends from top to prism */
+.light-beam-growing {
+  position: fixed;
+  top: 0;
+  width: 3px;
+  min-height: 10px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.6) 20%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.6) 80%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.5),
+    0 0 12px rgba(255, 255, 255, 0.3);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 5;
+  will-change: height;
+}
+
+/* Bright tip at the end of the growing beam */
+.light-beam-growing::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 16px rgba(255, 255, 255, 0.4);
+}
+
+/* Beam glow core */
+.light-beam::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 100%;
+  background: #FFFFFF;
+  filter: blur(1px);
+}
+
+/* Prism container */
+.prism-container {
+  position: relative;
+  width: 150px;
+  height: 130px;
+  margin: 0 auto;
+}
+
+/* Prism glass effect */
+.prism {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+.prism-glass {
+  fill: url(#prism-gradient);
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1;
+}
+
+/* Rainbow rays container */
+.rainbow-rays {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 200px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Individual rainbow ray */
+.rainbow-ray {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 8px;
+  height: 0;
+  transform-origin: bottom center;
+  opacity: 0;
+  filter: blur(2px);
+  transition: height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Ray colors with glow */
+.rainbow-ray.red {
+  background: linear-gradient(to bottom, #FF0000, transparent);
+  box-shadow: 0 0 20px #FF0000, 0 0 40px rgba(255, 0, 0, 0.5);
+  transform: translateX(-50%) rotate(-50deg);
+}
+
+.rainbow-ray.orange {
+  background: linear-gradient(to bottom, #FF7F00, transparent);
+  box-shadow: 0 0 20px #FF7F00, 0 0 40px rgba(255, 127, 0, 0.5);
+  transform: translateX(-50%) rotate(-30deg);
+}
+
+.rainbow-ray.yellow {
+  background: linear-gradient(to bottom, #FFFF00, transparent);
+  box-shadow: 0 0 20px #FFFF00, 0 0 40px rgba(255, 255, 0, 0.5);
+  transform: translateX(-50%) rotate(-10deg);
+}
+
+.rainbow-ray.green {
+  background: linear-gradient(to bottom, #00FF00, transparent);
+  box-shadow: 0 0 20px #00FF00, 0 0 40px rgba(0, 255, 0, 0.5);
+  transform: translateX(-50%) rotate(10deg);
+}
+
+.rainbow-ray.blue {
+  background: linear-gradient(to bottom, #0000FF, transparent);
+  box-shadow: 0 0 20px #0000FF, 0 0 40px rgba(0, 0, 255, 0.5);
+  transform: translateX(-50%) rotate(30deg);
+}
+
+.rainbow-ray.violet {
+  background: linear-gradient(to bottom, #8B00FF, transparent);
+  box-shadow: 0 0 20px #8B00FF, 0 0 40px rgba(139, 0, 255, 0.5);
+  transform: translateX(-50%) rotate(50deg);
+}
+
+/* Active state when beam reaches prism */
+.rainbow-rays.active .rainbow-ray {
+  opacity: 1;
+  height: 300px;
+}
+
+/* Staggered animation delays for rays */
+.rainbow-rays.active .rainbow-ray.red { transition-delay: 0s; }
+.rainbow-rays.active .rainbow-ray.orange { transition-delay: 0.05s; }
+.rainbow-rays.active .rainbow-ray.yellow { transition-delay: 0.1s; }
+.rainbow-rays.active .rainbow-ray.green { transition-delay: 0.15s; }
+.rainbow-rays.active .rainbow-ray.blue { transition-delay: 0.2s; }
+.rainbow-rays.active .rainbow-ray.violet { transition-delay: 0.25s; }
+
+/* Ray shimmer animation */
+@keyframes ray-shimmer {
+  0%, 100% {
+    opacity: 0.9;
+    filter: blur(2px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(3px);
+  }
+}
+
+.rainbow-rays.active .rainbow-ray {
+  animation: ray-shimmer 2s ease-in-out infinite;
+}
+
+/* Different animation delays for shimmer effect */
+.rainbow-rays.active .rainbow-ray.red { animation-delay: 0s; }
+.rainbow-rays.active .rainbow-ray.orange { animation-delay: 0.3s; }
+.rainbow-rays.active .rainbow-ray.yellow { animation-delay: 0.6s; }
+.rainbow-rays.active .rainbow-ray.green { animation-delay: 0.9s; }
+.rainbow-rays.active .rainbow-ray.blue { animation-delay: 1.2s; }
+.rainbow-rays.active .rainbow-ray.violet { animation-delay: 1.5s; }
+
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .light-beam {
+    animation: none;
+    opacity: 1;
+    transform: translateX(-50%);
+  }
+
+  .light-beam-growing {
+    transition: none;
+  }
+
+  .rainbow-ray {
+    transition: none;
+    animation: none !important;
+  }
+
+  .rainbow-rays.active .rainbow-ray {
+    opacity: 1;
+    height: 300px;
+    animation: none !important;
   }
 }

@@ -161,7 +161,7 @@ export async function createDnsRecord(
   zoneId: string,
   tunnelId: string,
   subdomain: string
-): Promise<{ success: boolean; error?: string }> {
+): Promise<{ success: boolean; dnsRecordId?: string; error?: string }> {
   try {
     const response = await fetch(
       `${CLOUDFLARE_API_BASE}/zones/${zoneId}/dns_records`,
@@ -180,14 +180,43 @@ export async function createDnsRecord(
       }
     );
 
-    const data = (await response.json()) as CloudflareResponse<unknown>;
+    const data = (await response.json()) as CloudflareResponse<{ id: string }>;
 
     if (!data.success) {
       return { success: false, error: data.errors[0]?.message || "Failed to create DNS record" };
     }
 
-    return { success: true };
+    return { success: true, dnsRecordId: data.result?.id };
   } catch {
     return { success: false, error: "Failed to create DNS record" };
+  }
+}
+
+export async function deleteDnsRecord(
+  token: string,
+  zoneId: string,
+  dnsRecordId: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const response = await fetch(
+      `${CLOUDFLARE_API_BASE}/zones/${zoneId}/dns_records/${dnsRecordId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = (await response.json()) as CloudflareResponse<unknown>;
+
+    if (!data.success) {
+      return { success: false, error: data.errors[0]?.message || "Failed to delete DNS record" };
+    }
+
+    return { success: true };
+  } catch {
+    return { success: false, error: "Failed to delete DNS record" };
   }
 }

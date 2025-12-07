@@ -1,298 +1,664 @@
 # Beam
 
 <div align="center">
-  <h3>The Open Source Tunnel Manager</h3>
-  <p>A beautiful, real-time Command Center for Cloudflare Tunnels</p>
+  <h3>Expose localhost to the internet in seconds</h3>
+  <p>The open-source ngrok alternative. Zero config. One command. Built on Cloudflare's global network.</p>
 
   [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+  [![npm version](https://badge.fury.io/js/@byronwade/beam.svg)](https://www.npmjs.com/package/@byronwade/beam)
   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/byronwade/beam)
 </div>
 
 ---
 
-## What is Beam?
+## Quick Start
 
-Beam is a **BYOK (Bring Your Own Keys)** wrapper around Cloudflare's Tunnel API. It provides:
+```bash
+npx bmup 3000
+```
 
-- A beautiful dashboard to create, monitor, and manage your Cloudflare Tunnels
-- Real-time status updates powered by Convex
-- A simple CLI to connect tunnels to your local services
-- End-to-end encryption for your Cloudflare API keys
+That's it. Your localhost:3000 is now publicly accessible.
 
-Think of it as a self-hostable alternative to ngrok, but using Cloudflare's network.
+```
+$ npx bmup 3000
+
+  ⚡ Beam
+
+  Tunnel:     https://abc123.trycloudflare.com
+  Local:      http://localhost:3000
+  Status:     Connected
+
+  Press Ctrl+C to stop
+```
+
+---
+
+## Why Beam?
+
+| Feature | ngrok | localtunnel | Beam |
+|---------|:-----:|:-----------:|:----:|
+| Zero config | Limited | Yes | **Yes** |
+| Free tier | 1 tunnel | Unlimited | **Unlimited** |
+| Framework plugins | No | No | **Yes** |
+| Request inspector | Paid | No | **Free** |
+| Open source | No | Yes | **Yes** |
+| Built on Cloudflare | No | No | **Yes** |
+
+---
+
+## Installation
+
+```bash
+# Quick use (no install)
+npx bmup 3000
+
+# Global install (recommended)
+npm install -g bmup
+beam 3000
+
+# Or use the full package name
+npm install -g @byronwade/beam
+beam 3000
+```
+
+---
 
 ## Features
 
-- **Real-time Updates**: See tunnel status changes instantly without refreshing
-- **BYOK Security**: Your Cloudflare keys are encrypted with AES-256-GCM
-- **Simple CLI**: Start tunnels with `npx beam connect`
-- **Custom Domains**: Map tunnels to any subdomain on your Cloudflare domain
-- **Self-Hostable**: Deploy to Vercel + Convex in minutes
-- **Open Source**: AGPLv3 licensed - audit, contribute, or fork
+### 1. Simple CLI
 
-## Tech Stack
-
-- **Frontend**: Next.js 14+ (App Router)
-- **Backend/Database**: Convex (real-time sync, serverless functions)
-- **Auth**: Custom authentication with encrypted sessions
-- **Styling**: Tailwind CSS + shadcn/ui
-- **Infrastructure**: Cloudflare API (v4)
-
-## Quick Start
-
-### Prerequisites
-
-- Node.js 18+
-- A Cloudflare account with a domain
-- A Convex account (free tier works)
-
-### 1. Clone and Install
+Just run `beam <port>` - no subcommands, no flags required.
 
 ```bash
-git clone https://github.com/byronwade/beam.git
-cd beam
-npm install
+# Basic tunnel
+beam 3000
+
+# Multiple ports at once
+beam 3000 8080 5432
+
+# With options
+beam 3000 --copy --qr --inspect
 ```
 
-### 2. Set Up Convex
+---
+
+### 2. Framework Integrations
+
+Add Beam to your project and tunnel URLs appear automatically in your dev server logs.
+
+#### Next.js
+
+```javascript
+// next.config.js
+const withBeam = require('@byronwade/beam/next');
+
+module.exports = withBeam({
+  // your existing config
+});
+```
+
+```
+$ npm run dev
+
+▲ Next.js 15.0.0
+- Local:        http://localhost:3000
+- Tunnel:       https://abc123.trycloudflare.com  ← Beam adds this!
+
+✓ Ready in 1.2s
+```
+
+#### Vite / Remix / SvelteKit
+
+```javascript
+// vite.config.ts
+import beam from '@byronwade/beam/vite';
+
+export default {
+  plugins: [beam()],
+};
+```
+
+```
+$ npm run dev
+
+  VITE v5.0.0  ready in 300ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Tunnel:  https://abc123.trycloudflare.com/  ← Beam adds this!
+```
+
+#### Astro
+
+```javascript
+// astro.config.mjs
+import beam from '@byronwade/beam/astro';
+
+export default {
+  integrations: [beam()],
+};
+```
+
+---
+
+### 3. Request Inspector
+
+See every HTTP request in real-time. Invaluable for debugging webhooks and APIs.
 
 ```bash
-npx convex dev
+beam 3000 --inspect
 ```
 
-This will prompt you to:
-1. Create a new Convex project
-2. Set up your deployment
+```
+  ⚡ Beam
 
-### 3. Configure Environment Variables
+  Tunnel:     https://abc123.trycloudflare.com
+  Inspector:  http://localhost:4040  ← Open this in your browser
 
-Create a `.env.local` file:
+─────────────────────────────────────────────────────────────
+ Method   Path              Status   Time     Size
+─────────────────────────────────────────────────────────────
+ POST     /api/webhook      200      45ms     1.2 KB
+ GET      /api/users        200      12ms     4.5 KB
+ POST     /api/webhook      200      38ms     892 B
+```
+
+The inspector provides:
+- **Request/Response details**: Headers, body, timing
+- **Replay requests**: Re-send any captured request
+- **Filter & search**: Find specific requests quickly
+- **Export**: Download requests as HAR files
+
+---
+
+### 4. Webhook Development
+
+Perfect for testing Stripe, GitHub, Twilio, and other webhooks locally.
 
 ```bash
-# Convex Configuration
-CONVEX_DEPLOYMENT=your-deployment-name
-NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
-
-# Security (CRITICAL - generate a random 32+ character string)
-DATA_ENCRYPTION_KEY="your-super-secret-encryption-key-here"
+beam 3000 --webhook
 ```
 
-Generate a secure encryption key:
+```
+  ⚡ Beam - Webhook Mode
+
+  Webhook URL: https://abc123.trycloudflare.com/webhook
+
+  Waiting for webhooks...
+
+─────────────────────────────────────────────────────────────
+ [Stripe]  charge.succeeded    $49.99    POST /api/webhook
+ [GitHub]  push                main      POST /api/webhook
+ [Twilio]  sms.received        +1555...  POST /api/webhook
+```
+
+---
+
+### 5. QR Code for Mobile Testing
+
+Instantly test on your phone by scanning the QR code.
 
 ```bash
-openssl rand -base64 32
+beam 3000 --qr
 ```
 
-### 4. Run Development Server
+```
+  ⚡ Beam
+
+  Tunnel: https://abc123.trycloudflare.com
+
+  █████████████████████████████
+  █████████████████████████████
+  ████ ▄▄▄▄▄ █▀▄▀▄█ ▄▄▄▄▄ ████
+  ████ █   █ █▄▀ ▀█ █   █ ████
+  ████ █▄▄▄█ █ ▄▀██ █▄▄▄█ ████
+  ████▄▄▄▄▄▄▄█ ▀ █▄█▄▄▄▄▄▄████
+  █████████████████████████████
+  █████████████████████████████
+
+  Scan to open on mobile
+```
+
+---
+
+### 6. Authentication & Security
+
+Protect your tunnels with built-in authentication.
 
 ```bash
-npm run dev
+# Basic auth (username:password)
+beam 3000 --auth admin:secret123
+
+# Token auth (Bearer token)
+beam 3000 --token my-secret-token
+
+# IP whitelist
+beam 3000 --allow-ip 192.168.1.100,10.0.0.0/8
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the app.
+When basic auth is enabled:
+```
+  ⚡ Beam
 
-## Cloudflare Setup
+  Tunnel:     https://abc123.trycloudflare.com
+  Auth:       Basic authentication enabled
 
-### Creating an API Token
+  Visitors will be prompted for username/password
+```
 
-1. Go to [Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens)
-2. Click "Create Token"
-3. Select "Create Custom Token"
-4. Add these permissions:
-   - **Account** - Cloudflare Tunnel - Edit
-   - **Zone** - DNS - Edit (for custom domains)
-5. Copy the token and add it to Beam's Settings page
+---
+
+### 7. Reserved Subdomains
+
+Get a permanent, memorable URL for your tunnels.
+
+```bash
+# Reserve a subdomain (requires login)
+beam login
+beam reserve myapp
+
+# Use it
+beam 3000 --subdomain myapp
+```
+
+```
+  ⚡ Beam
+
+  Tunnel:     https://myapp.beam.byronwade.com  ← Your custom subdomain!
+  Local:      http://localhost:3000
+```
+
+---
+
+### 8. Local HTTPS
+
+Test HTTPS locally with auto-provisioned certificates.
+
+```bash
+beam 3000 --https
+```
+
+```
+  ⚡ Beam
+
+  Tunnel:     https://abc123.trycloudflare.com
+  Local:      https://localhost:3000  ← Now HTTPS!
+
+  Certificate: Auto-provisioned (valid for localhost)
+```
+
+---
+
+### 9. Team Workspaces
+
+Collaborate with your team on shared tunnels.
+
+```bash
+# Create a workspace
+beam workspace create my-team
+
+# Invite teammates
+beam workspace invite teammate@example.com --role member
+
+# Share a tunnel
+beam share my-tunnel --workspace my-team
+```
+
+Dashboard features for teams:
+- **Role-based access**: Owner, Admin, Member roles
+- **Tunnel sharing**: Share active tunnels with teammates
+- **API tokens**: Per-workspace tokens for CI/CD
+- **Audit logs**: See who did what
+
+---
+
+### 10. GitHub Integration
+
+Auto-post tunnel URLs to pull requests for preview environments.
+
+```bash
+# Connect GitHub
+beam github connect
+
+# Post to a PR
+beam github post --owner myorg --repo myapp --pr 123
+```
+
+```
+Posted to PR #123:
+
+  🚀 Preview Environment Ready
+
+  | Service | URL |
+  |---------|-----|
+  | Frontend | https://abc123.trycloudflare.com |
+  | API | https://def456.trycloudflare.com |
+```
+
+---
+
+### 11. Scheduled Tunnels
+
+Automatically start tunnels on a schedule.
+
+```bash
+# Start tunnel every weekday at 9am
+beam schedule create --name standup --port 3000 --cron "0 9 * * 1-5"
+
+# List schedules
+beam schedule list
+
+# Delete a schedule
+beam schedule delete --name standup
+```
+
+---
+
+### 12. Notifications
+
+Get notified when tunnel events occur.
+
+```bash
+# Setup Slack notifications
+beam notify setup --slack https://hooks.slack.com/...
+
+# Or Discord
+beam notify setup --discord https://discord.com/api/webhooks/...
+
+# Test it
+beam notify test
+```
+
+Events you can subscribe to:
+- Tunnel started/stopped
+- High traffic alerts
+- Error rate spikes
+- Authentication failures
+
+---
+
+### 13. Analytics Dashboard
+
+Track tunnel usage and performance.
+
+```bash
+beam analytics --range 7d
+```
+
+```
+  ⚡ Beam Analytics (Last 7 days)
+
+  Total Requests:    12,543
+  Avg Response:      45ms
+  Error Rate:        0.3%
+  Top Endpoints:     /api/users (4,521), /api/posts (3,211)
+
+  Traffic by Country:
+  US ████████████████████ 65%
+  UK ████████ 22%
+  DE ████ 8%
+  Other █ 5%
+```
+
+The web dashboard at [beam.byronwade.com](https://beam.byronwade.com) provides:
+- **Real-time metrics**: Requests, latency, errors
+- **Activity heatmap**: Visualize usage patterns
+- **Geographic distribution**: See where traffic originates
+- **Request logs**: Searchable history of all requests
+
+---
+
+## Configuration
+
+### Config File
+
+Create `beam.config.js` or `.beam.yaml` in your project:
+
+```javascript
+// beam.config.js
+module.exports = {
+  port: 3000,
+  subdomain: 'myapp',
+  inspect: true,
+  copyToClipboard: true,
+  qr: false,
+  auth: 'admin:secret',
+};
+```
+
+```yaml
+# .beam.yaml
+port: 3000
+subdomain: myapp
+inspect: true
+copy: true
+```
+
+### Package.json
+
+```json
+{
+  "beam": {
+    "port": 3000,
+    "subdomain": "myapp",
+    "inspect": true
+  }
+}
+```
+
+### Environment Variables
+
+```bash
+BEAM_PORT=3000
+BEAM_SUBDOMAIN=myapp
+BEAM_INSPECT=true
+BEAM_COPY=true
+BEAM_AUTH=admin:secret
+```
+
+---
+
+## CLI Reference
+
+### Basic Commands
+
+| Command | Description |
+|---------|-------------|
+| `beam <port>` | Start a tunnel on the specified port |
+| `beam <port1> <port2>` | Start multiple tunnels |
+| `beam login` | Login to your Beam account |
+| `beam logout` | Logout |
+| `beam status` | Check login status and active tunnels |
+
+### Tunnel Options
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--copy` | `-c` | Copy URL to clipboard |
+| `--qr` | `-q` | Display QR code |
+| `--inspect` | `-i` | Enable request inspector at localhost:4040 |
+| `--webhook` | `-w` | Webhook capture mode |
+| `--https` | | Enable local HTTPS |
+| `--auth <user:pass>` | `-a` | Basic auth protection |
+| `--token <secret>` | `-t` | Token auth (Bearer header) |
+| `--allow-ip <ip>` | | IP whitelist (comma-separated) |
+| `--subdomain <name>` | `-s` | Use reserved subdomain |
+| `--name <name>` | `-n` | Tunnel name |
+| `--url-only` | | Output only URL (for scripts) |
+
+### Management Commands
+
+```bash
+# Subdomains
+beam reserve <name>        # Reserve a subdomain
+beam subdomains            # List your subdomains
+beam release <name>        # Release a subdomain
+
+# Tunnels
+beam list                  # List active tunnels
+beam stop <name>           # Stop a tunnel
+
+# Sharing
+beam share <tunnel>        # Create a share link
+beam shares                # List shared tunnels
+beam unshare <id>          # Revoke a share
+
+# Workspaces
+beam workspace create <name>
+beam workspace invite <email>
+beam workspace list
+
+# Schedules
+beam schedule create --name <n> --port <p> --cron "<expr>"
+beam schedule list
+beam schedule delete --name <n>
+
+# Notifications
+beam notify setup --slack <url>
+beam notify test
+
+# Analytics
+beam analytics --range 7d
+
+# GitHub
+beam github connect
+beam github post --owner <o> --repo <r> --pr <n>
+```
+
+---
 
 ## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                        User Browser                          │
-│                    (Next.js Dashboard)                       │
+│                     User's Browser                           │
+│              https://myapp.beam.byronwade.com               │
 └─────────────────────────────────────────────────────────────┘
-                              │
-                              │ WebSocket (Real-time sync)
-                              ▼
+                          │
+                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                          Convex                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │   Queries    │  │  Mutations   │  │   Actions    │      │
-│  │ (Real-time)  │  │  (Database)  │  │ (Cloudflare) │      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
-│                              │                               │
-│                    ┌──────────────────┐                     │
-│                    │     Database     │                     │
-│                    │ (users, tunnels, │                     │
-│                    │   credentials)   │                     │
-│                    └──────────────────┘                     │
+│                  Cloudflare Network                          │
+│           (300+ data centers worldwide)                      │
+│              DDoS protection, SSL, caching                   │
 └─────────────────────────────────────────────────────────────┘
-                              │
-                              │ HTTPS (Encrypted)
-                              ▼
+                          │
+                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                     Cloudflare API                           │
-│              (Tunnel & DNS Management)                       │
+│                  Cloudflare Tunnel                           │
+│         (Encrypted outbound-only connection)                 │
+│              No firewall config needed                       │
 └─────────────────────────────────────────────────────────────┘
-                              │
-                              │
-                              ▼
+                          │
+                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                   Cloudflare Network                         │
-│                    (Traffic Routing)                         │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              │ Secure tunnel
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    User's Machine                            │
-│                  (npx beam connect)                          │
+│                Developer's Machine                           │
+│               beam CLI + cloudflared                         │
+│                 http://localhost:3000                        │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Project Structure
+**Why Cloudflare?**
+- **Global edge network**: Low latency worldwide
+- **Free tier**: Unlimited tunnels, unlimited bandwidth
+- **Security**: Built-in DDoS protection, SSL termination
+- **Reliability**: Enterprise-grade infrastructure
 
-```
-beam/
-├── convex/                   # Backend (Convex)
-│   ├── schema.ts            # Database schema
-│   ├── auth.ts              # Authentication logic
-│   ├── tunnels.ts           # Tunnel queries/mutations
-│   ├── cloudflareKeys.ts    # Cloudflare API actions
-│   └── lib/
-│       ├── crypto.ts        # Encryption utilities
-│       └── cloudflare.ts    # Cloudflare API wrapper
-├── src/
-│   ├── app/                 # Next.js App Router
-│   │   ├── page.tsx         # Landing page
-│   │   ├── (auth)/          # Auth pages
-│   │   │   ├── login/
-│   │   │   └── register/
-│   │   └── (dashboard)/     # Dashboard pages
-│   │       └── dashboard/
-│   │           ├── page.tsx
-│   │           ├── tunnels/
-│   │           └── settings/
-│   ├── components/          # React components
-│   │   ├── ui/              # shadcn/ui components
-│   │   └── marketing/       # Landing page components
-│   └── lib/                 # Utilities
-│       ├── convex.tsx       # Convex provider
-│       └── auth-context.tsx # Auth context
-└── public/                  # Static assets
-```
+---
 
-## Database Schema
+## Self-Hosting
 
-### users
-- `email`: string (unique)
-- `name`: string (optional)
-- `passwordHash`: string
-- `createdAt`: number
+### Prerequisites
 
-### cloudflare_keys
-- `userId`: reference to users
-- `accountId`: string (Cloudflare Account ID)
-- `encryptedToken`: string (AES-256-GCM encrypted)
-- `iv`: string (initialization vector)
-- `isVerified`: boolean
+- Node.js 18+
+- A [Convex](https://convex.dev) account (free tier works)
+- (Optional) Cloudflare account for custom domains
 
-### tunnels
-- `userId`: reference to users
-- `tunnelId`: string (Cloudflare tunnel UUID)
-- `name`: string (subdomain)
-- `status`: "active" | "inactive" | "pending"
-- `port`: number
-- `lastHeartbeat`: number
-
-## CLI Usage
-
-Once your tunnel is created in the dashboard, connect it using the CLI:
+### Quick Deploy
 
 ```bash
-# Connect to a tunnel
-npx beam connect --tunnel <tunnel-id> --port <local-port>
+# Clone and install
+git clone https://github.com/byronwade/beam.git
+cd beam
+npm install
 
-# Example
-npx beam connect --tunnel abc123 --port 3000
+# Set up Convex
+npx convex dev
+
+# Configure environment
+cp .env.example .env.local
+# Edit .env.local with your values
+
+# Run
+npm run dev
 ```
 
-The CLI will:
-1. Authenticate with your Beam instance
-2. Fetch the tunnel configuration
-3. Start the cloudflared connector
-4. Forward traffic from your public URL to localhost
+### Environment Variables
 
-## Security
+```bash
+# .env.local
+CONVEX_DEPLOYMENT=your-deployment
+NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
+DATA_ENCRYPTION_KEY="$(openssl rand -base64 32)"
+# Cloudflare (for named subdomains)
+CLOUDFLARE_ZONE_ID=your-zone-id
+```
 
-### Encryption
-- All Cloudflare API tokens are encrypted with AES-256-GCM before storage
-- Encryption keys are stored as environment variables, never in the database
-- Tokens are only decrypted server-side when making Cloudflare API calls
+### Deploy to Vercel
 
-### Authentication
-- Passwords are hashed with SHA-256 + random salt
-- Sessions use secure random tokens with 7-day expiry
-- All API routes require valid session tokens
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/byronwade/beam)
 
-### Best Practices
-- Generate a strong `DATA_ENCRYPTION_KEY` (32+ characters)
-- Use environment variables, never commit secrets
-- Rotate your Cloudflare API token periodically
-- Enable 2FA on your Cloudflare account
+---
 
-## Deployment
+## Packages
 
-### Vercel (Recommended)
+| Package | Description |
+|---------|-------------|
+| [`@byronwade/beam`](https://www.npmjs.com/package/@byronwade/beam) | Main CLI and framework integrations |
+| [`bmup`](https://www.npmjs.com/package/bmup) | Short alias for quick `npx bmup` usage |
 
-1. Push your code to GitHub
-2. Import the project in Vercel
-3. Add environment variables:
-   - `CONVEX_DEPLOYMENT`
-   - `NEXT_PUBLIC_CONVEX_URL`
-   - `DATA_ENCRYPTION_KEY`
-4. Deploy!
+---
 
-### Self-Hosted
+## Tech Stack
 
-Beam can run anywhere Next.js runs. You'll need to:
-1. Set up Convex (works with any hosting)
-2. Configure environment variables
-3. Run `npm run build && npm start`
+- **CLI**: Node.js, Commander.js, chalk
+- **Tunneling**: Cloudflare Tunnels (cloudflared)
+- **Dashboard**: Next.js 14+, Tailwind CSS, shadcn/ui
+- **Backend**: Convex (real-time database + serverless)
+- **VS Code**: TypeScript extension
+
+---
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Development
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ```bash
-# Install dependencies
+# Development setup
 npm install
+npx convex dev        # Terminal 1: Start Convex
+npm run dev           # Terminal 2: Start Next.js
 
-# Start Convex backend
-npx convex dev
-
-# Start Next.js (in another terminal)
-npm run dev
-
-# Run linting
-npm run lint
-
-# Build for production
+# CLI development
+cd packages/cli
 npm run build
+npm link              # Makes 'beam' available globally
 ```
+
+---
 
 ## License
 
-Beam is licensed under the [GNU Affero General Public License v3.0](LICENSE).
+[GNU Affero General Public License v3.0](LICENSE)
 
-**TL;DR**: You can use, modify, and distribute Beam. If you modify it and offer it as a service, you must open-source your changes.
+You can use, modify, and distribute Beam. If you modify it and offer it as a service, you must open-source your changes.
+
+---
 
 ## Support
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/byronwade/beam/issues)
-- **Discussions**: [Ask questions or share ideas](https://github.com/byronwade/beam/discussions)
-- **Email**: support@byronwade.com
+- **Documentation**: [beam.byronwade.com/docs](https://beam.byronwade.com/docs)
+- **GitHub Issues**: [Report bugs](https://github.com/byronwade/beam/issues)
+- **Discussions**: [Ask questions](https://github.com/byronwade/beam/discussions)
+- **Twitter**: [@byronwade](https://twitter.com/byronwade)
 
 ---
 
@@ -301,6 +667,6 @@ Beam is licensed under the [GNU Affero General Public License v3.0](LICENSE).
   <p>
     <a href="https://github.com/byronwade/beam">GitHub</a> •
     <a href="https://beam.byronwade.com">Website</a> •
-    <a href="https://twitter.com/byronwade">Twitter</a>
+    <a href="https://www.npmjs.com/package/@byronwade/beam">npm</a>
   </p>
 </div>

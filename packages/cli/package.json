@@ -1,6 +1,6 @@
 {
   "name": "@byronwade/beam",
-  "version": "1.1.0",
+  "version": "1.1.5",
   "description": "Expose localhost to the internet in seconds. Zero-config tunneling for Next.js, Vite, Astro, and more.",
   "bin": {
     "beam": "dist/index.js"
@@ -36,7 +36,9 @@
     "postinstall": "node dist/auto-setup.js || true",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build",
+    "publish:public": "npm publish --access public"
   },
   "keywords": [
     "cloudflare",

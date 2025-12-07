@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { tunnelId, status } = await request.json();
+    const { tunnelId, status, quickTunnelUrl } = await request.json();
 
     if (!tunnelId) {
       return NextResponse.json(
@@ -41,8 +41,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Update tunnel status
-    await convex.mutation(api.tunnels.updateStatus, { tunnelId, status });
+    const tunnel = await convex.query(api.tunnels.getById, { tunnelId });
+
+    if (!tunnel) {
+      return NextResponse.json(
+        { success: false, error: "Tunnel not found" },
+        { status: 404 }
+      );
+    }
+
+    if (tunnel.userId !== session.userId) {
+      return NextResponse.json(
+        { success: false, error: "Forbidden" },
+        { status: 403 }
+      );
+    }
+
+    // Update tunnel status (and optionally quickTunnelUrl)
+    await convex.mutation(api.tunnels.updateStatus, {
+      userId: session.userId,
+      tunnelId,
+      status,
+      quickTunnelUrl,
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
