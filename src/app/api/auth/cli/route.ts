@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ConvexHttpClient } from "convex/browser";
+import { getConvexClient } from "@/lib/convex-server";
 import { api } from "../../../../../convex/_generated/api";
-
-const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 // POST - Create new auth code
 export async function POST() {
   try {
+    const convex = getConvexClient();
     const result = await convex.mutation(api.cliAuth.createAuthCode, {});
 
     return NextResponse.json({
@@ -36,6 +35,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const convex = getConvexClient();
     const result = await convex.query(api.cliAuth.checkAuthCode, { deviceCode });
 
     if (result.status === "approved") {
