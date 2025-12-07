@@ -1497,7 +1497,7 @@ function startHTTPSProxyWithAuth(targetPort, proxyPort, credentials, options = {
 // package.json
 var package_default = {
   name: "@byronwade/beam",
-  version: "1.1.5",
+  version: "1.1.6",
   description: "Expose localhost to the internet in seconds. Zero-config tunneling for Next.js, Vite, Astro, and more.",
   bin: {
     beam: "dist/index.js"

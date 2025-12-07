@@ -62,6 +62,33 @@ export async function verifyToken(token: string): Promise<{ valid: boolean; acco
   }
 }
 
+export async function getZoneId(
+  token: string,
+  zoneName: string
+): Promise<{ zoneId?: string; error?: string }> {
+  try {
+    const response = await fetch(
+      `${CLOUDFLARE_API_BASE}/zones?name=${encodeURIComponent(zoneName)}&status=active&per_page=1`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = (await response.json()) as CloudflareResponse<Array<{ id: string; name: string }>>;
+
+    if (!data.success || !data.result?.length) {
+      return { error: data.errors?.[0]?.message || `Zone not found for ${zoneName}` };
+    }
+
+    return { zoneId: data.result[0].id };
+  } catch {
+    return { error: "Failed to look up Cloudflare zone" };
+  }
+}
+
 export async function listTunnels(
   token: string,
   accountId: string

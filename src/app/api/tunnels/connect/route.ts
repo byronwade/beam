@@ -37,14 +37,6 @@ export async function POST(request: NextRequest) {
 
     // If a subdomain is provided, ensure it is reserved by this user and then create a named tunnel + DNS
     if (subdomain) {
-      const zoneId = process.env.CLOUDFLARE_ZONE_ID;
-      if (!zoneId) {
-        return NextResponse.json(
-          { success: false, error: "CLOUDFLARE_ZONE_ID is not configured on the server" },
-          { status: 500 }
-        );
-      }
-
       // Verify ownership of the subdomain
       const record = await convex.query(api.subdomains.getByName, { subdomain });
       if (!record || record.userId !== session.userId) {
@@ -57,7 +49,7 @@ export async function POST(request: NextRequest) {
       const provision = await convex.action(api.cloudflareKeys.ensureSubdomainTunnel, {
         userId: session.userId,
         subdomain,
-        zoneId,
+        zoneId: process.env.CLOUDFLARE_ZONE_ID || undefined,
       });
 
       if (!provision.success) {

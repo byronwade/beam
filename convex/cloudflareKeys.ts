@@ -4,7 +4,7 @@ import { v } from "convex/values";
 import { action } from "./_generated/server";
 import { api, internal } from "./_generated/api";
 import { encrypt, decrypt } from "./lib/crypto";
-import { verifyToken, createTunnel, deleteTunnel, listTunnels, createDnsRecord, deleteDnsRecord } from "./lib/cloudflare";
+import { verifyToken, createTunnel, deleteTunnel, listTunnels, createDnsRecord, deleteDnsRecord, getZoneId } from "./lib/cloudflare";
 
 type VerifyResult = { success: true; accountId: string } | { success: false; error: string };
 type GetKeyResult = { success: true; accountId: string; token: string; isVerified: boolean } | { success: false; error: string };
@@ -214,7 +214,7 @@ export const ensureSubdomainTunnel = action({
   args: {
     userId: v.id("users"),
     subdomain: v.string(),
-    zoneId: v.string(), // Cloudflare zone for beam.byronwade.com
+    zoneId: v.optional(v.string()), // Optional: will be auto-discovered if missing
   },
   handler: async (ctx, args): Promise<ProvisionSubdomainResult> => {
     const subdomain = args.subdomain.toLowerCase().trim();
@@ -231,6 +231,23 @@ export const ensureSubdomainTunnel = action({
     // Decrypt the token
     const [encrypted, authTag] = key.encryptedToken.split(":");
     const token = decrypt(encrypted, key.iv, authTag);
+
+    // Resolve zone ID if not provided (default to beam.byronwade.com)
+    const zoneName = "beam.byronwade.com";
+    let zoneId = args.zoneId;
+    if (!zoneId) {
+      const zoneLookup = await getZoneId(token, zoneName);
+      if (!zoneLookup.zoneId) {
+        return { success: false, error: zoneLookup.error || `Unable to resolve Cloudflare zone for ${zoneName}` };
+      }
+      zoneId = zoneLookup.zoneId;
+    }
+
+    if (!zoneId) {
+      return { success: false, error: `Unable to resolve Cloudflare zone for ${zoneName}` };
+    }
+
+    const resolvedZoneId = zoneId;
 
     // See if subdomain already has a tunnel
     const existing = await ctx.runQuery(api.subdomains.getByName, { subdomain });
@@ -251,7 +268,7 @@ export const ensureSubdomainTunnel = action({
     }
 
     // Create DNS record for the subdomain -> tunnel
-    const dns = await createDnsRecord(token, args.zoneId, tunnelResult.tunnel.id, subdomain);
+    const dns = await createDnsRecord(token, resolvedZoneId, tunnelResult.tunnel.id, subdomain);
     if (!dns.success) {
       // Best-effort cleanup: delete tunnel
       await deleteTunnel(token, key.accountId, tunnelResult.tunnel.id);
@@ -264,7 +281,7 @@ export const ensureSubdomainTunnel = action({
       tunnelId: tunnelResult.tunnel.id,
       tunnelSecret: tunnelResult.secret,
       accountId: key.accountId,
-      zoneId: args.zoneId,
+      zoneId: resolvedZoneId,
       dnsRecordId: dns.dnsRecordId,
     });
 
