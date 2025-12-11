@@ -11,12 +11,8 @@
 import type * as analytics from "../analytics.js";
 import type * as auth from "../auth.js";
 import type * as authHelpers from "../authHelpers.js";
-import type * as cliAuth from "../cliAuth.js";
-import type * as cloudflareHelpers from "../cloudflareHelpers.js";
-import type * as cloudflareKeys from "../cloudflareKeys.js";
 import type * as github from "../github.js";
 import type * as githubAuth from "../githubAuth.js";
-import type * as lib_cloudflare from "../lib/cloudflare.js";
 import type * as lib_crypto from "../lib/crypto.js";
 import type * as notifications from "../notifications.js";
 import type * as previewTunnels from "../previewTunnels.js";
@@ -41,12 +37,8 @@ declare const fullApi: ApiFromModules<{
   analytics: typeof analytics;
   auth: typeof auth;
   authHelpers: typeof authHelpers;
-  cliAuth: typeof cliAuth;
-  cloudflareHelpers: typeof cloudflareHelpers;
-  cloudflareKeys: typeof cloudflareKeys;
   github: typeof github;
   githubAuth: typeof githubAuth;
-  "lib/cloudflare": typeof lib_cloudflare;
   "lib/crypto": typeof lib_crypto;
   notifications: typeof notifications;
   previewTunnels: typeof previewTunnels;

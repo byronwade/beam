@@ -1,0 +1,38 @@
+{
+  "sorted_middleware": [
+    "/api/tunnel/route"
+  ],
+  "middleware": {},
+  "instrumentation": null,
+  "functions": {
+    "/api/tunnel/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "server/server-reference-manifest.js",
+        "server/app/api/tunnel/route_client-reference-manifest.js",
+        "server/edge/chunks/apps_web__next-internal_server_app_api_tunnel_route_actions_5aeed11d.js",
+        "server/edge/chunks/_b9e646cd._.js",
+        "server/edge/chunks/[root-of-the-server]__5666db0b._.js",
+        "server/edge/chunks/turbopack-apps_web_edge-wrapper_b4e58a69.js"
+      ],
+      "name": "app/api/tunnel/route",
+      "page": "/api/tunnel/route",
+      "matchers": [
+        {
+          "regexp": "^/api/tunnel(?:/)?$",
+          "originalSource": "/api/tunnel"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "4obb5edbBjCF2xcNPwVTb",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "rYx8ZOtFrWHMHBHhaAmpDhy/Grq1JcVqY6Cj7KDdl20=",
+        "__NEXT_PREVIEW_MODE_ID": "f6187ee7751c35060e3ca9f9ca936f25",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "e4a7ac2917afb4a8a31f43f15c4b38476a7d2e7276a1e951a96b25b49d2a6551",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "b5547ce1bfca330e1fcfbd71df003bb5cfb9fcef632c3014fef5b67b6b2e2d26"
+      }
+    }
+  }
+}

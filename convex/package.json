@@ -1,0 +1,19 @@
+{
+  "name": "@beam/convex",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "convex dev",
+    "build": "echo \"Convex build is handled by the cloud\"",
+    "lint": "echo \"No lint step for Convex\"",
+    "test": "vitest --config vitest.config.ts run"
+  },
+  "dependencies": {
+    "convex": "^1.30.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "vitest": "^2.1.4"
+  }
+}
+

@@ -1,9 +1,15 @@
 {
-  "name": "@byronwade/beam",
-  "version": "1.1.7",
+  "name": "@beam/cli",
+  "version": "0.1.0",
   "description": "Expose localhost to the internet in seconds. Zero-config tunneling for Next.js, Vite, Astro, and more.",
+  "license": "AGPL-3.0",
+  "author": "Byron Wade",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byronwade/beam.git"
+  },
   "bin": {
-    "beam": "dist/index.js"
+    "beam": "./bin/beam.js"
   },
   "main": "dist/index.js",
   "type": "module",
@@ -30,10 +36,11 @@
     }
   },
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup src/index.ts --format esm,cjs --dts",
     "start": "node dist/index.js",
     "postinstall": "node dist/auto-setup.js || true",
+    "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -41,9 +48,7 @@
     "publish:public": "npm publish --access public"
   },
   "keywords": [
-    "cloudflare",
     "tunnel",
-    "cloudflared",
     "beam",
     "localhost",
     "expose",
@@ -57,17 +62,20 @@
     "development",
     "dev-server"
   ],
-  "author": "Byron Wade",
-  "license": "AGPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/byronwade/beam.git"
+  "engines": {
+    "node": ">=18"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
+    "ably": "^2.1.0",
     "chalk": "^5.3.0",
     "clipboardy": "^5.0.1",
     "commander": "^12.1.0",
     "conf": "^13.0.1",
+    "convex": "^1.30.0",
+    "dotenv": "^16.4.5",
     "open": "^11.0.0",
     "ora": "^8.1.1",
     "qrcode-terminal": "^0.12.0"
@@ -75,14 +83,10 @@
   "devDependencies": {
     "@types/node": "^22.10.1",
     "@types/qrcode-terminal": "^0.12.2",
+    "eslint": "^9",
     "tsup": "^8.3.5",
+    "tsx": "^4.19.0",
     "typescript": "^5.7.2",
     "vitest": "^2.1.4"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }

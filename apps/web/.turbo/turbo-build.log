@@ -1,0 +1,32 @@
+
+> @beam/web@0.1.0 build
+> next build
+
+ ⚠ `experimental.middlewarePrefetch` is deprecated. Please use `experimental.proxyPrefetch` instead in next.config.ts.
+   ▲ Next.js 16.0.7 (Turbopack)
+   - Experiments (use with caution):
+     · middlewarePrefetch: "flexible"
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 3.4s
+   Running TypeScript ...
+Failed to compile.
+
+../../convex/analytics.ts:24:25
+Type error: Argument of type '"tunnelRequests"' is not assignable to parameter of type 'TableNamesInDataModel<{ users: { document: { _id: Id<"users">; _creationTime: number; name: string; email: string; createdAt: number; }; fieldPaths: ExtractFieldPaths<VObject<{ name: string; email: string; createdAt: number; }, { name: VString<...>; email: VString<...>; createdAt: VFloat64<...>; }, "required", "name...'.
+
+[0m [90m 22 |[39m   }[33m,[39m
+ [90m 23 |[39m   handler[33m:[39m [36masync[39m (ctx[33m,[39m args) [33m=>[39m {
+[31m[1m>[22m[39m[90m 24 |[39m     [36mawait[39m ctx[33m.[39mdb[33m.[39minsert([32m"tunnelRequests"[39m[33m,[39m {
+ [90m    |[39m                         [31m[1m^[22m[39m
+ [90m 25 |[39m       [33m...[39margs[33m,[39m
+ [90m 26 |[39m       timestamp[33m:[39m [33mDate[39m[33m.[39mnow()[33m,[39m
+ [90m 27 |[39m     })[33m;[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path /Users/byronwade/beam.byronwade.com/apps/web
+npm error workspace @beam/web@0.1.0
+npm error location /Users/byronwade/beam.byronwade.com/apps/web
+npm error command failed
+npm error command sh -c next build

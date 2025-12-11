@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  # Convex Backend Database
+  convex:
+    image: convexdev/convex-backend:latest
+    ports:
+      - "3210:3210"
+    environment:
+      - CONVEX_URL=http://localhost:3210
+    volumes:
+      - convex_data:/convex/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3210/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Beam Web Dashboard
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - CONVEX_URL=http://convex:3210
+      - NEXT_PUBLIC_CONVEX_URL=http://localhost:3210
+    depends_on:
+      convex:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Tunnel Server (placeholder - to be implemented)
+  tunnel-server:
+    build:
+      context: .
+      dockerfile: packages/tunnel-server/Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - CONVEX_URL=http://convex:3210
+      - ABLY_SECRET_KEY=${ABLY_SECRET_KEY}
+      - TUNNEL_SERVER_PORT=3001
+      - TUNNEL_SERVER_HOST=0.0.0.0
+    depends_on:
+      convex:
+        condition: service_healthy
+    restart: unless-stopped
+    # Uncomment when tunnel-server is implemented
+    # profiles:
+    #   - tunnel-server
+
+  # Nginx Reverse Proxy (for production deployment)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+    depends_on:
+      - web
+      - tunnel-server
+    restart: unless-stopped
+    profiles:
+      - production
+
+  # PostgreSQL (alternative to Convex for self-hosting)
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=beam
+      - POSTGRES_USER=beam
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    profiles:
+      - postgres
+
+volumes:
+  convex_data:
+  postgres_data:
+  nginx_logs:
+
+networks:
+  default:
+    name: beam_network

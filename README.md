@@ -1,12 +1,12 @@
 # Beam
 
 <div align="center">
-  <h3>Expose localhost to the internet in seconds</h3>
-  <p>The open-source ngrok alternative. Zero config. One command. Built on Cloudflare's global network.</p>
+  <h3>Fully Open Source Tunnel Service</h3>
+  <p>The open-source ngrok alternative. Zero config. One command. Self-hosted and fully customizable.</p>
 
   [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
   [![npm version](https://badge.fury.io/js/@byronwade/beam.svg)](https://www.npmjs.com/package/@byronwade/beam)
-  [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/byronwade/beam)
+  [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/r/beam-tunnels)
 </div>
 
 ---
@@ -42,7 +42,7 @@ $ npx bmup 3000
 | Framework plugins | No | No | **Yes** |
 | Request inspector | Paid | No | **Free** |
 | Open source | No | Yes | **Yes** |
-| Built on Cloudflare | No | No | **Yes** |
+| Self-hosted | No | No | **Yes** |
 
 ---
 
@@ -551,16 +551,16 @@ beam github post --owner <o> --repo <r> --pr <n>
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                Developer's Machine                           │
-│               beam CLI + cloudflared                         │
+│                     beam CLI                                 │
 │                 http://localhost:3000                        │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Why Cloudflare?**
-- **Global edge network**: Low latency worldwide
-- **Free tier**: Unlimited tunnels, unlimited bandwidth
-- **Security**: Built-in DDoS protection, SSL termination
-- **Reliability**: Enterprise-grade infrastructure
+**Fully Open Source & Self-Hosted**
+- **No vendor lock-in**: Host on your own infrastructure
+- **Custom domains**: Use any domain you own
+- **Full control**: Modify and extend as needed
+- **Privacy**: Your traffic stays on your servers
 
 ---
 
@@ -570,7 +570,8 @@ beam github post --owner <o> --repo <r> --pr <n>
 
 - Node.js 18+
 - A [Convex](https://convex.dev) account (free tier works)
-- (Optional) Cloudflare account for custom domains
+- A domain name (optional, for custom subdomains)
+- Docker (optional, for containerized deployment)
 
 ### Quick Deploy
 
@@ -580,15 +581,18 @@ git clone https://github.com/byronwade/beam.git
 cd beam
 npm install
 
-# Set up Convex
+# Set up Convex backend
 npx convex dev
 
 # Configure environment
 cp .env.example .env.local
 # Edit .env.local with your values
 
-# Run
-npm run dev
+# Start the dashboard
+npm run dev:web
+
+# In another terminal, start the tunnel server
+npm run dev:tunnel-server
 ```
 
 ### Environment Variables
@@ -598,8 +602,14 @@ npm run dev
 CONVEX_DEPLOYMENT=your-deployment
 NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
 DATA_ENCRYPTION_KEY="$(openssl rand -base64 32)"
-# Cloudflare (for named subdomains)
-CLOUDFLARE_ZONE_ID=your-zone-id
+
+# Tunnel Server Configuration
+TUNNEL_SERVER_PORT=3001
+TUNNEL_SERVER_HOST=localhost
+ABLY_SECRET_KEY=your-ably-secret-key
+
+# Domain Configuration (optional)
+BASE_DOMAIN=yourdomain.com
 ```
 
 ### Deploy to Vercel
@@ -620,9 +630,10 @@ CLOUDFLARE_ZONE_ID=your-zone-id
 ## Tech Stack
 
 - **CLI**: Node.js, Commander.js, chalk
-- **Tunneling**: Cloudflare Tunnels (cloudflared)
+- **Tunnel Server**: Node.js, WebSockets, HTTP proxying
 - **Dashboard**: Next.js 14+, Tailwind CSS, shadcn/ui
 - **Backend**: Convex (real-time database + serverless)
+- **Real-time**: Ably (WebSocket messaging)
 - **VS Code**: TypeScript extension
 
 ---
