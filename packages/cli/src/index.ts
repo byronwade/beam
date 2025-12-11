@@ -369,6 +369,7 @@ program
   });
 
 // Only parse arguments when run directly, not when imported for testing
-if (require.main === module) {
+// In ES modules, check if this is the main module
+if (process.argv[1] && process.argv[1].endsWith('beam')) {
   program.parse();
 }
