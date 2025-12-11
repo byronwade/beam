@@ -1,6 +1,6 @@
 {
     "name": "@byronwade/beam-vite",
-    "version": "1.1.30",
+    "version": "1.1.32",
     "description": "Vite plugin for Beam - seamless decentralized tunneling",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
