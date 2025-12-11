@@ -1,15 +1,24 @@
 # CLI Reference
 
-Complete reference for all Beam CLI commands, options, and usage patterns.
+Current and planned Beam CLI commands, options, and usage patterns.
+
+## Current Implementation Status
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| **Basic Tunneling** | ✅ Implemented | Core tunnel functionality works |
+| **Authentication** | ✅ Implemented | Token-based login |
+| **Domain Registration** | ❌ Planned | Future P2P domain system |
+| **Tunnel Management** | ❌ Planned | List, stop, inspect tunnels |
+| **Monitoring** | ❌ Planned | Status, metrics, logging |
+| **Peer Management** | ❌ Planned | P2P network controls |
+| **Configuration** | ❌ Planned | Advanced settings management |
 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Basic Commands](#basic-commands)
-- [Domain Management](#domain-management)
-- [Tunnel Management](#tunnel-management)
-- [Configuration](#configuration)
-- [Advanced Options](#advanced-options)
+- [Current Commands](#current-commands)
+- [Planned Commands](#planned-commands)
 - [Examples](#examples)
 
 ## Installation
@@ -38,43 +47,63 @@ npm run build
 npm link
 ```
 
-## Basic Commands
+## Current Commands
 
 ### `beam <port>` - Start a Tunnel
 
-Start a tunnel to expose a local port through Tor and P2P networking.
+Start a tunnel to expose a local port through the decentralized network.
 
 ```bash
-# Basic tunnel
+# Basic tunnel (uses default domain)
 beam 3000
 
-# Multiple ports
-beam 3000 8080 5432
+# With custom domain
+beam 3000 --domain myapp.local
 
-# With custom options
-beam 3000 --name my-app --tor
+# Tor-only mode
+beam 3000 --tor
+
+# Dual mode (local + Tor)
+beam 3000 --dual
 ```
 
 **Options:**
-- `--port, -p <port>`: Port to tunnel (default: 3000)
-- `--name <name>`: Friendly name for the tunnel
-- `--tor`: Enable Tor hidden service (recommended)
-- `--dual-access`: Enable both local and Tor access
-- `--subdomain <name>`: Use custom subdomain
-- `--domain <domain>`: Use custom domain
-- `--auth <user:pass>`: Basic authentication
-- `--token <token>`: Bearer token authentication
-- `--allow-ip <ips>`: IP whitelist (comma-separated)
-- `--cors`: Enable CORS headers
-- `--compression`: Enable response compression
-- `--inspect`: Enable request inspector at localhost:4040
-- `--webhook`: Webhook capture mode
-- `--https`: Enable local HTTPS
-- `--copy`: Copy tunnel URL to clipboard
-- `--qr`: Display QR code for mobile access
-- `--url-only`: Output only the URL (for scripting)
+- `--domain <name>`: Domain name to use (default: auto-generated)
+- `--dual`: Enable dual-mode (local + Tor access)
+- `--tor`: Enable Tor-only mode
+- `--dns-port <port>`: DNS server port (default: 5353)
+- `--tor-port <port>`: Tor control port (default: 9051)
+- `--https`: Enable HTTPS with self-signed certificate
+- `--https-port <port>`: HTTPS port (defaults to HTTP port + 1)
+- `--verbose, -v`: Enable verbose logging
 
-### `beam register <domain>` - Register a Domain
+### `beam login --token <token>` - Authenticate
+
+Authenticate with a personal access token.
+
+```bash
+beam login --token your_personal_access_token_here
+```
+
+**Note:** Token is saved to `~/.beam/credentials.json` for future use.
+
+### `beam start <port>` - Start Tunnel (Explicit)
+
+Explicitly start a tunnel (same as default command).
+
+```bash
+beam start 3000 --domain myapp.local --tor
+```
+
+**Options:** Same as the default tunnel command.
+
+## Planned Commands
+
+The following commands are designed for Beam's full decentralized P2P network implementation. These features require additional development of the P2P infrastructure.
+
+### Domain Management (Planned)
+
+#### `beam register <domain>` - Register a Domain
 
 Register a custom domain in the P2P network for persistent tunneling.
 
@@ -86,12 +115,50 @@ beam register byronwade.local
 beam register myapp.example.com --ttl 3600
 ```
 
-**Options:**
+**Planned Options:**
 - `--ttl <seconds>`: Time-to-live for domain registration (default: 86400)
 - `--signature`: Include cryptographic signature
 - `--force`: Overwrite existing registration
 
-### `beam list` - List Active Tunnels
+#### `beam domains` - Domain Operations
+
+Manage registered domains in the P2P network.
+
+```bash
+# List all domains
+beam domains list
+
+# Show domain details
+beam domains show byronwade.local
+
+# Update domain TTL
+beam domains update byronwade.local --ttl 7200
+
+# Transfer domain ownership
+beam domains transfer byronwade.local --to peer_abc123
+
+# Revoke domain
+beam domains revoke byronwade.local
+```
+
+#### `beam resolve <domain>` - Resolve Domain
+
+Manually resolve a domain to see its current targets.
+
+```bash
+# Resolve with context detection
+beam resolve byronwade.local
+
+# Force specific context
+beam resolve byronwade.local --context webhook
+
+# Show all resolution paths
+beam resolve byronwade.local --all
+```
+
+### Tunnel Management (Planned)
+
+#### `beam list` - List Active Tunnels
 
 Show all currently active tunnels and their status.
 
@@ -105,7 +172,7 @@ beam list --verbose
 beam list --status active
 ```
 
-**Output:**
+**Planned Output:**
 ```
 Active Tunnels:
 ┌─────────────┬─────────────────┬──────────┬──────────────┐
@@ -116,7 +183,7 @@ Active Tunnels:
 └─────────────┴─────────────────┴──────────┴──────────────┘
 ```
 
-### `beam stop <name>` - Stop a Tunnel
+#### `beam stop <name>` - Stop a Tunnel
 
 Stop a specific tunnel by name or ID.
 
@@ -131,7 +198,7 @@ beam stop tunnel_123
 beam stop --all
 ```
 
-### `beam status` - Show System Status
+#### `beam status` - Show System Status
 
 Display comprehensive system status including peer connections, Tor status, and network health.
 
@@ -145,7 +212,7 @@ beam status --watch
 beam status --json
 ```
 
-**Sample Output:**
+**Planned Sample Output:**
 ```
 Beam Status - Decentralized Tor Tunneling
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -173,6 +240,58 @@ Beam Status - Decentralized Tor Tunneling
 💾 Storage: 1.2 GB available
    Domains: 3 registered
    Cache: 98% hit rate
+```
+
+#### `beam inspect <tunnel>` - Inspect Tunnel
+
+Get detailed information about a specific tunnel.
+
+```bash
+beam inspect my-app
+
+# Real-time monitoring
+beam inspect my-app --watch
+
+# Export metrics
+beam inspect my-app --export metrics.json
+```
+
+#### `beam logs <tunnel>` - View Logs
+
+Access comprehensive logs for debugging and monitoring.
+
+```bash
+# View recent logs
+beam logs my-app
+
+# Follow logs in real-time
+beam logs my-app --follow
+
+# Filter by level
+beam logs my-app --level error
+
+# Search logs
+beam logs my-app --grep "webhook"
+
+# Export logs
+beam logs my-app --export logs.json
+```
+
+### Monitoring & Analytics (Planned)
+
+#### `beam metrics` - System Metrics
+
+View system-wide performance metrics and analytics.
+
+```bash
+# Current metrics
+beam metrics
+
+# Historical data
+beam metrics --since 24h
+
+# Export to file
+beam metrics --export metrics.csv
 ```
 
 ## Domain Management
@@ -428,75 +547,212 @@ beam cache size 1GB
 
 ## Examples
 
-### Basic Web Development
+### Currently Implemented Examples
+
+#### Basic Local Development
 
 ```bash
-# Start development server
+# Start your development server
+npm run dev  # Your app runs on localhost:3000
+
+# Create a tunnel to expose it
+beam 3000 --domain myapp.local
+
+# Output shows tunnel URLs
+# 🌐 Local: http://myapp.local
+# 🧅 Tor: http://abc123def456.onion
+```
+
+#### Tor-Only Tunneling
+
+```bash
+# Create Tor-only tunnel (maximum privacy)
+beam 3000 --tor
+
+# Only accessible via Tor onion address
+# No local DNS resolution
+```
+
+#### HTTPS with Self-Signed Certificate
+
+```bash
+# Enable HTTPS with automatic certificate
+beam 3000 --https
+
+# Accessible via:
+# - HTTP: http://myapp.local
+# - HTTPS: https://myapp.local (self-signed)
+```
+
+#### Custom Domain
+
+```bash
+# Use a specific domain name
+beam 3000 --domain myproject.local
+
+# Domain resolves locally and via Tor
+```
+
+#### Authentication
+
+```bash
+# Authenticate CLI (required for some features)
+beam login --token your_personal_access_token
+```
+
+### Planned Feature Examples
+
+#### Decentralized Domain Registration (Future)
+
+```bash
+# Register domain in P2P network
+beam register myapp.local
+
+# Domain persists across sessions
+# Resolvable by other Beam peers
+```
+
+#### Multi-Tunnel Management (Future)
+
+```bash
+# List all active tunnels
+beam list
+
+# Stop specific tunnel
+beam stop my-app
+
+# Check system status
+beam status
+```
+
+#### Advanced Monitoring (Future)
+
+```bash
+# View real-time metrics
+beam metrics
+
+# Inspect tunnel details
+beam inspect my-app --watch
+
+# Monitor logs
+beam logs my-app --follow
+```
+
+#### P2P Network Management (Future)
+
+```bash
+# View connected peers
+beam peer list
+
+# Manage Tor services
+beam tor status
+
+# Configure caching
+beam cache stats
+```
+
+### Development Workflows
+
+#### Current Development Workflow
+
+```bash
+# 1. Authenticate (if needed)
+beam login --token your_token
+
+# 2. Start development server
 npm run dev
 
-# In another terminal, expose it globally
-beam 3000 --tor --name "my-nextjs-app"
+# 3. Create tunnel
+beam 3000 --domain myapp.local --tor
 
-# Copy the Tor URL and share with stakeholders
-# Access works from anywhere, through Tor
+# 4. Share URLs with team
+# - Local: http://myapp.local
+# - Global: [tor-onion-url]
 ```
 
-### API Development with Webhooks
+#### Future Decentralized Workflow
 
 ```bash
-# Start API server
-npm start
+# 1. Register persistent domain
+beam register myapp.local
 
-# Create tunnel with webhook capture
-beam 8080 --webhook --inspect --name "api-server"
+# 2. Start tunnel (domain persists)
+beam 3000 --domain myapp.local
 
-# Webhook URLs automatically resolve through Tor
-# Stripe, GitHub, etc. can POST to your local API
+# 3. Collaborate with team
+beam share myapp.local --team my-team
+
+# 4. Monitor and manage
+beam status --watch
+beam logs myapp.local
 ```
 
-### Multi-Service Architecture
+## Implementation Roadmap
+
+### Phase 1: Core Tunneling ✅ (Current)
+- ✅ Basic tunnel creation
+- ✅ Tor integration
+- ✅ Local domain resolution
+- ✅ Authentication system
+
+### Phase 2: P2P Network Infrastructure 🚧 (In Development)
+- 🚧 Distributed Hash Table (DHT)
+- 🚧 Peer discovery mechanisms
+- 🚧 Decentralized domain registry
+- 🚧 Cross-peer routing
+
+### Phase 3: Advanced Management Features 📋 (Planned)
+- 📋 Tunnel lifecycle management (`beam list`, `beam stop`)
+- 📋 System monitoring (`beam status`, `beam metrics`)
+- 📋 Log management (`beam logs`, `beam inspect`)
+- 📋 Configuration management (`beam config`)
+
+### Phase 4: Full P2P Ecosystem 🔮 (Future)
+- 🔮 Peer management (`beam peer`)
+- 🔮 Tor service management (`beam tor`)
+- 🔮 Cache management (`beam cache`)
+- 🔮 Advanced networking features
+
+## Contributing to CLI Development
+
+The CLI is designed to be modular and extensible. Planned features are tracked in our [implementation roadmap](../development/contributing/implementation-roadmap.md).
+
+### Current Implementation Focus
+
+- **P2P Network Layer**: Core decentralized infrastructure
+- **Domain System**: Decentralized domain resolution
+- **Management APIs**: REST APIs for tunnel management
+
+### Getting Involved
 
 ```bash
-# Frontend
-beam 3000 --name frontend --subdomain app
+# Check current implementation status
+git log --oneline --grep="CLI"
 
-# Backend API
-beam 8080 --name backend --subdomain api
+# See planned features
+cat docs/development/contributing/implementation-roadmap.md
 
-# Database (if exposing)
-beam 5432 --name database --auth admin:secret
+# Run existing tests
+npm test
 
-# All accessible via:
-# - app.yourdomain.local (frontend)
-# - api.yourdomain.local (backend)
-# - database.yourdomain.local (database)
+# Build and test CLI
+npm run build
+npm link
 ```
 
-### Custom Domain Setup
+### Architecture Notes
 
-```bash
-# Register your domain
-beam register byronwade.local
+The CLI follows a **hybrid architecture**:
 
-# Start tunnels with custom domain
-beam 3000 --domain byronwade.local --dual-access
+- **Node.js Frontend**: Developer experience, argument parsing, user interaction
+- **Rust Backend**: High-performance tunneling daemon, P2P networking, cryptography
+- **Inter-process Communication**: Efficient data exchange between components
 
-# Domain now works everywhere:
-# - Local browser: byronwade.local → 127.0.0.1
-# - External services: byronwade.local → Tor .onion
-```
-
-### Production Deployment
-
-```bash
-# Production tunnel with security
-beam 3000 \
-  --tor \
-  --auth admin:securepass \
-  --cors \
-  --compression \
-  --name "prod-web" \
-  --domain mycompany.com
+This design enables:
+- **Fast startup** (Node.js)
+- **High performance** (Rust)
+- **Memory safety** (Rust)
+- **Ecosystem integration** (Node.js)
 
 # Monitor in another terminal
 beam status --watch
