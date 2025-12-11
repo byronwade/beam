@@ -100,7 +100,7 @@ export class TunnelManager {
 
         const args = [
             "--target-port", options.targetPort.toString(),
-            "--domain", options.domain || `beam-${Date.now()}.local`,
+            "--domain", options.domain || `beam-${Date.now()}.onion`,
             "--mode", options.mode || "balanced"
         ];
 

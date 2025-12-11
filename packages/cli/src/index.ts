@@ -112,14 +112,14 @@ const program = new Command();
 program
   .name("beam")
   .description("Beam - Decentralized tunneling for developers")
-  .version("2.0.0");
+  .version("1.1.33");
 
 program
   .command("start")
   .description("Start a tunnel (default command)")
   .argument("<port>", "Local port to expose", (v) => parseInt(v, 10))
   // ... options same as before
-  .option("-d, --domain <name>", "Domain name to use", `beam-${Date.now()}.local`)
+  .option("-d, --domain <name>", "Domain name to use (default .onion quick tunnel)", `beam-${Date.now()}.onion`)
   .option("-m, --mode <mode>", "Tunnel mode: fast, balanced, or private", "balanced")
   .option("--dual", "Enable dual-mode (deprecated: use --mode=balanced)")
   .option("--tor", "Enable Tor-only mode (deprecated: use --mode=private)")
