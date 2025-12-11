@@ -52,7 +52,7 @@ export class TunnelManager {
 
     private getDaemonPath(): string {
         // In dev/monorepo: packages/tunnel-daemon/target/release/beam-tunnel-daemon
-        // In prod/npm: look relative to the CLI installation
+        // In prod/npm: download and cache the binary
 
         // First try the monorepo path (for development)
         const monorepoPath = path.join(this.projectRoot, "packages/tunnel-daemon/target/release/beam-tunnel-daemon");
@@ -72,8 +72,16 @@ export class TunnelManager {
             // ignore
         }
 
-        // Fallback to monorepo path
-        return monorepoPath;
+        // For npm installations without the binary, download it
+        return this.downloadDaemon();
+    }
+
+    private downloadDaemon(): string {
+        // For now, provide clear instructions to the user
+        const cacheDir = path.join(os.homedir(), ".beam", "bin");
+        const daemonPath = path.join(cacheDir, "beam-tunnel-daemon");
+
+        throw new Error(`Tunnel daemon binary not found. Please download it from the Beam repository releases and place it at: ${daemonPath}`);
     }
 
     private checkDaemonExists(): boolean {
