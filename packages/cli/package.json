@@ -1,6 +1,6 @@
 {
-  "name": "@beam/cli",
-  "version": "0.1.0",
+  "name": "@byronwade/beam",
+  "version": "0.1.1",
   "description": "Expose localhost to the internet in seconds. Zero-config tunneling for Next.js, Vite, Astro, and more.",
   "license": "AGPL-3.0",
   "author": "Byron Wade",

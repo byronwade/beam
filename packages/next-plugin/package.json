@@ -1,0 +1,32 @@
+{
+    "name": "@byronwade/beam-next",
+    "version": "0.1.1",
+    "description": "Next.js integration for Beam - seamless decentralized tunneling",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsup src/index.ts --format cjs,esm --dts",
+        "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
+    },
+    "keywords": [
+        "nextjs",
+        "beam",
+        "tunnel",
+        "plugin"
+    ],
+    "author": "Byron Wade",
+    "license": "MIT",
+    "peerDependencies": {
+        "next": ">=13.0.0"
+    },
+    "devDependencies": {
+        "tsup": "^8.0.0",
+        "typescript": "^5.0.0",
+        "next": "^14.0.0",
+        "@types/node": "^20.0.0"
+    },
+    "dependencies": {
+        "@byronwade/beam": "^0.1.1"
+    }
+}
