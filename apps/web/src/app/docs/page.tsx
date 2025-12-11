@@ -53,32 +53,30 @@ const docsNav = [
       { title: "Overview", href: "#overview", icon: BookOpen },
       { title: "Quick Start", href: "#quick-start", icon: Zap },
       { title: "Installation", href: "#installation", icon: Rocket },
+      { title: "Getting Started Guide", href: "/docs/getting-started", icon: Rocket },
     ],
   },
   {
     title: "Guides",
     items: [
-      { title: "CLI Reference", href: "#cli", icon: Terminal },
+      { title: "CLI Reference", href: "/docs/cli-reference", icon: Terminal },
+      { title: "Examples & Use Cases", href: "/docs/examples", icon: Play },
+    ],
+  },
+  {
+    title: "Technical Reference",
+    items: [
       { title: "Architecture", href: "#architecture", icon: Network },
       { title: "Security", href: "#security", icon: Shield },
       { title: "Performance", href: "#performance", icon: Gauge },
-    ],
-  },
-  {
-    title: "Advanced",
-    items: [
       { title: "API Reference", href: "#api", icon: Code },
-      { title: "Deployment", href: "#deploy", icon: Server },
-      { title: "Advanced Config", href: "#advanced", icon: Settings },
-      { title: "Troubleshooting", href: "#troubleshooting", icon: AlertTriangle },
     ],
   },
   {
-    title: "Resources",
+    title: "Operations",
     items: [
-      { title: "Examples", href: "#examples", icon: Play },
-      { title: "FAQ", href: "#faq", icon: HelpCircle },
-      { title: "Comparison", href: "#comparison", icon: GitBranch },
+      { title: "Deployment", href: "#deploy", icon: Server },
+      { title: "Troubleshooting", href: "#troubleshooting", icon: AlertTriangle },
     ],
   },
 ];
@@ -305,84 +303,68 @@ export default function DocsPage() {
                   Get up and running with Beam in minutes
                 </p>
 
-                <Card className="bg-primary/5 border-primary/20 mb-6">
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Installation</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="bg-muted p-3 rounded text-sm font-mono mb-2 flex items-center justify-between">
+                        npm install -g @byronwade/beam
+                        <CopyButton text="npm install -g @byronwade/beam" commandId="install-quick" />
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Install Beam globally via npm
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>First Tunnel</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="bg-muted p-3 rounded text-sm font-mono mb-2 flex items-center justify-between">
+                        beam 3000 --domain myapp.local --tor
+                        <CopyButton text="beam 3000 --domain myapp.local --tor" commandId="tunnel-quick" />
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Create your first tunnel with global access
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <Card className="bg-primary/5 border-primary/20">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Zap className="h-5 w-5 text-primary" />
-                      Quick Start (5 Minutes)
+                      <ArrowRight className="h-5 w-5 text-primary" />
+                      Next Steps
                     </CardTitle>
                     <CardDescription>
-                      Get up and running with Beam in minutes
+                      Continue your Beam journey
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <span className="text-primary text-xs font-bold">1</span>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-medium mb-1">Install Beam</h4>
-                          <div className="bg-muted p-2 rounded text-xs font-mono mb-2">
-                            npm install -g @byronwade/beam
-                          </div>
-                          <p className="text-sm text-muted-foreground">
-                            Or use npx for one-time usage: <code>npx @byronwade/beam</code>
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <span className="text-primary text-xs font-bold">2</span>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-medium mb-1">Start Your First Tunnel</h4>
-                          <div className="bg-muted p-2 rounded text-xs font-mono mb-2">
-                            beam 3000 --domain myapp.local --tor
-                          </div>
-                          <p className="text-sm text-muted-foreground">
-                            Create a tunnel with custom domain and Tor global access
-                          </p>
-                          <div className="text-xs text-muted-foreground bg-blue-50 p-2 rounded mt-2">
-                            <strong>Available options:</strong> <code>--dual</code> (local + Tor), <code>--https</code> (SSL), <code>--verbose</code> (detailed logging)
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <span className="text-primary text-xs font-bold">3</span>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-medium mb-1">Access Your App</h4>
-                          <div className="bg-muted p-2 rounded text-xs font-mono mb-2">
-                            # Local access<br/>
-                            http://myapp.local<br/>
-                            <br/>
-                            # Global access (via Tor)<br/>
-                            http://abc123def456.onion
-                          </div>
-                          <p className="text-sm text-muted-foreground">
-                            Your app is now accessible worldwide through Beam's decentralized network
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <span className="text-primary text-xs font-bold">4</span>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-medium mb-1">Authenticate for Advanced Features (Optional)</h4>
-                          <div className="bg-muted p-2 rounded text-xs font-mono mb-2">
-                            beam login --token your_personal_token
-                          </div>
-                          <p className="text-sm text-muted-foreground">
-                            Login to access dashboard features and advanced capabilities
-                          </p>
-                        </div>
-                      </div>
+                  <CardContent>
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <Link href="/docs/getting-started">
+                        <Button variant="outline" className="w-full justify-start">
+                          <BookOpen className="h-4 w-4 mr-2" />
+                          Complete Guide
+                        </Button>
+                      </Link>
+                      <Link href="/docs/cli-reference">
+                        <Button variant="outline" className="w-full justify-start">
+                          <Terminal className="h-4 w-4 mr-2" />
+                          CLI Reference
+                        </Button>
+                      </Link>
+                      <Link href="/docs/examples">
+                        <Button variant="outline" className="w-full justify-start">
+                          <Play className="h-4 w-4 mr-2" />
+                          Examples
+                        </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>
@@ -994,427 +976,8 @@ export default function DocsPage() {
                 </div>
               </section>
 
-              {/* Examples Section */}
-              <section id="examples" className="mb-16 scroll-mt-20">
-                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-                  <Play className="h-7 w-7 text-primary" />
-                  Examples & Use Cases
-                </h2>
-                <p className="text-muted-foreground mb-8">
-                  Real-world examples using currently implemented features
-                </p>
 
-                <div className="space-y-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Terminal className="h-5 w-5" />
-                        Webhook Development Testing
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="bg-muted p-3 rounded text-sm font-mono mb-3">
-                        # Start your webhook handler<br/>
-                        npm run dev<br/>
-                        <br/>
-                        # Create tunnel with Tor access<br/>
-                        beam 3000 --domain webhook.local --tor
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Test webhooks from Stripe, GitHub, and other services with global accessibility
-                      </p>
-                      <div className="text-xs text-muted-foreground bg-blue-50 p-2 rounded">
-                        <strong>URLs generated:</strong> http://webhook.local (local) + Tor onion address (global)
-                      </div>
-                    </CardContent>
-                  </Card>
 
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Code className="h-5 w-5" />
-                        API Development & Testing
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="bg-muted p-3 rounded text-sm font-mono mb-3">
-                        # Start API server<br/>
-                        npm start<br/>
-                        <br/>
-                        # Create dual-mode tunnel<br/>
-                        beam 8080 --dual --domain api.local
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Develop APIs with both local testing and global accessibility
-                      </p>
-                      <div className="text-xs text-muted-foreground bg-green-50 p-2 rounded">
-                        <strong>Benefits:</strong> Local development speed + Global production access
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Globe className="h-5 w-5" />
-                        Mobile App Backend
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="bg-muted p-3 rounded text-sm font-mono mb-3">
-                        # Start backend server<br/>
-                        node server.js<br/>
-                        <br/>
-                        # Create HTTPS tunnel<br/>
-                        beam 4000 --https --domain mobile-api.local
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Provide secure API access for mobile applications during development
-                      </p>
-                      <div className="text-xs text-muted-foreground bg-purple-50 p-2 rounded">
-                        <strong>Security:</strong> HTTPS encryption + Tor privacy for sensitive mobile data
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Shield className="h-5 w-5" />
-                        Privacy-Focused Development
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="bg-muted p-3 rounded text-sm font-mono mb-3">
-                        # Start private application<br/>
-                        python app.py<br/>
-                        <br/>
-                        # Create Tor-only tunnel (no local DNS)<br/>
-                        beam 5000 --tor
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Develop applications that require maximum privacy and anonymity
-                      </p>
-                      <div className="text-xs text-muted-foreground bg-orange-50 p-2 rounded">
-                        <strong>Privacy:</strong> Only accessible via Tor - no local network exposure
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Network className="h-5 w-5" />
-                        Team Collaboration
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="bg-muted p-3 rounded text-sm font-mono mb-3">
-                        # Developer A: Share work in progress<br/>
-                        beam 3000 --domain feature-x.local --dual<br/>
-                        <br/>
-                        # Developer B: Access instantly<br/>
-                        # http://feature-x.local (works from anywhere)
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Share development environments with team members or stakeholders
-                      </p>
-                      <div className="text-xs text-muted-foreground bg-indigo-50 p-2 rounded">
-                        <strong>Collaboration:</strong> Instant sharing without deployment or VPN setup
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-dashed">
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2 text-muted-foreground">
-                        <Star className="h-5 w-5" />
-                        Future Examples (P2P Features)
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Examples that will be possible once P2P domain registry is implemented:
-                      </p>
-                      <div className="space-y-2 text-sm">
-                        <div className="bg-gray-50 p-3 rounded">
-                          <code className="text-xs font-mono block mb-1">beam register myapp.local</code>
-                          <span className="text-xs text-muted-foreground">Persistent domain registration in P2P network</span>
-                        </div>
-                        <div className="bg-gray-50 p-3 rounded">
-                          <code className="text-xs font-mono block mb-1">beam list</code>
-                          <span className="text-xs text-muted-foreground">View all active tunnels across P2P network</span>
-                        </div>
-                        <div className="bg-gray-50 p-3 rounded">
-                          <code className="text-xs font-mono block mb-1">beam status</code>
-                          <span className="text-xs text-muted-foreground">Network-wide health monitoring and analytics</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </section>
-
-              {/* FAQ Section */}
-              <section id="faq" className="mb-16 scroll-mt-20">
-                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-                  <HelpCircle className="h-7 w-7 text-primary" />
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>What makes Beam different from ngrok?</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Beam is fundamentally different - it's a <strong>decentralized tunneling platform</strong> that eliminates central servers entirely.
-                      </p>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span className="text-sm">No central servers or data collection</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span className="text-sm">Tor integration for censorship resistance</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span className="text-sm">P2P networking for distributed routing</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span className="text-sm">Completely open source and self-hosted</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Do I need to install Tor separately?</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">
-                        Yes, Tor must be installed and running for global access. Beam integrates with your existing Tor installation and will guide you through setup if needed. For local-only development, Tor is optional but recommended for the full decentralized experience.
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>What CLI commands are currently available?</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Currently implemented commands:
-                      </p>
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <code className="text-sm bg-muted px-1 rounded">beam &lt;port&gt;</code>
-                          <span className="text-sm">Start tunnel with full options</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <code className="text-sm bg-muted px-1 rounded">beam start &lt;port&gt;</code>
-                          <span className="text-sm">Explicit start command</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <code className="text-sm bg-muted px-1 rounded">beam login --token</code>
-                          <span className="text-sm">Authentication</span>
-                        </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-3">
-                        Additional commands (list, stop, status, etc.) are planned for future P2P network implementation.
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>How does Beam achieve decentralization?</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Beam uses multiple decentralized technologies:
-                      </p>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <Network className="h-4 w-4 text-blue-500" />
-                          <span className="text-sm"><strong>P2P Networking:</strong> Traffic routes through other Beam users</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Globe className="h-4 w-4 text-purple-500" />
-                          <span className="text-sm"><strong>Tor Integration:</strong> Anonymous global access via onion services</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Lock className="h-4 w-4 text-green-500" />
-                          <span className="text-sm"><strong>End-to-End Encryption:</strong> All traffic encrypted throughout the network</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Shield className="h-4 w-4 text-orange-500" />
-                          <span className="text-sm"><strong>No Central Authority:</strong> No company controls or monitors your traffic</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </section>
-
-              {/* Comparison Section */}
-              <section id="comparison" className="mb-16 scroll-mt-20">
-                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-                  <GitBranch className="h-7 w-7 text-primary" />
-                  Comparison
-                </h2>
-                <p className="text-muted-foreground mb-8">
-                  How Beam compares to other tunneling solutions - current capabilities and future vision
-                </p>
-
-                <div className="space-y-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <span>Beam vs ngrok</span>
-                        <Badge variant="secondary">Current vs Future</Badge>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div>
-                          <h4 className="font-medium mb-3 text-green-800">✅ Currently Available</h4>
-                          <div className="space-y-2 text-sm">
-                            <div className="flex items-center gap-2">
-                              <CheckCircle className="h-4 w-4 text-green-500" />
-                              <span>Fully decentralized architecture</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <CheckCircle className="h-4 w-4 text-green-500" />
-                              <span>Tor integration for global access</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <CheckCircle className="h-4 w-4 text-green-500" />
-                              <span>100% open source and self-hosted</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <CheckCircle className="h-4 w-4 text-green-500" />
-                              <span>No data collection or logging</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <CheckCircle className="h-4 w-4 text-green-500" />
-                              <span>End-to-end encryption</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div>
-                          <h4 className="font-medium mb-3 text-blue-800">🚧 Future Capabilities</h4>
-                          <div className="space-y-2 text-sm">
-                            <div className="flex items-center gap-2">
-                              <Info className="h-4 w-4 text-blue-500" />
-                              <span>P2P domain registry (vs ngrok's subdomain leasing)</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Info className="h-4 w-4 text-blue-500" />
-                              <span>Distributed tunnel management</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Info className="h-4 w-4 text-blue-500" />
-                              <span>Network-wide monitoring and analytics</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Info className="h-4 w-4 text-blue-500" />
-                              <span>Advanced peer-to-peer networking features</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Feature Comparison Matrix</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="overflow-x-auto">
-                        <table className="w-full text-sm">
-                          <thead>
-                            <tr className="border-b">
-                              <th className="text-left py-2">Feature</th>
-                              <th className="text-center py-2">Beam (Current)</th>
-                              <th className="text-center py-2">Beam (Future)</th>
-                              <th className="text-center py-2">ngrok</th>
-                              <th className="text-center py-2">Cloudflare</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border-b">
-                              <td className="py-2">Decentralized Architecture</td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                            </tr>
-                            <tr className="border-b">
-                              <td className="py-2">Tor Integration</td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                            </tr>
-                            <tr className="border-b">
-                              <td className="py-2">No Data Collection</td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                              <td className="text-center"><Info className="h-4 w-4 text-yellow-500 inline" /></td>
-                            </tr>
-                            <tr className="border-b">
-                              <td className="py-2">P2P Domain Registry</td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-blue-500 inline" /></td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                            </tr>
-                            <tr className="border-b">
-                              <td className="py-2">Censorship Resistance</td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                              <td className="text-center"><Info className="h-4 w-4 text-yellow-500 inline" /></td>
-                            </tr>
-                            <tr className="border-b">
-                              <td className="py-2">Cost</td>
-                              <td className="text-center text-green-600 font-medium">Free</td>
-                              <td className="text-center text-green-600 font-medium">Free</td>
-                              <td className="text-center">$5-15/month</td>
-                              <td className="text-center">$0-200/month</td>
-                            </tr>
-                            <tr className="border-b">
-                              <td className="py-2">Tunnel Management</td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-blue-500 inline" /></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                            </tr>
-                            <tr className="border-b">
-                              <td className="py-2">Advanced Monitoring</td>
-                              <td className="text-center"><span className="text-red-500">✗</span></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-blue-500 inline" /></td>
-                              <td className="text-center"><Info className="h-4 w-4 text-yellow-500 inline" /></td>
-                              <td className="text-center"><CheckCircle className="h-4 w-4 text-green-500 inline" /></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div className="mt-4 text-xs text-muted-foreground">
-                        <p><strong>Legend:</strong> ✅ = Available, 🚧 = In Development, ✗ = Not Available, ❓ = Partial</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </section>
 
               {/* Footer CTA */}
               <div className="mt-16 pt-8 border-t">
