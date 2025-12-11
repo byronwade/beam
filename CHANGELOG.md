@@ -8,33 +8,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- **Open Source Release**: Complete rewrite as fully open source tunnel service
-- **Self-Hosting Support**: Docker and docker-compose setup for easy deployment
+- **Decentralized Architecture**: Fully local-first tunnel service with no cloud dependencies
+- **Rust Tunnel Daemon**: High-performance HTTP/HTTPS proxy daemon
+- **HTTPS Support**: Self-signed certificate generation for local development
+- **Tor Integration**: Optional Tor hidden services for global webhook access
+- **Context-Aware Routing**: Same domain works locally and globally
 - **AGPL-3.0 License**: Full open source licensing
 - **Security Policy**: Comprehensive security reporting and handling procedures
 - **Contributing Guidelines**: Development and contribution documentation
-- **Docker Support**: Containerized deployment with nginx reverse proxy
 
 ### Changed
-- **Architecture Overhaul**: Removed Cloudflare dependency, built custom tunnel server
+- **Architecture Overhaul**: Complete rewrite as fully decentralized, local-first system
 - **Licensing**: Changed from proprietary to AGPL-3.0 open source license
-- **Deployment Model**: From managed service to self-hosted with optional managed offering
+- **Deployment Model**: No deployment needed - runs entirely on user's machine
 
 ### Removed
-- **Cloudflare Integration**: Complete removal of Cloudflare Tunnel dependencies
+- **Cloud Infrastructure**: Removed all cloud dependencies (Cloudflare, Convex, Ably)
 - **Proprietary Components**: All proprietary code and services removed
 
 ## [1.1.27] - 2024-12-10
 
 ### Added
 - Initial public release of Beam CLI
-- Basic tunneling functionality with Cloudflare integration
-- Web dashboard for tunnel management
+- Basic tunneling functionality
 - Request inspection and webhook testing features
 - Framework integrations (Next.js, Vite, Astro, Remix)
-
-### Changed
-- Migrated from proprietary tunnel service to Cloudflare-based solution
 
 ### Fixed
 - Various stability and performance improvements
@@ -80,23 +78,21 @@ Beam follows [Semantic Versioning](https://semver.org/):
 
 ## Migration Guide
 
-### From Cloudflare-based to Self-hosted
+### From 1.x to 2.0 (Decentralized)
 
-If you're migrating from the previous Cloudflare-based version:
+If you're migrating from the previous version:
 
-1. **Backup your data**: Export any important tunnel configurations
-2. **Set up new infrastructure**: Deploy using Docker or manual installation
-3. **Configure environment**: Update all environment variables
-4. **Migrate data**: Import configurations to new system (manual process currently)
-5. **Update CLI**: Use new CLI version with updated authentication
+1. **Update CLI**: Install the latest version: `npm install -g @byronwade/beam`
+2. **No Configuration Needed**: The new version runs entirely locally
+3. **HTTPS Support**: Use `--https` flag for HTTPS tunnels
+4. **Tor for Webhooks**: Use `--dual` flag for global webhook access via Tor
 
 ### Breaking Changes in 2.0.0
 
-- Removed Cloudflare API integration
-- Changed authentication system
-- Updated CLI command structure
-- Modified API endpoints
-- New database schema requirements
+- Removed all cloud dependencies
+- No account/login required
+- Simplified CLI interface
+- Local-only by default (Tor optional for webhooks)
 
 ---
 

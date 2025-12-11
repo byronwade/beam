@@ -2,12 +2,10 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/auth-context";
-import { Zap, Menu, X } from "lucide-react";
+import { Github, Menu, X, Zap } from "lucide-react";
 import { useState } from "react";
 
 export function Header() {
-  const { user } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -24,32 +22,24 @@ export function Header() {
           <Link href="#features" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
             Features
           </Link>
-          <Link href="#pricing" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-            Pricing
+          <Link href="/dashboard" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            Dashboard
           </Link>
           <Link href="https://github.com/byronwade/beam" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
             GitHub
           </Link>
-          <Link href="#faq" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-            FAQ
+          <Link href="https://github.com/byronwade" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            Support
           </Link>
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          {user ? (
-            <Button asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </Button>
-          ) : (
-            <>
-              <Button variant="ghost" asChild>
-                <Link href="/login">Sign in</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/register">Get Started</Link>
-              </Button>
-            </>
-          )}
+          <Button variant="ghost" asChild>
+            <Link href="https://github.com/byronwade/beam">
+              <Github className="mr-2 h-4 w-4" />
+              View Source
+            </Link>
+          </Button>
         </div>
 
         <button
@@ -66,30 +56,22 @@ export function Header() {
             <Link href="#features" className="text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
               Features
             </Link>
-            <Link href="#pricing" className="text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-              Pricing
+            <Link href="/dashboard" className="text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
+              Dashboard
             </Link>
             <Link href="https://github.com/byronwade/beam" className="text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
               GitHub
             </Link>
-            <Link href="#faq" className="text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
-              FAQ
+            <Link href="https://github.com/byronwade" className="text-sm text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
+              Support
             </Link>
             <div className="flex flex-col gap-2 pt-4">
-              {user ? (
-                <Button asChild>
-                  <Link href="/dashboard">Dashboard</Link>
-                </Button>
-              ) : (
-                <>
-                  <Button variant="ghost" asChild>
-                    <Link href="/login">Sign in</Link>
-                  </Button>
-                  <Button asChild>
-                    <Link href="/register">Get Started</Link>
-                  </Button>
-                </>
-              )}
+              <Button variant="ghost" asChild>
+                <Link href="https://github.com/byronwade/beam" onClick={() => setMobileMenuOpen(false)}>
+                  <Github className="mr-2 h-4 w-4" />
+                  View Source
+                </Link>
+              </Button>
             </div>
           </nav>
         </div>

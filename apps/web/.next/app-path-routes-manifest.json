@@ -1,0 +1,8 @@
+{
+  "/(dashboard)/dashboard/page": "/dashboard",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/tunnel/route": "/api/tunnel",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/"
+}

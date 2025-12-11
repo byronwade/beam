@@ -44,7 +44,7 @@ function Logo({ className = "h-8 w-8" }: { className?: string }) {
 // Animated command with copy functionality
 function CommandBlock() {
   const [copied, setCopied] = useState(false);
-  const command = "Get started with Beam Dashboard";
+  const command = "npx @byronwade/beam 3000 --tor";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(command);
@@ -95,31 +95,20 @@ export default function Home() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <Link href="#features" className="text-sm text-white/50 hover:text-white transition-colors relative group">
-              Features
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/50 group-hover:w-full transition-all duration-300" />
-            </Link>
-            <Link href="#pricing" className="text-sm text-white/50 hover:text-white transition-colors relative group">
-              Pricing
+              How It Works
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/50 group-hover:w-full transition-all duration-300" />
             </Link>
             <Link href="/docs" className="text-sm text-white/50 hover:text-white transition-colors relative group">
-              Docs
+              Technical Docs
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/50 group-hover:w-full transition-all duration-300" />
             </Link>
-            <Link href="https://github.com/byronwade/beam" className="text-sm text-white/50 hover:text-white transition-colors relative group">
-              GitHub
+            <Link href="https://github.com/byronwade" className="text-sm text-white/50 hover:text-white transition-colors relative group">
+              Support
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/50 group-hover:w-full transition-all duration-300" />
             </Link>
           </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/5 hidden sm:flex" asChild>
-              <Link href="/login">Sign in</Link>
-            </Button>
-            <Button size="sm" className="bg-white text-[#131313] hover:bg-white/90 hidden sm:flex" asChild>
-              <Link href="/register">Get Started</Link>
-            </Button>
-
             {/* Mobile Menu */}
             <Sheet>
               <SheetTrigger asChild>
@@ -143,17 +132,7 @@ export default function Home() {
                         (document.querySelector('[data-state="open"]') as HTMLElement)?.click();
                       }}
                     >
-                      Features
-                    </Link>
-                    <Link
-                      href="#pricing"
-                      className="text-white/70 hover:text-white transition-colors py-2 border-b border-white/5"
-                      onClick={() => {
-                        // Close sheet
-                        (document.querySelector('[data-state="open"]') as HTMLElement)?.click();
-                      }}
-                    >
-                      Pricing
+                      How It Works
                     </Link>
                     <Link
                       href="/docs"
@@ -163,24 +142,16 @@ export default function Home() {
                         (document.querySelector('[data-state="open"]') as HTMLElement)?.click();
                       }}
                     >
-                      Docs
+                      Technical Docs
                     </Link>
                     <Link
-                      href="https://github.com/byronwade/beam"
+                      href="https://github.com/byronwade"
                       className="text-white/70 hover:text-white transition-colors py-2 border-b border-white/5"
                     >
-                      GitHub
+                      Support
                     </Link>
                   </div>
 
-                  <div className="flex flex-col gap-3 mt-6">
-                    <Button variant="ghost" className="text-white/70 hover:text-white hover:bg-white/5 justify-start" asChild>
-                      <Link href="/login">Sign in</Link>
-                    </Button>
-                    <Button className="bg-white text-[#131313] hover:bg-white/90 justify-start" asChild>
-                      <Link href="/register">Get Started</Link>
-                    </Button>
-                  </div>
                 </div>
               </SheetContent>
             </Sheet>
@@ -200,20 +171,21 @@ export default function Home() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/70 mb-8">
             <span className="flex h-2 w-2 rounded-full bg-green-500" />
-            Open Source
+            Decentralized & Open Source
           </div>
 
           {/* Main headline */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight">
-            Expose localhost
+            Decentralized
             <br />
-            <span className="text-beam-rainbow">in seconds</span>
+            <span className="text-beam-rainbow">Tor Tunneling</span>
           </h1>
 
           {/* Subheadline */}
           <p className="mt-8 text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed">
-            The fastest way to share your local development server with the world.
-            Zero config. One command. Like magic.
+            Self-hosted tunneling that uses Tor hidden services and P2P networking.
+            Register domains like <code className="text-beam-rainbow">byronwade.local</code> that work
+            both locally (127.0.0.1) and globally (Tor .onion) - same domain, everywhere.
           </p>
 
           {/* Command block */}
@@ -222,13 +194,7 @@ export default function Home() {
           </div>
 
           {/* CTA buttons */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-white text-[#131313] hover:bg-white/90 px-8" asChild>
-              <Link href="/register">
-                Start for free
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+          <div className="mt-8 flex items-center justify-center">
             <Button size="lg" variant="ghost" className="text-white/70 hover:text-white hover:bg-white/5" asChild>
               <Link href="https://github.com/byronwade/beam">
                 <Github className="mr-2 h-4 w-4" />
@@ -237,19 +203,19 @@ export default function Home() {
             </Button>
           </div>
 
-          {/* Stats */}
+          {/* Network Stats */}
           <div className="mt-20 grid grid-cols-3 gap-8 max-w-xl mx-auto">
             <div>
-              <div className="text-3xl font-bold text-white">10K+</div>
-              <div className="text-sm text-white/40 mt-1">Developers</div>
+              <div className="text-3xl font-bold text-white">0</div>
+              <div className="text-sm text-white/40 mt-1">Central Servers</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-white">1M+</div>
-              <div className="text-sm text-white/40 mt-1">Tunnels created</div>
+              <div className="text-3xl font-bold text-white">∞</div>
+              <div className="text-sm text-white/40 mt-1">Network Scalability</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-white">99.9%</div>
-              <div className="text-sm text-white/40 mt-1">Uptime</div>
+              <div className="text-3xl font-bold text-white">100%</div>
+              <div className="text-sm text-white/40 mt-1">Privacy by Design</div>
             </div>
           </div>
         </div>
@@ -261,10 +227,100 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Demo Section */}
+      {/* How It Works Section */}
       <section className="relative py-32 px-6">
         <div className="mx-auto max-w-5xl">
-          {/* Terminal mockup */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              How Decentralized Tunneling Works
+            </h2>
+            <p className="text-white/50 max-w-2xl mx-auto">
+              No central servers. No accounts. Just you, Tor, and the P2P network.
+            </p>
+          </div>
+
+          {/* Domain Resolution Magic */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-white mb-2">One Domain, Two Worlds</h3>
+              <p className="text-white/60">The same domain name works everywhere, automatically</p>
+            </div>
+            <div className="rounded-2xl bg-gradient-to-r from-primary/10 to-green-500/10 border border-primary/20 p-8 mb-8">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-beam-rainbow mb-2">byronwade.local</div>
+                <p className="text-white/80">One domain name → Multiple resolution contexts</p>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div className="rounded-xl bg-[#131313] border border-white/10 p-4">
+                <div className="text-2xl mb-2">🏠</div>
+                <div className="text-white font-medium mb-1">Local Browser</div>
+                <div className="text-white/60 text-sm">byronwade.local</div>
+                <div className="text-primary text-sm font-mono">→ 127.0.0.1</div>
+              </div>
+              <div className="rounded-xl bg-[#131313] border border-white/10 p-4">
+                <div className="text-2xl mb-2">🌐</div>
+                <div className="text-white font-medium mb-1">External Services</div>
+                <div className="text-white/60 text-sm">byronwade.local</div>
+                <div className="text-green-400 text-sm font-mono">→ abc123.onion</div>
+              </div>
+              <div className="rounded-xl bg-[#131313] border border-white/10 p-4">
+                <div className="text-2xl mb-2">🤖</div>
+                <div className="text-white font-medium mb-1">APIs & Webhooks</div>
+                <div className="text-white/60 text-sm">byronwade.local</div>
+                <div className="text-purple-400 text-sm font-mono">→ P2P Resolution</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Architecture Diagram */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-white">Local Development</h3>
+              <div className="rounded-2xl bg-[#131313] border border-white/10 p-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                      <span className="text-primary text-sm">💻</span>
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">Your Local Machine</p>
+                      <p className="text-white/60 text-sm">localhost:3000 running</p>
+                    </div>
+                  </div>
+                  <div className="ml-4 border-l-2 border-primary/30 pl-6 space-y-2">
+                    <p className="text-white/80 text-sm">• Beam creates Tor hidden service</p>
+                    <p className="text-white/80 text-sm">• Generates .onion address</p>
+                    <p className="text-white/80 text-sm">• Registers name in P2P DHT</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-white">Global Access</h3>
+              <div className="rounded-2xl bg-[#131313] border border-white/10 p-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center">
+                      <span className="text-green-400 text-sm">🌐</span>
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">External Services</p>
+                      <p className="text-white/60 text-sm">Webhooks, APIs, browsers</p>
+                    </div>
+                  </div>
+                  <div className="ml-4 border-l-2 border-green-400/30 pl-6 space-y-2">
+                    <p className="text-white/80 text-sm">• P2P network resolves your domain</p>
+                    <p className="text-white/80 text-sm">• Traffic routes through Tor</p>
+                    <p className="text-white/80 text-sm">• Direct connection, no middlemen</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Terminal Demo */}
           <div className="rounded-2xl bg-[#131313] border border-white/10 overflow-hidden shadow-2xl">
             {/* Terminal header */}
             <div className="flex items-center gap-2 px-4 py-3 bg-[#1a1a1a] border-b border-white/5">
@@ -273,27 +329,49 @@ export default function Home() {
                 <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
                 <div className="w-3 h-3 rounded-full bg-[#27ca3f]" />
               </div>
-              <span className="ml-2 text-xs text-white/40 font-mono">Terminal</span>
+              <span className="ml-2 text-xs text-white/40 font-mono">Beam CLI</span>
             </div>
 
             {/* Terminal content */}
             <div className="p-6 font-mono text-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-white/40">→</span>
-                <span className="text-white">Create tunnel in dashboard</span>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-white/40">$</span>
+                <span className="text-white">beam register byronwade.local</span>
               </div>
-              <div className="mt-4 space-y-1 text-white/60">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-white/40">$</span>
+                <span className="text-white">beam 3000 --dual-access</span>
+              </div>
+              <div className="space-y-1 text-white/60 mb-4">
                 <div className="flex items-center gap-2">
                   <span className="text-green-400">✓</span>
-                  <span>Tunnel established</span>
+                  <span>Domain registered in P2P network</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-green-400">✓</span>
-                  <span>Ready to use</span>
+                  <span>Tor hidden service created</span>
                 </div>
-                <div className="mt-4 pt-4 border-t border-white/5">
-                  <span className="text-white/40">Public URL:</span>
-                  <span className="ml-2 text-beam-rainbow">https://myapp.beam.dev</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400">✓</span>
+                  <span>Context-aware DNS configured</span>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-white/5 space-y-3">
+                <div className="text-center text-white/60 text-xs mb-2">Same domain, different contexts:</div>
+                <div className="grid grid-cols-2 gap-4 text-xs">
+                  <div>
+                    <div className="text-blue-400 font-medium">Local Browser</div>
+                    <div className="text-white/60">byronwade.local</div>
+                    <div className="text-primary font-mono">→ 127.0.0.1:3000</div>
+                  </div>
+                  <div>
+                    <div className="text-green-400 font-medium">External Services</div>
+                    <div className="text-white/60">byronwade.local</div>
+                    <div className="text-beam-rainbow font-mono">→ abc123.onion</div>
+                  </div>
+                </div>
+                <div className="text-center text-white/40 text-xs mt-3">
+                  Webhooks, APIs, and external services automatically resolve to Tor
                 </div>
               </div>
             </div>
@@ -306,120 +384,59 @@ export default function Home() {
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Everything you need
+              Decentralized by Design
             </h2>
             <p className="mt-4 text-white/50 max-w-xl mx-auto">
-              Powerful features for developers who want more than just tunnels.
+              Every feature is built around the principles of decentralization, privacy, and user sovereignty.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             <FeatureCard
-              title="Request Inspector"
-              description="Real-time HTTP viewer. See every request, response, and replay with one click."
+              title="Smart Domain Resolution"
+              description="One domain name works everywhere. byronwade.local resolves to localhost locally, Tor .onion globally. Context-aware DNS magic."
             />
             <FeatureCard
-              title="Webhook Capture"
-              description="Perfect for webhook development. Capture, inspect, and replay from Stripe, GitHub, and more."
+              title="Tor Hidden Services"
+              description="Your local apps become globally accessible through Tor .onion addresses. No central servers, no IP leaks, military-grade anonymity."
             />
             <FeatureCard
-              title="Local HTTPS"
-              description="Auto-provision trusted SSL certificates. Test HTTPS locally without warnings."
+              title="P2P Domain Registry"
+              description="Decentralized domain name system using Kademlia DHT. Register domains across the peer network with cryptographic signatures."
             />
             <FeatureCard
-              title="Team Workspaces"
-              description="Organize tunnels by project. Invite teammates with role-based access."
+              title="End-to-End Encryption"
+              description="All traffic is encrypted from your machine through Tor to the destination. No man-in-the-middle attacks possible."
             />
             <FeatureCard
-              title="Custom Domains"
-              description="Use your own subdomain or bring your custom domain for permanent URLs."
+              title="Self-Sovereign Identity"
+              description="No accounts, no logins, no data collection. You own your tunnels and your data completely. Pure peer-to-peer."
             />
             <FeatureCard
-              title="GitHub Integration"
-              description="Auto-post tunnel URLs to PRs. Perfect for preview environments."
+              title="Local-First Architecture"
+              description="Everything runs on your machine. SQLite database for configuration, no cloud dependencies, complete data sovereignty."
             />
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-32 px-6 bg-[#131313]">
-        <div className="mx-auto max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Simple pricing
-            </h2>
-            <p className="mt-4 text-white/50">
-              Free to start. Scale when you need to.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Free */}
-            <div className="p-8 rounded-2xl bg-[#0a0a0a] border border-white/5">
-              <div className="text-sm text-white/50">Free</div>
-              <div className="mt-2 text-4xl font-bold text-white">$0</div>
-              <div className="text-sm text-white/40">forever</div>
-              <ul className="mt-8 space-y-3 text-sm text-white/60">
-                <li>• Anonymous tunnels</li>
-                <li>• Request inspector</li>
-                <li>• QR code sharing</li>
-              </ul>
-              <Button variant="outline" className="w-full mt-8 border-white/10 text-white hover:bg-white/5" asChild>
-                <Link href="/register">Get started</Link>
-              </Button>
-            </div>
-
-            {/* Pro */}
-            <div className="relative p-8 rounded-2xl bg-[#0a0a0a] border border-white/20">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-white text-[#131313] text-xs font-medium">
-                Popular
-              </div>
-              <div className="text-sm text-white/50">Pro</div>
-              <div className="mt-2 text-4xl font-bold text-beam-rainbow">$9</div>
-              <div className="text-sm text-white/40">per month</div>
-              <ul className="mt-8 space-y-3 text-sm text-white/60">
-                <li>• Everything in Free</li>
-                <li>• 10 persistent tunnels</li>
-                <li>• Reserved subdomains</li>
-                <li>• Analytics dashboard</li>
-              </ul>
-              <Button className="w-full mt-8 bg-white text-[#131313] hover:bg-white/90" asChild>
-                <Link href="/register">Start free trial</Link>
-              </Button>
-            </div>
-
-            {/* Team */}
-            <div className="p-8 rounded-2xl bg-[#0a0a0a] border border-white/5">
-              <div className="text-sm text-white/50">Team</div>
-              <div className="mt-2 text-4xl font-bold text-white">$29</div>
-              <div className="text-sm text-white/40">per month</div>
-              <ul className="mt-8 space-y-3 text-sm text-white/60">
-                <li>• Everything in Pro</li>
-                <li>• Unlimited tunnels</li>
-                <li>• Team workspaces</li>
-                <li>• Priority support</li>
-              </ul>
-              <Button variant="outline" className="w-full mt-8 border-white/10 text-white hover:bg-white/5" asChild>
-                <Link href="/register">Start free trial</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-32 px-6">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Ready to beam?
+            Take Back Control
           </h2>
           <p className="mt-4 text-white/50">
-            Join thousands of developers shipping faster with Beam.
+            Stop relying on centralized tunneling services. Own your connections, own your data.
+            Use your own domain names everywhere.
           </p>
           <div className="mt-8">
             <CommandBlock />
           </div>
+          <p className="mt-6 text-sm text-white/30">
+            No accounts • No tracking • No middlemen • Just decentralized tunneling
+          </p>
         </div>
       </section>
 
@@ -434,11 +451,11 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-6 text-sm text-white/40">
+              <Link href="https://github.com/byronwade" className="hover:text-white transition-colors">
+                Support
+              </Link>
               <Link href="https://github.com/byronwade/beam" className="hover:text-white transition-colors">
                 GitHub
-              </Link>
-              <Link href="/login" className="hover:text-white transition-colors">
-                Dashboard
               </Link>
             </div>
 

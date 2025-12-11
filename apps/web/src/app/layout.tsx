@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { ConvexClientProvider } from "@/lib/convex";
-import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -17,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Beam - The Open Source Tunnel Manager",
-  description: "A beautiful, real-time Command Center for secure tunnels. Self-host or use our managed service.",
-  keywords: ["tunnels", "ngrok alternative", "open source", "self-hosted", "tunnel-manager"],
+  title: "Beam - Decentralized Tor Tunneling",
+  description: "Open source tunneling that uses Tor hidden services and P2P networking. No central servers, no accounts, complete privacy.",
+  keywords: ["tor", "decentralized", "tunneling", "p2p", "privacy", "onion", "open source", "self-hosted"],
 };
 
 export default function RootLayout({
@@ -32,10 +31,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ConvexClientProvider>
-            <AuthProvider>
-              {children}
-              <Toaster />
-            </AuthProvider>
+            {children}
+            <Toaster />
           </ConvexClientProvider>
         </ThemeProvider>
       </body>

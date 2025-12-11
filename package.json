@@ -17,6 +17,7 @@
     "dev:convex": "turbo run dev --filter=@beam/convex"
   },
   "devDependencies": {
-    "turbo": "^2.0.0"
+    "turbo": "^2.0.0",
+    "convex": "^1.30.0"
   }
 }

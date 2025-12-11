@@ -2,18 +2,12 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
+  // Basic tables for web app functionality
   users: defineTable({
     name: v.string(),
     email: v.string(),
     createdAt: v.number(),
   }).index("by_email", ["email"]),
-
-  apiKeys: defineTable({
-    userId: v.id("users"),
-    key: v.string(),
-    lastUsed: v.optional(v.number()),
-    createdAt: v.number(),
-  }).index("by_key", ["key"]),
 
   tunnels: defineTable({
     subdomain: v.string(),

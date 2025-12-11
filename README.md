@@ -1,12 +1,11 @@
 # Beam
 
 <div align="center">
-  <h3>Fully Open Source Tunnel Service</h3>
-  <p>The open-source ngrok alternative. Zero config. One command. Self-hosted and fully customizable.</p>
+  <h3>Decentralized Local Tunneling</h3>
+  <p>The open-source ngrok alternative. Runs entirely locally. No cloud required. Your domains, your control.</p>
 
   [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
   [![npm version](https://badge.fury.io/js/@byronwade/beam.svg)](https://www.npmjs.com/package/@byronwade/beam)
-  [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/r/beam-tunnels)
 </div>
 
 ---
@@ -14,19 +13,19 @@
 ## Quick Start
 
 ```bash
-npx bmup 3000
+npx beam 3000
 ```
 
-That's it. Your localhost:3000 is now publicly accessible.
+That's it. Your localhost:3000 gets a local domain name.
 
 ```
-$ npx bmup 3000
+$ npx beam 3000
 
   ⚡ Beam
 
-  Tunnel:     https://abc123.trycloudflare.com
+  Domain:     beam-1765416299.local
   Local:      http://localhost:3000
-  Status:     Connected
+  Status:     Ready for local development
 
   Press Ctrl+C to stop
 ```
@@ -42,7 +41,9 @@ $ npx bmup 3000
 | Framework plugins | No | No | **Yes** |
 | Request inspector | Paid | No | **Free** |
 | Open source | No | Yes | **Yes** |
-| Self-hosted | No | No | **Yes** |
+| **Decentralized** | No | No | **Yes** |
+| **Local domains** | No | No | **Yes** |
+| **No cloud required** | No | No | **Yes** |
 
 ---
 
@@ -102,7 +103,7 @@ $ npm run dev
 
 ▲ Next.js 15.0.0
 - Local:        http://localhost:3000
-- Tunnel:       https://abc123.trycloudflare.com  ← Beam adds this!
+- Tunnel:       http://beam-1765416299.local:3000  ← Beam adds this!
 
 ✓ Ready in 1.2s
 ```
@@ -124,7 +125,7 @@ $ npm run dev
   VITE v5.0.0  ready in 300ms
 
   ➜  Local:   http://localhost:5173/
-  ➜  Tunnel:  https://abc123.trycloudflare.com/  ← Beam adds this!
+  ➜  Tunnel:  http://beam-1765416299.local:5173/  ← Beam adds this!
 ```
 
 #### Astro
@@ -151,7 +152,7 @@ beam 3000 --inspect
 ```
   ⚡ Beam
 
-  Tunnel:     https://abc123.trycloudflare.com
+  Tunnel:     http://beam-1765416299.local:3000
   Inspector:  http://localhost:4040  ← Open this in your browser
 
 ─────────────────────────────────────────────────────────────
@@ -181,7 +182,8 @@ beam 3000 --webhook
 ```
   ⚡ Beam - Webhook Mode
 
-  Webhook URL: https://abc123.trycloudflare.com/webhook
+  Webhook URL: http://beam-1765416299.local:3000/webhook
+  (Use --dual for global webhook access via Tor)
 
   Waiting for webhooks...
 
@@ -204,7 +206,7 @@ beam 3000 --qr
 ```
   ⚡ Beam
 
-  Tunnel: https://abc123.trycloudflare.com
+  Tunnel: http://beam-1765416299.local:3000
 
   █████████████████████████████
   █████████████████████████████
@@ -239,7 +241,7 @@ When basic auth is enabled:
 ```
   ⚡ Beam
 
-  Tunnel:     https://abc123.trycloudflare.com
+  Tunnel:     http://beam-1765416299.local:3000
   Auth:       Basic authentication enabled
 
   Visitors will be prompted for username/password
@@ -263,9 +265,8 @@ beam 3000 --subdomain myapp
 ```
   ⚡ Beam
 
-  Tunnel:     https://myapp.beam.byronwade.com  ← Your custom subdomain!
+  Tunnel:     http://myapp.local:3000  ← Your custom local domain!
   Local:      http://localhost:3000
-```
 
 ---
 
@@ -280,11 +281,11 @@ beam 3000 --https
 ```
   ⚡ Beam
 
-  Tunnel:     https://abc123.trycloudflare.com
-  Local:      https://localhost:3000  ← Now HTTPS!
+  Tunnel:     https://beam-1765416299.local:3001  ← HTTPS enabled!
+  HTTP:       http://beam-1765416299.local:3000
+  Local:      http://localhost:3000
 
-  Certificate: Auto-provisioned (valid for localhost)
-```
+  Certificate: Self-signed (browser will show warning - this is normal)
 
 ---
 
@@ -330,9 +331,8 @@ Posted to PR #123:
 
   | Service | URL |
   |---------|-----|
-  | Frontend | https://abc123.trycloudflare.com |
-  | API | https://def456.trycloudflare.com |
-```
+  | Frontend | http://beam-1765416299.local:3000 |
+  | API | http://beam-1765416300.local:8080 |
 
 ---
 
@@ -528,93 +528,98 @@ beam github post --owner <o> --repo <r> --pr <n>
 
 ## Architecture
 
+Beam uses a **fully decentralized, local-first architecture**:
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     User's Browser                           │
-│              https://myapp.beam.byronwade.com               │
+│                     Local Browser                            │
+│              http://myapp.local:3000                        │
 └─────────────────────────────────────────────────────────────┘
                           │
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                  Cloudflare Network                          │
-│           (300+ data centers worldwide)                      │
-│              DDoS protection, SSL, caching                   │
+│                Rust Tunnel Daemon                           │
+│         (Runs on your machine, no cloud)                    │
+│              HTTP/HTTPS proxy + DNS resolver                │
 └─────────────────────────────────────────────────────────────┘
                           │
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                  Cloudflare Tunnel                           │
-│         (Encrypted outbound-only connection)                 │
-│              No firewall config needed                       │
-└─────────────────────────────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────┐
-│                Developer's Machine                           │
-│                     beam CLI                                 │
+│                Your Local Application                        │
 │                 http://localhost:3000                        │
+└─────────────────────────────────────────────────────────────┘
+
+For Global Webhooks (optional):
+┌─────────────────────────────────────────────────────────────┐
+│                  Webhook Service                             │
+│              (Stripe, GitHub, etc.)                          │
+└─────────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    Tor Network                               │
+│         (Decentralized, no central servers)                  │
+│              .onion address for global access                │
+└─────────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────┐
+│                Rust Tunnel Daemon                           │
+│         (Context-aware routing)                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Fully Open Source & Self-Hosted**
-- **No vendor lock-in**: Host on your own infrastructure
-- **Custom domains**: Use any domain you own
-- **Full control**: Modify and extend as needed
-- **Privacy**: Your traffic stays on your servers
+**Key Features:**
+- **100% Local**: All logic runs on your machine
+- **No Cloud Required**: No servers, no accounts, no dependencies
+- **Tor Integration**: Optional global webhook access via Tor hidden services
+- **Self-Signed HTTPS**: Automatic certificate generation for local development
+- **Context-Aware Routing**: Same domain works locally and globally
 
 ---
 
-## Self-Hosting
+## Development
 
 ### Prerequisites
 
 - Node.js 18+
-- A [Convex](https://convex.dev) account (free tier works)
-- A domain name (optional, for custom subdomains)
-- Docker (optional, for containerized deployment)
+- Rust (for building the tunnel daemon)
+- Tor (optional, for global webhook access)
 
-### Quick Deploy
+### Building from Source
 
 ```bash
-# Clone and install
+# Clone the repository
 git clone https://github.com/byronwade/beam.git
 cd beam
+
+# Install dependencies
 npm install
 
-# Set up Convex backend
-npx convex dev
+# Build the Rust tunnel daemon
+cd packages/tunnel-daemon
+cargo build --release
 
-# Configure environment
-cp .env.example .env.local
-# Edit .env.local with your values
+# Build the CLI
+cd ../cli
+npm run build
 
-# Start the dashboard
-npm run dev:web
-
-# In another terminal, start the tunnel server
-npm run dev:tunnel-server
+# Link globally (optional)
+npm link
 ```
 
-### Environment Variables
+### Running Locally
 
 ```bash
-# .env.local
-CONVEX_DEPLOYMENT=your-deployment
-NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
-DATA_ENCRYPTION_KEY="$(openssl rand -base64 32)"
+# Start a tunnel
+npx beam 3000
 
-# Tunnel Server Configuration
-TUNNEL_SERVER_PORT=3001
-TUNNEL_SERVER_HOST=localhost
-ABLY_SECRET_KEY=your-ably-secret-key
+# With HTTPS
+npx beam 3000 --https
 
-# Domain Configuration (optional)
-BASE_DOMAIN=yourdomain.com
+# With Tor for global webhooks
+npx beam 3000 --dual
 ```
-
-### Deploy to Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/byronwade/beam)
 
 ---
 
@@ -629,12 +634,11 @@ BASE_DOMAIN=yourdomain.com
 
 ## Tech Stack
 
-- **CLI**: Node.js, Commander.js, chalk
-- **Tunnel Server**: Node.js, WebSockets, HTTP proxying
-- **Dashboard**: Next.js 14+, Tailwind CSS, shadcn/ui
-- **Backend**: Convex (real-time database + serverless)
-- **Real-time**: Ably (WebSocket messaging)
-- **VS Code**: TypeScript extension
+- **CLI**: Node.js, Commander.js
+- **Tunnel Daemon**: Rust, Tokio, Hyper (high-performance HTTP proxy)
+- **HTTPS**: rustls, rcgen (self-signed certificates)
+- **Tor Integration**: Optional Tor hidden services for global webhooks
+- **DNS**: Local DNS resolution via hosts file modification
 
 ---
 
@@ -645,11 +649,13 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 ```bash
 # Development setup
 npm install
-npx convex dev        # Terminal 1: Start Convex
-npm run dev           # Terminal 2: Start Next.js
+
+# Build tunnel daemon
+cd packages/tunnel-daemon
+cargo build --release
 
 # CLI development
-cd packages/cli
+cd ../cli
 npm run build
 npm link              # Makes 'beam' available globally
 ```

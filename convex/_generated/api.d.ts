@@ -8,7 +8,9 @@
  * @module
  */
 
+import type * as ably from "../ably.js";
 import type * as analytics from "../analytics.js";
+import type * as apiKeys from "../apiKeys.js";
 import type * as auth from "../auth.js";
 import type * as authHelpers from "../authHelpers.js";
 import type * as github from "../github.js";
@@ -34,7 +36,9 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  ably: typeof ably;
   analytics: typeof analytics;
+  apiKeys: typeof apiKeys;
   auth: typeof auth;
   authHelpers: typeof authHelpers;
   github: typeof github;
