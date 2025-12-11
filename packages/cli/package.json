@@ -1,6 +1,6 @@
 {
   "name": "@byronwade/beam",
-  "version": "1.1.30",
+  "version": "1.1.31",
   "description": "Expose localhost to the internet in seconds. Zero-config tunneling for Next.js, Vite, Astro, and more.",
   "license": "AGPL-3.0",
   "author": "Byron Wade",
@@ -66,7 +66,8 @@
     "node": ">=18"
   },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "dependencies": {
     "commander": "^12.1.0"
