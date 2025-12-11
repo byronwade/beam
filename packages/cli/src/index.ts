@@ -112,7 +112,7 @@ const program = new Command();
 program
   .name("beam")
   .description("Beam - Decentralized tunneling for developers")
-  .version("1.1.33");
+  .version("1.1.34");
 
 program
   .command("start")
@@ -368,8 +368,11 @@ program
     }
   });
 
-// Only parse arguments when run directly, not when imported for testing
-// In ES modules, check if this is the main module
-if (process.argv[1] && process.argv[1].endsWith('beam')) {
+// Only parse arguments when run directly (node dist/index.js or global bin), not when imported
+const isDirectRun =
+  typeof process.argv[1] === "string" &&
+  import.meta.url === `file://${path.resolve(process.argv[1])}`;
+
+if (isDirectRun) {
   program.parse();
 }
