@@ -629,14 +629,32 @@ program
   .option("-d, --domain <name>", "Domain name to use")
   .option("-m, --mode <mode>", "Tunnel mode: fast, balanced, or private", "balanced")
   .action(async (options) => {
-    console.log("🔍 Detecting framework...");
-    const framework = detectFramework();
+    // ============================================
+    // PHASE 1: Setup SSL First (may require sudo)
+    // ============================================
+    console.log('');
+    console.log('🔒 Beam Dev - Setting up Direct Mode...');
+    console.log('');
 
+    const { InternetManager } = await import('./internet-manager');
+    const { HttpsProxy } = await import('./https-proxy');
+
+    const internet = new InternetManager();
+    const httpsProxy = new HttpsProxy();
+
+    // Discover public IP
+    const publicIp = await internet.getPublicIP();
+    if (!publicIp) {
+      console.error('❌ Could not discover public IP. Check your internet connection.');
+      process.exit(1);
+    }
+
+    // Detect framework to get port
+    const framework = detectFramework();
     let port = options.port;
     let command = options.command;
 
     if (framework) {
-      console.log(`✅ Detected ${framework.name}`);
       if (!port) port = framework.defaultPort;
       if (!command) command = framework.command;
     } else {
@@ -653,114 +671,113 @@ program
       }
     }
 
-    // 1. Discover Public IP early to inject URL
-    console.log("🔍 Discovering Public IP for Direct Mode...");
-    const { InternetManager } = await import('./internet-manager');
-    const internet = new InternetManager();
-    const publicIp = await internet.getPublicIP();
+    // Pre-generate trusted certificate (this is where sudo prompt happens)
+    console.log('   Generating Trusted Certificate (may require password)...');
+    const { port: proxyPort, domain: certDomain, trusted: isTrusted } = await httpsProxy.start(port, 0, publicIp);
 
-    if (!publicIp) {
-      console.error("❌ Could not discover public IP. Cannot start Direct Mode.");
+    // Map port via UPnP
+    let publicPort = port;
+    let mapped = await internet.mapPort(publicPort, proxyPort);
+    if (!mapped) {
+      publicPort = Math.floor(Math.random() * (65535 - 10000 + 1) + 10000);
+      mapped = await internet.mapPort(publicPort, proxyPort);
+    }
+
+    if (!mapped) {
+      console.error('❌ UPnP Port Mapping failed. Check router settings.');
       process.exit(1);
     }
 
-    // Assuming we try to map the same port
-    const beamUrl = `https://${publicIp}.nip.io:${port}`;
-    console.log(`🌍 Planned URL: ${beamUrl}`);
+    const beamUrl = `https://${certDomain}:${publicPort}`;
 
-    console.log(`🚀 Starting dev server: ${command}`);
+    console.log('   ✅ SSL Ready | Port Mapped');
+    console.log('');
+
+    // ============================================
+    // PHASE 2: Start Dev Server
+    // ============================================
     const [cmd, ...args] = command.split(" ");
 
-    // 2. Start Dev Server with BEAM_URL injected
     const child = spawn(cmd, args, {
-      stdio: "inherit",
+      stdio: ['inherit', 'pipe', 'pipe'], // Pipe stdout/stderr for filtering
       shell: true,
       env: {
         ...process.env,
         PORT: port.toString(),
         BEAM_URL: beamUrl,
-        BROWSER: "none" // Prevent auto-opening local browser if possible
+        BROWSER: "none",
+        NODE_NO_WARNINGS: "1" // Suppress Node deprecation warnings
       }
     });
 
-    console.log(`⏳ Waiting for port ${port} to be ready...`);
+    // State for URL injection
+    let urlInjected = false;
+
+    // Filter and relay stdout
+    child.stdout?.on('data', (data: Buffer) => {
+      let line = data.toString();
+
+      // Suppress noisy lines
+      if (line.includes('DEP0190') || line.includes('DEP0060') || line.includes('util._extend') || line.includes('allowedDevOrigins')) {
+        return;
+      }
+
+      // Inject public URL after "Local:" line
+      if (!urlInjected && line.includes('- Local:')) {
+        process.stdout.write(line);
+        // Add our public URL line
+        const trustStatus = isTrusted ? '🔒' : '⚠️';
+        process.stdout.write(`   - Public:        ${beamUrl} ${trustStatus}\n`);
+        urlInjected = true;
+        return;
+      }
+
+      process.stdout.write(line);
+    });
+
+    // Filter and relay stderr (mostly for Next.js warnings)
+    child.stderr?.on('data', (data: Buffer) => {
+      let line = data.toString();
+
+      // Suppress noisy warnings
+      if (line.includes('DEP0190') || line.includes('DEP0060') || line.includes('util._extend') || line.includes('allowedDevOrigins') || line.includes('proxyPrefetch')) {
+        return;
+      }
+
+      process.stderr.write(line);
+    });
+
+    // Wait for server to be ready
     const ready = await waitForPort(port);
 
     if (!ready) {
       console.error(`❌ Timeout waiting for port ${port}. Is the dev server running?`);
       child.kill();
+      httpsProxy.stop();
+      await internet.cleanup();
       process.exit(1);
     }
 
-    console.log("✅ Server ready! Starting Public Tunnel...");
+    // ============================================
+    // PHASE 3: Keep Running
+    // ============================================
+    child.on('exit', () => {
+      console.log("\nDev server exited.");
+      httpsProxy.stop();
+      internet.cleanup();
+      process.exit(0);
+    });
 
-    try {
-      // 3. Start HttpsProxy (Direct Mode)
-      const { HttpsProxy } = await import('./https-proxy');
-      const httpsProxy = new HttpsProxy();
-
-      console.log('🔒 Starting Local HTTPS Proxy...');
-      const { port: proxyPort, domain: certDomain, trusted: isTrusted } = await httpsProxy.start(port, 0, publicIp);
-
-      console.log('🔓 Opening Public Port...');
-      const mapped = await internet.mapPort(port, proxyPort);
-
-      if (!mapped) {
-        console.error(`❌ Could not map public port ${port}. UPnP failed or port taken.`);
-        console.log('   ⚠️  Falling back to Tunnel Mode (Tor)...');
-        // Fallback logic could go here, but for now we error or exit
-        // Or just call startTunnelDaemon? 
-        // Let's exit to be stick to "Direct Mode" promise for now or use random port?
-        console.log('   🔄 Retrying with random port...');
-        const randomPort = Math.floor(Math.random() * (65535 - 10000 + 1) + 10000);
-        const mappedRandom = await internet.mapPort(randomPort, proxyPort);
-        if (mappedRandom) {
-          console.log(`   ✅ Mapped to random port: ${randomPort}`);
-          console.log(`   URL: https://${certDomain}:${randomPort}`);
-        } else {
-          throw new Error("UPnP Port Mapping failed");
-        }
-      } else {
-        console.log('');
-        console.log('🎉 ONLINE!');
-        console.log(`   URL: https://${certDomain}:${port}`);
-
-        if (isTrusted) {
-          console.log('   ✅ Trusted Certificate (Green Lock Active) 🔒');
-        } else {
-          console.log('   (Self-signed certificate - accept warning in browser)');
-        }
-      }
-
-      console.log('');
-      console.log('💡 Keep this terminal open. Port closes on exit.');
-      console.log('ℹ️  Running in Direct Mode (Private & Free).');
-
-      // Handle cleanup
-      child.on('exit', () => {
-        console.log("Dev server exited. Stopping tunnel.");
-        httpsProxy.stop();
-        internet.cleanup();
-        process.exit(0);
-      });
-
-      // Handle process signals
-      const cleanup = async () => {
-        console.log('\n🛑 Closing Internet Mode...');
-        child.kill();
-        await internet.cleanup();
-        httpsProxy.stop();
-        process.exit(0);
-      };
-
-      process.on('SIGINT', cleanup);
-      process.on('SIGTERM', cleanup);
-
-    } catch (e: any) {
-      console.error("❌ Tunnel failed:", e.message);
+    const cleanup = async () => {
+      console.log('\n🛑 Shutting down...');
       child.kill();
-      process.exit(1);
-    }
+      await internet.cleanup();
+      httpsProxy.stop();
+      process.exit(0);
+    };
+
+    process.on('SIGINT', cleanup);
+    process.on('SIGTERM', cleanup);
   });
 
 // Only parse arguments when run directly or via the bin wrapper

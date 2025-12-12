@@ -64,7 +64,7 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/70 mb-8 hover:bg-white/10 transition-colors cursor-default">
             <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
-            <span>.onion quick tunnels by default</span>
+            <span>Trusted HTTPS with .nip.io domains</span>
           </div>
 
           <h1 id="hero-heading" className="text-6xl md:text-8xl lg:text-9xl font-bold text-white tracking-tighter mb-8">

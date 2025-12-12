@@ -1280,12 +1280,22 @@ async function waitForPort(port, retries = 30) {
   return false;
 }
 program.command("dev").description("Detect framework, start dev server, and create tunnel").option("-p, --port <port>", "Force specific port (overrides detection)").option("-c, --command <command>", "Custom dev command").option("-d, --domain <name>", "Domain name to use").option("-m, --mode <mode>", "Tunnel mode: fast, balanced, or private", "balanced").action(async (options) => {
-  console.log("\u{1F50D} Detecting framework...");
+  console.log("");
+  console.log("\u{1F512} Beam Dev - Setting up Direct Mode...");
+  console.log("");
+  const { InternetManager: InternetManager2 } = await Promise.resolve().then(() => (init_internet_manager(), internet_manager_exports));
+  const { HttpsProxy: HttpsProxy2 } = await Promise.resolve().then(() => (init_https_proxy(), https_proxy_exports));
+  const internet = new InternetManager2();
+  const httpsProxy = new HttpsProxy2();
+  const publicIp = await internet.getPublicIP();
+  if (!publicIp) {
+    console.error("\u274C Could not discover public IP. Check your internet connection.");
+    process.exit(1);
+  }
   const framework = detectFramework();
   let port = options.port;
   let command = options.command;
   if (framework) {
-    console.log(`\u2705 Detected ${framework.name}`);
     if (!port) port = framework.defaultPort;
     if (!command) command = framework.command;
   } else {
@@ -1301,89 +1311,81 @@ program.command("dev").description("Detect framework, start dev server, and crea
       }
     }
   }
-  console.log("\u{1F50D} Discovering Public IP for Direct Mode...");
-  const { InternetManager: InternetManager2 } = await Promise.resolve().then(() => (init_internet_manager(), internet_manager_exports));
-  const internet = new InternetManager2();
-  const publicIp = await internet.getPublicIP();
-  if (!publicIp) {
-    console.error("\u274C Could not discover public IP. Cannot start Direct Mode.");
+  console.log("   Generating Trusted Certificate (may require password)...");
+  const { port: proxyPort, domain: certDomain, trusted: isTrusted } = await httpsProxy.start(port, 0, publicIp);
+  let publicPort = port;
+  let mapped = await internet.mapPort(publicPort, proxyPort);
+  if (!mapped) {
+    publicPort = Math.floor(Math.random() * (65535 - 1e4 + 1) + 1e4);
+    mapped = await internet.mapPort(publicPort, proxyPort);
+  }
+  if (!mapped) {
+    console.error("\u274C UPnP Port Mapping failed. Check router settings.");
     process.exit(1);
   }
-  const beamUrl = `https://${publicIp}.nip.io:${port}`;
-  console.log(`\u{1F30D} Planned URL: ${beamUrl}`);
-  console.log(`\u{1F680} Starting dev server: ${command}`);
+  const beamUrl = `https://${certDomain}:${publicPort}`;
+  console.log("   \u2705 SSL Ready | Port Mapped");
+  console.log("");
   const [cmd, ...args] = command.split(" ");
   const child = spawn3(cmd, args, {
-    stdio: "inherit",
+    stdio: ["inherit", "pipe", "pipe"],
+    // Pipe stdout/stderr for filtering
     shell: true,
     env: {
       ...process.env,
       PORT: port.toString(),
       BEAM_URL: beamUrl,
-      BROWSER: "none"
-      // Prevent auto-opening local browser if possible
+      BROWSER: "none",
+      NODE_NO_WARNINGS: "1"
+      // Suppress Node deprecation warnings
     }
   });
-  console.log(`\u23F3 Waiting for port ${port} to be ready...`);
+  let urlInjected = false;
+  child.stdout?.on("data", (data) => {
+    let line = data.toString();
+    if (line.includes("DEP0190") || line.includes("DEP0060") || line.includes("util._extend") || line.includes("allowedDevOrigins")) {
+      return;
+    }
+    if (!urlInjected && line.includes("- Local:")) {
+      process.stdout.write(line);
+      const trustStatus = isTrusted ? "\u{1F512}" : "\u26A0\uFE0F";
+      process.stdout.write(`   - Public:        ${beamUrl} ${trustStatus}
+`);
+      urlInjected = true;
+      return;
+    }
+    process.stdout.write(line);
+  });
+  child.stderr?.on("data", (data) => {
+    let line = data.toString();
+    if (line.includes("DEP0190") || line.includes("DEP0060") || line.includes("util._extend") || line.includes("allowedDevOrigins") || line.includes("proxyPrefetch")) {
+      return;
+    }
+    process.stderr.write(line);
+  });
   const ready = await waitForPort(port);
   if (!ready) {
     console.error(`\u274C Timeout waiting for port ${port}. Is the dev server running?`);
     child.kill();
+    httpsProxy.stop();
+    await internet.cleanup();
     process.exit(1);
   }
-  console.log("\u2705 Server ready! Starting Public Tunnel...");
-  try {
-    const { HttpsProxy: HttpsProxy2 } = await Promise.resolve().then(() => (init_https_proxy(), https_proxy_exports));
-    const httpsProxy = new HttpsProxy2();
-    console.log("\u{1F512} Starting Local HTTPS Proxy...");
-    const { port: proxyPort, domain: certDomain, trusted: isTrusted } = await httpsProxy.start(port, 0, publicIp);
-    console.log("\u{1F513} Opening Public Port...");
-    const mapped = await internet.mapPort(port, proxyPort);
-    if (!mapped) {
-      console.error(`\u274C Could not map public port ${port}. UPnP failed or port taken.`);
-      console.log("   \u26A0\uFE0F  Falling back to Tunnel Mode (Tor)...");
-      console.log("   \u{1F504} Retrying with random port...");
-      const randomPort = Math.floor(Math.random() * (65535 - 1e4 + 1) + 1e4);
-      const mappedRandom = await internet.mapPort(randomPort, proxyPort);
-      if (mappedRandom) {
-        console.log(`   \u2705 Mapped to random port: ${randomPort}`);
-        console.log(`   URL: https://${certDomain}:${randomPort}`);
-      } else {
-        throw new Error("UPnP Port Mapping failed");
-      }
-    } else {
-      console.log("");
-      console.log("\u{1F389} ONLINE!");
-      console.log(`   URL: https://${certDomain}:${port}`);
-      if (isTrusted) {
-        console.log("   \u2705 Trusted Certificate (Green Lock Active) \u{1F512}");
-      } else {
-        console.log("   (Self-signed certificate - accept warning in browser)");
-      }
-    }
-    console.log("");
-    console.log("\u{1F4A1} Keep this terminal open. Port closes on exit.");
-    console.log("\u2139\uFE0F  Running in Direct Mode (Private & Free).");
-    child.on("exit", () => {
-      console.log("Dev server exited. Stopping tunnel.");
-      httpsProxy.stop();
-      internet.cleanup();
-      process.exit(0);
-    });
-    const cleanup = async () => {
-      console.log("\n\u{1F6D1} Closing Internet Mode...");
-      child.kill();
-      await internet.cleanup();
-      httpsProxy.stop();
-      process.exit(0);
-    };
-    process.on("SIGINT", cleanup);
-    process.on("SIGTERM", cleanup);
-  } catch (e) {
-    console.error("\u274C Tunnel failed:", e.message);
+  child.on("exit", () => {
+    console.log("\nDev server exited.");
+    httpsProxy.stop();
+    internet.cleanup();
+    process.exit(0);
+  });
+  const cleanup = async () => {
+    console.log("\n\u{1F6D1} Shutting down...");
     child.kill();
-    process.exit(1);
-  }
+    await internet.cleanup();
+    httpsProxy.stop();
+    process.exit(0);
+  };
+  process.on("SIGINT", cleanup);
+  process.on("SIGTERM", cleanup);
 });
 var isDirectRun = typeof process.argv[1] === "string" && // Direct run of this file
 (import.meta.url === `file://${path4.resolve(process.argv[1])}` || // Run via bin/beam.js wrapper

@@ -1,3 +1,5 @@
 {
+  "/docs/page": "app/docs/page.js",
+  "/docs/performance/page": "app/docs/performance/page.js",
   "/page": "app/page.js"
 }

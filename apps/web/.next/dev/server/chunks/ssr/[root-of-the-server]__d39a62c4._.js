@@ -278,7 +278,7 @@ function PerformancePage() {
                                 lineNumber: 30,
                                 columnNumber: 11
                             }, this),
-                            "Tunnel Modes"
+                            "Connection Modes"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
@@ -289,7 +289,7 @@ function PerformancePage() {
                         className: "grid gap-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
-                                className: "bg-[#111] border-green-500/30 hover:border-green-500/50 transition-colors",
+                                className: "bg-[#111] border-cyan-500/30 hover:border-cyan-500/50 transition-colors",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardHeader"], {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -299,9 +299,9 @@ function PerformancePage() {
                                                     className: "flex items-center gap-3",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "p-2 rounded-lg bg-green-500/20",
+                                                            className: "p-2 rounded-lg bg-cyan-500/20",
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"], {
-                                                                className: "h-5 w-5 text-green-400"
+                                                                className: "h-5 w-5 text-cyan-400"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                                 lineNumber: 41,
@@ -316,7 +316,7 @@ function PerformancePage() {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
                                                                     className: "text-white",
-                                                                    children: "Fast Mode"
+                                                                    children: "Direct Internet Mode"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                                     lineNumber: 44,
@@ -324,7 +324,7 @@ function PerformancePage() {
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
                                                                     className: "text-white/50",
-                                                                    children: "Direct P2P connection"
+                                                                    children: "Direct UPnP/NAT-PMP Connection (Default)"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                                     lineNumber: 45,
@@ -343,8 +343,8 @@ function PerformancePage() {
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Badge"], {
-                                                    className: "bg-green-500/20 text-green-400 border-green-500/30",
-                                                    children: "~30-50ms"
+                                                    className: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
+                                                    children: "~0ms Added"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                     lineNumber: 48,
@@ -379,7 +379,7 @@ function PerformancePage() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                 className: "text-white",
-                                                                children: "Low - IP visible to peer"
+                                                                children: "Standard (Public IP Visible)"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                                 lineNumber: 57,
@@ -424,8 +424,8 @@ function PerformancePage() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "p-3 bg-black/30 rounded-lg border border-white/5",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
-                                                    className: "text-green-400 text-sm",
-                                                    children: "beam 3000 --mode=fast"
+                                                    className: "text-cyan-400 text-sm",
+                                                    children: "beam 3000"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                     lineNumber: 65,
@@ -447,7 +447,7 @@ function PerformancePage() {
                                                         lineNumber: 68,
                                                         columnNumber: 17
                                                     }, this),
-                                                    " Local development, trusted team environments, real-time applications, WebSocket testing"
+                                                    " 99% of development. Webhooks, mobile testing, sharing with clients. Fastest possible speed. Supported by Green Lock."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
@@ -467,7 +467,7 @@ function PerformancePage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
-                                className: "bg-[#111] border-yellow-500/30 hover:border-yellow-500/50 transition-colors",
+                                className: "bg-[#111] border-green-500/30 hover:border-green-500/50 transition-colors",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardHeader"], {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -477,9 +477,9 @@ function PerformancePage() {
                                                     className: "flex items-center gap-3",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "p-2 rounded-lg bg-yellow-500/20",
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$scale$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Scale$3e$__["Scale"], {
-                                                                className: "h-5 w-5 text-yellow-400"
+                                                            className: "p-2 rounded-lg bg-green-500/20",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"], {
+                                                                className: "h-5 w-5 text-green-400"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                                 lineNumber: 80,
@@ -494,7 +494,7 @@ function PerformancePage() {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
                                                                     className: "text-white",
-                                                                    children: "Balanced Mode"
+                                                                    children: "Fast Tunnel"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                                     lineNumber: 83,
@@ -502,7 +502,7 @@ function PerformancePage() {
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
                                                                     className: "text-white/50",
-                                                                    children: "Single-hop Tor (default)"
+                                                                    children: "P2P Assisted Tunnel"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                                     lineNumber: 84,
@@ -521,8 +521,8 @@ function PerformancePage() {
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Badge"], {
-                                                    className: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-                                                    children: "~80-150ms"
+                                                    className: "bg-green-500/20 text-green-400 border-green-500/30",
+                                                    children: "~50ms+"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                     lineNumber: 87,
@@ -557,7 +557,7 @@ function PerformancePage() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                 className: "text-white",
-                                                                children: "Medium - Server exposed, clients hidden"
+                                                                children: "Low - IP visible to peer"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                                 lineNumber: 96,
@@ -581,7 +581,7 @@ function PerformancePage() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                 className: "text-white",
-                                                                children: "Yes"
+                                                                children: "No (Uses P2P)"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                                 lineNumber: 100,
@@ -602,8 +602,8 @@ function PerformancePage() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "p-3 bg-black/30 rounded-lg border border-white/5",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
-                                                    className: "text-yellow-400 text-sm",
-                                                    children: "beam 3000 --mode=balanced"
+                                                    className: "text-green-400 text-sm",
+                                                    children: "beam tunnel 3000 --mode=fast"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
                                                     lineNumber: 104,
@@ -625,7 +625,7 @@ function PerformancePage() {
                                                         lineNumber: 107,
                                                         columnNumber: 17
                                                     }, this),
-                                                    " Webhook testing, API development, client demos, general tunneling"
+                                                    " Specific P2P use cases where UPnP fails but direct connection is preferred."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
@@ -645,7 +645,7 @@ function PerformancePage() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
-                                className: "bg-[#111] border-purple-500/30 hover:border-purple-500/50 transition-colors",
+                                className: "bg-[#111] border-yellow-500/30 hover:border-yellow-500/50 transition-colors",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardHeader"], {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -655,66 +655,66 @@ function PerformancePage() {
                                                     className: "flex items-center gap-3",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "p-2 rounded-lg bg-purple-500/20",
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
-                                                                className: "h-5 w-5 text-purple-400"
+                                                            className: "p-2 rounded-lg bg-yellow-500/20",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$scale$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Scale$3e$__["Scale"], {
+                                                                className: "h-5 w-5 text-yellow-400"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                                lineNumber: 119,
+                                                                lineNumber: 118,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                            lineNumber: 118,
+                                                            lineNumber: 117,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
                                                                     className: "text-white",
-                                                                    children: "Private Mode"
+                                                                    children: "Balanced Tunnel"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                                    lineNumber: 122,
+                                                                    lineNumber: 121,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
                                                                     className: "text-white/50",
-                                                                    children: "Full 3-hop Tor onion routing"
+                                                                    children: "Single-hop Tor"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                                    lineNumber: 123,
+                                                                    lineNumber: 122,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                            lineNumber: 121,
+                                                            lineNumber: 120,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 117,
+                                                    lineNumber: 116,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Badge"], {
-                                                    className: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-                                                    children: "~200-500ms"
+                                                    className: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+                                                    children: "~150ms+"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 126,
+                                                    lineNumber: 125,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 116,
+                                            lineNumber: 115,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 115,
+                                        lineNumber: 114,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -730,21 +730,21 @@ function PerformancePage() {
                                                                 children: "Privacy Level"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                                lineNumber: 134,
+                                                                lineNumber: 133,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                 className: "text-white",
-                                                                children: "High - Full anonymity"
+                                                                children: "Medium - Server exposed, clients hidden"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                                lineNumber: 135,
+                                                                lineNumber: 134,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 133,
+                                                        lineNumber: 132,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -754,7 +754,7 @@ function PerformancePage() {
                                                                 children: "Requires Tor"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                                lineNumber: 138,
+                                                                lineNumber: 137,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -762,34 +762,34 @@ function PerformancePage() {
                                                                 children: "Yes"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                                lineNumber: 139,
+                                                                lineNumber: 138,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 137,
+                                                        lineNumber: 136,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 132,
+                                                lineNumber: 131,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "p-3 bg-black/30 rounded-lg border border-white/5",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
-                                                    className: "text-purple-400 text-sm",
-                                                    children: "beam 3000 --mode=private"
+                                                    className: "text-yellow-400 text-sm",
+                                                    children: "beam tunnel 3000 --mode=balanced"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 143,
+                                                    lineNumber: 142,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 142,
+                                                lineNumber: 141,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -800,26 +800,204 @@ function PerformancePage() {
                                                         children: "Best for:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 146,
+                                                        lineNumber: 145,
                                                         columnNumber: 17
                                                     }, this),
-                                                    " Sensitive data, journalist/activist use, censorship circumvention, maximum privacy needs"
+                                                    " Anonymous testing where speed is still factor."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 145,
+                                                lineNumber: 144,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 131,
+                                        lineNumber: 130,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 114,
+                                lineNumber: 113,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
+                                className: "bg-[#111] border-purple-500/30 hover:border-purple-500/50 transition-colors",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardHeader"], {
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex items-center justify-between",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex items-center gap-3",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "p-2 rounded-lg bg-purple-500/20",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
+                                                                className: "h-5 w-5 text-purple-400"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                                lineNumber: 156,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                            lineNumber: 155,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
+                                                                    className: "text-white",
+                                                                    children: "Private Tunnel"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                                    lineNumber: 159,
+                                                                    columnNumber: 21
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
+                                                                    className: "text-white/50",
+                                                                    children: "Full 3-hop Tor onion routing"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                                    lineNumber: 160,
+                                                                    columnNumber: 21
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                            lineNumber: 158,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                    lineNumber: 154,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Badge"], {
+                                                    className: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+                                                    children: "~500ms+"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                    lineNumber: 163,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                            lineNumber: 153,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                        lineNumber: 152,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
+                                        className: "space-y-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "grid grid-cols-2 gap-4 text-sm",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-white/40",
+                                                                children: "Privacy Level"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                                lineNumber: 171,
+                                                                columnNumber: 19
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "text-white",
+                                                                children: "High - Full anonymity"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                                lineNumber: 172,
+                                                                columnNumber: 19
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                        lineNumber: 170,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-white/40",
+                                                                children: "Requires Tor"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                                lineNumber: 175,
+                                                                columnNumber: 19
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "text-white",
+                                                                children: "Yes"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                                lineNumber: 176,
+                                                                columnNumber: 19
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                        lineNumber: 174,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                lineNumber: 169,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "p-3 bg-black/30 rounded-lg border border-white/5",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
+                                                    className: "text-purple-400 text-sm",
+                                                    children: "beam tunnel 3000 --mode=private"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                    lineNumber: 180,
+                                                    columnNumber: 17
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                lineNumber: 179,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "text-sm text-white/60",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                        className: "text-white",
+                                                        children: "Best for:"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                        lineNumber: 183,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    " Sensitive data, censorship circumvention, maximum privacy."
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                lineNumber: 182,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                        lineNumber: 168,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                lineNumber: 151,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -844,14 +1022,14 @@ function PerformancePage() {
                                 className: "h-5 w-5 text-blue-400"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 157,
+                                lineNumber: 193,
                                 columnNumber: 11
                             }, this),
                             "Comparison with Other Tools"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 156,
+                        lineNumber: 192,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -868,7 +1046,7 @@ function PerformancePage() {
                                                 children: "Tool"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 165,
+                                                lineNumber: 201,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -876,7 +1054,7 @@ function PerformancePage() {
                                                 children: "Type"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 166,
+                                                lineNumber: 202,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -884,7 +1062,7 @@ function PerformancePage() {
                                                 children: "Encryption"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 167,
+                                                lineNumber: 203,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -892,7 +1070,7 @@ function PerformancePage() {
                                                 children: "Latency"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 168,
+                                                lineNumber: 204,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -900,40 +1078,89 @@ function PerformancePage() {
                                                 children: "Privacy"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 169,
+                                                lineNumber: 205,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 164,
+                                        lineNumber: 200,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 163,
+                                    lineNumber: 199,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
                                     className: "text-white/80",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                            className: "border-b border-white/5 bg-green-500/5",
+                                            className: "border-b border-white/5 bg-cyan-500/5",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4 font-medium text-green-400",
-                                                    children: "Beam (fast)"
+                                                    className: "py-3 px-4 font-medium text-cyan-400",
+                                                    children: "Beam (Direct)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 174,
+                                                    lineNumber: 210,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                     className: "py-3 px-4",
-                                                    children: "Direct P2P"
+                                                    children: "Direct UPnP"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 175,
+                                                    lineNumber: 211,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                    className: "py-3 px-4",
+                                                    children: "Trusted SSL (Green Lock)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                    lineNumber: 212,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                    className: "py-3 px-4",
+                                                    children: "~0ms Added"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                    lineNumber: 213,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                    className: "py-3 px-4",
+                                                    children: "Standard"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                    lineNumber: 214,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                            lineNumber: 209,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                            className: "border-b border-white/5 bg-green-500/5",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                    className: "py-3 px-4 font-medium text-green-400",
+                                                    children: "Beam (Fast Tunnel)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                    lineNumber: 217,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                    className: "py-3 px-4",
+                                                    children: "P2P Assisted"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
+                                                    lineNumber: 218,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -941,15 +1168,15 @@ function PerformancePage() {
                                                     children: "E2E"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 176,
+                                                    lineNumber: 219,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                     className: "py-3 px-4",
-                                                    children: "~30-50ms"
+                                                    children: "~50ms+"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 220,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -957,13 +1184,13 @@ function PerformancePage() {
                                                     children: "Low"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 178,
+                                                    lineNumber: 221,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 173,
+                                            lineNumber: 216,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -971,10 +1198,10 @@ function PerformancePage() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                     className: "py-3 px-4 font-medium text-yellow-400",
-                                                    children: "Beam (balanced)"
+                                                    children: "Beam (Balanced)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 181,
+                                                    lineNumber: 224,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -982,7 +1209,7 @@ function PerformancePage() {
                                                     children: "Single-hop Tor"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 182,
+                                                    lineNumber: 225,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -990,15 +1217,15 @@ function PerformancePage() {
                                                     children: "E2E + Tor"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 183,
+                                                    lineNumber: 226,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                     className: "py-3 px-4",
-                                                    children: "~80-150ms"
+                                                    children: "~150ms+"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 184,
+                                                    lineNumber: 227,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1006,13 +1233,13 @@ function PerformancePage() {
                                                     children: "Medium"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 185,
+                                                    lineNumber: 228,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 180,
+                                            lineNumber: 223,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -1020,10 +1247,10 @@ function PerformancePage() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                     className: "py-3 px-4 font-medium text-purple-400",
-                                                    children: "Beam (private)"
+                                                    children: "Beam (Private)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 188,
+                                                    lineNumber: 231,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1031,7 +1258,7 @@ function PerformancePage() {
                                                     children: "3-hop Tor"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 189,
+                                                    lineNumber: 232,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1039,15 +1266,15 @@ function PerformancePage() {
                                                     children: "E2E + Tor"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 190,
+                                                    lineNumber: 233,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                     className: "py-3 px-4",
-                                                    children: "~200-500ms"
+                                                    children: "~500ms+"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 191,
+                                                    lineNumber: 234,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1055,13 +1282,13 @@ function PerformancePage() {
                                                     children: "High"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 192,
+                                                    lineNumber: 235,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 187,
+                                            lineNumber: 230,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -1072,7 +1299,7 @@ function PerformancePage() {
                                                     children: "ngrok"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 195,
+                                                    lineNumber: 238,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1080,7 +1307,7 @@ function PerformancePage() {
                                                     children: "Centralized"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 196,
+                                                    lineNumber: 239,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1088,7 +1315,7 @@ function PerformancePage() {
                                                     children: "TLS"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 197,
+                                                    lineNumber: 240,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1096,7 +1323,7 @@ function PerformancePage() {
                                                     children: "~50-100ms"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 241,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1104,13 +1331,13 @@ function PerformancePage() {
                                                     children: "Low"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 199,
+                                                    lineNumber: 242,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 194,
+                                            lineNumber: 237,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -1121,7 +1348,7 @@ function PerformancePage() {
                                                     children: "Cloudflare Tunnel"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 202,
+                                                    lineNumber: 245,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1129,7 +1356,7 @@ function PerformancePage() {
                                                     children: "Edge Network"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 203,
+                                                    lineNumber: 246,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1137,7 +1364,7 @@ function PerformancePage() {
                                                     children: "TLS + WAF"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 204,
+                                                    lineNumber: 247,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1145,7 +1372,7 @@ function PerformancePage() {
                                                     children: "~20-50ms"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 205,
+                                                    lineNumber: 248,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1153,134 +1380,36 @@ function PerformancePage() {
                                                     children: "Low"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 206,
+                                                    lineNumber: 249,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 201,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                            className: "border-b border-white/5",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "Tailscale"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 209,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "Mesh VPN"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 210,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "WireGuard"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 211,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "~30-80ms"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 212,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "Medium"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 213,
-                                                    columnNumber: 17
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 208,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                            className: "border-b border-white/5",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "LocalTunnel"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 216,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "Centralized"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 217,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "TLS"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 218,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "~100-200ms"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 219,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                    className: "py-3 px-4",
-                                                    children: "Low"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 220,
-                                                    columnNumber: 17
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 215,
+                                            lineNumber: 244,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 172,
+                                    lineNumber: 208,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                            lineNumber: 162,
+                            lineNumber: 198,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 161,
+                        lineNumber: 197,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                lineNumber: 155,
+                lineNumber: 191,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1293,14 +1422,14 @@ function PerformancePage() {
                                 className: "h-5 w-5 text-orange-400"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 230,
+                                lineNumber: 259,
                                 columnNumber: 11
                             }, this),
-                            "Performance Optimizations"
+                            "Performance Optimizations (Tunnels Only)"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 229,
+                        lineNumber: 258,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1319,12 +1448,12 @@ function PerformancePage() {
                                                         className: "h-5 w-5 text-blue-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 240,
+                                                        lineNumber: 269,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 239,
+                                                    lineNumber: 268,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
@@ -1332,18 +1461,18 @@ function PerformancePage() {
                                                     children: "Circuit Prebuilding"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 242,
+                                                    lineNumber: 271,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 238,
+                                            lineNumber: 267,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 237,
+                                        lineNumber: 266,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -1354,22 +1483,22 @@ function PerformancePage() {
                                                 children: "Pre-establishes Tor circuits before they're needed, eliminating the 2-3 second circuit build time on first request."
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 246,
+                                                lineNumber: 275,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "p-3 bg-black/30 rounded-lg border border-white/5",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
                                                     className: "text-blue-400 text-sm",
-                                                    children: "beam 3000 --prebuild-circuits=5"
+                                                    children: "beam tunnel 3000 --prebuild-circuits=5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 251,
+                                                    lineNumber: 280,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 250,
+                                                lineNumber: 279,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1377,19 +1506,19 @@ function PerformancePage() {
                                                 children: "Default: 3 circuits. More circuits = faster failover but higher memory."
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 253,
+                                                lineNumber: 282,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 245,
+                                        lineNumber: 274,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 236,
+                                lineNumber: 265,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
@@ -1405,12 +1534,12 @@ function PerformancePage() {
                                                         className: "h-5 w-5 text-green-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 264,
+                                                        lineNumber: 293,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 263,
+                                                    lineNumber: 292,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
@@ -1418,18 +1547,18 @@ function PerformancePage() {
                                                     children: "Response Caching"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 266,
+                                                    lineNumber: 295,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 262,
+                                            lineNumber: 291,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 261,
+                                        lineNumber: 290,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -1440,7 +1569,7 @@ function PerformancePage() {
                                                 children: "Caches static assets (JS, CSS, images, fonts) to reduce round-trips through Tor. Especially effective for balanced and private modes."
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 270,
+                                                lineNumber: 299,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1448,24 +1577,24 @@ function PerformancePage() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
                                                         className: "text-green-400 text-sm block",
-                                                        children: "beam 3000 --cache-size=200"
+                                                        children: "beam tunnel 3000 --cache-size=200"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 275,
+                                                        lineNumber: 304,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
                                                         className: "text-green-400 text-sm block",
-                                                        children: "beam 3000 --cache-ttl=600"
+                                                        children: "beam tunnel 3000 --cache-ttl=600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 276,
+                                                        lineNumber: 305,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 274,
+                                                lineNumber: 303,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1473,19 +1602,19 @@ function PerformancePage() {
                                                 children: "Default: 100MB cache, 300s TTL. Disable with --no-cache."
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 278,
+                                                lineNumber: 307,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 269,
+                                        lineNumber: 298,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 260,
+                                lineNumber: 289,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
@@ -1501,12 +1630,12 @@ function PerformancePage() {
                                                         className: "h-5 w-5 text-yellow-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 289,
+                                                        lineNumber: 318,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 288,
+                                                    lineNumber: 317,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
@@ -1514,18 +1643,18 @@ function PerformancePage() {
                                                     children: "Geographic Relay Selection"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 291,
+                                                    lineNumber: 320,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 287,
+                                            lineNumber: 316,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 286,
+                                        lineNumber: 315,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -1536,22 +1665,22 @@ function PerformancePage() {
                                                 children: "Select Tor relays closer to your location for reduced latency. Uses ISO 3166-1 country codes."
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 295,
+                                                lineNumber: 324,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "p-3 bg-black/30 rounded-lg border border-white/5",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
                                                     className: "text-yellow-400 text-sm",
-                                                    children: "beam 3000 --geo-prefer=US,CA,MX"
+                                                    children: "beam tunnel 3000 --geo-prefer=US,CA,MX"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 300,
+                                                    lineNumber: 329,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 299,
+                                                lineNumber: 328,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1561,7 +1690,7 @@ function PerformancePage() {
                                                         className: "h-4 w-4 text-yellow-400 mt-0.5 flex-shrink-0"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 303,
+                                                        lineNumber: 332,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1569,25 +1698,25 @@ function PerformancePage() {
                                                         children: "Not recommended for private mode - reduces anonymity by constraining relay selection."
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 304,
+                                                        lineNumber: 333,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 302,
+                                                lineNumber: 331,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 294,
+                                        lineNumber: 323,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 285,
+                                lineNumber: 314,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
@@ -1603,12 +1732,12 @@ function PerformancePage() {
                                                         className: "h-5 w-5 text-purple-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                        lineNumber: 316,
+                                                        lineNumber: 345,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 315,
+                                                    lineNumber: 344,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardTitle"], {
@@ -1616,18 +1745,18 @@ function PerformancePage() {
                                                     children: "Persistent Circuits"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 318,
+                                                    lineNumber: 347,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 314,
+                                            lineNumber: 343,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 313,
+                                        lineNumber: 342,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -1638,7 +1767,7 @@ function PerformancePage() {
                                                 children: "Keeps Tor circuits alive between requests, avoiding reconnection overhead. Enabled by default in balanced and private modes."
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 322,
+                                                lineNumber: 351,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1648,12 +1777,12 @@ function PerformancePage() {
                                                     children: "# Automatic - circuits persist for session duration"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 327,
+                                                    lineNumber: 356,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 326,
+                                                lineNumber: 355,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1661,31 +1790,31 @@ function PerformancePage() {
                                                 children: "Circuits automatically rebuild on failure or after extended idle periods."
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 331,
+                                                lineNumber: 360,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 321,
+                                        lineNumber: 350,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 312,
+                                lineNumber: 341,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 234,
+                        lineNumber: 263,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                lineNumber: 228,
+                lineNumber: 257,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1696,7 +1825,7 @@ function PerformancePage() {
                         children: "Best Practices by Use Case"
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 341,
+                        lineNumber: 370,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1709,44 +1838,44 @@ function PerformancePage() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                             className: "text-lg font-semibold text-white mb-3",
-                                            children: "Webhook Development"
+                                            children: "Day-to-Day Development"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 346,
+                                            lineNumber: 375,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "p-3 bg-black/30 rounded-lg border border-white/5 mb-3",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
                                                 className: "text-cyan-400 text-sm",
-                                                children: "beam 3000 --mode=balanced --prebuild-circuits=3 --cache-ttl=60"
+                                                children: "beam 3000"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 348,
+                                                lineNumber: 377,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 347,
+                                            lineNumber: 376,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-sm text-white/60",
-                                            children: "Balanced mode provides .onion address for webhooks while keeping latency reasonable. Lower cache TTL since webhook payloads change frequently."
+                                            children: 'Use Direct Mode for 99% of tasks like testing webhooks, mobile debugging, and showing "localhost" to colleagues.'
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 352,
+                                            lineNumber: 381,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 345,
+                                    lineNumber: 374,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 344,
+                                lineNumber: 373,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
@@ -1756,44 +1885,44 @@ function PerformancePage() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                             className: "text-lg font-semibold text-white mb-3",
-                                            children: "Real-time Applications"
+                                            children: "Anonymous Webhook Development"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 361,
+                                            lineNumber: 390,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "p-3 bg-black/30 rounded-lg border border-white/5 mb-3",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
                                                 className: "text-cyan-400 text-sm",
-                                                children: "beam 3000 --mode=fast --no-cache"
+                                                children: "beam tunnel 3000 --mode=balanced --prebuild-circuits=3 --cache-ttl=60"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 363,
+                                                lineNumber: 392,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 362,
+                                            lineNumber: 391,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-sm text-white/60",
-                                            children: "Fast mode with disabled caching for WebSocket and real-time data. Lowest latency but requires trusted network."
+                                            children: "Balanced mode provides .onion address for webhooks while keeping latency reasonable. Lower cache TTL since webhook payloads change frequently."
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 367,
+                                            lineNumber: 396,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 360,
+                                    lineNumber: 389,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 359,
+                                lineNumber: 388,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
@@ -1806,22 +1935,22 @@ function PerformancePage() {
                                             children: "Privacy-Sensitive Testing"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 376,
+                                            lineNumber: 405,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "p-3 bg-black/30 rounded-lg border border-white/5 mb-3",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
                                                 className: "text-cyan-400 text-sm",
-                                                children: "beam 3000 --mode=private --prebuild-circuits=5 --no-cache"
+                                                children: "beam tunnel 3000 --mode=private --prebuild-circuits=5 --no-cache"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 378,
+                                                lineNumber: 407,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 377,
+                                            lineNumber: 406,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1829,77 +1958,30 @@ function PerformancePage() {
                                             children: "Full Tor anonymity with extra prebuilt circuits for reliability. Caching disabled to prevent data persistence."
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 382,
+                                            lineNumber: 411,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 375,
+                                    lineNumber: 404,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 374,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
-                                className: "bg-[#111] border-white/10",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
-                                    className: "p-6",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                            className: "text-lg font-semibold text-white mb-3",
-                                            children: "High-Traffic Static Sites"
-                                        }, void 0, false, {
-                                            fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 391,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "p-3 bg-black/30 rounded-lg border border-white/5 mb-3",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
-                                                className: "text-cyan-400 text-sm",
-                                                children: "beam 3000 --mode=balanced --cache-size=500 --cache-ttl=3600 --geo-prefer=US"
-                                            }, void 0, false, {
-                                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 393,
-                                                columnNumber: 17
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 392,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-sm text-white/60",
-                                            children: "Large cache with long TTL for static assets. Geographic optimization for US-based users. Great for demos and presentations."
-                                        }, void 0, false, {
-                                            fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 397,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 390,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 389,
+                                lineNumber: 403,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 343,
+                        lineNumber: 372,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                lineNumber: 340,
+                lineNumber: 369,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1910,7 +1992,7 @@ function PerformancePage() {
                         children: "Performance Troubleshooting"
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 408,
+                        lineNumber: 422,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1926,7 +2008,7 @@ function PerformancePage() {
                                             children: "High Latency in Balanced/Private Mode"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 413,
+                                            lineNumber: 427,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1940,13 +2022,13 @@ function PerformancePage() {
                                                             children: "--prebuild-circuits=5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                            lineNumber: 415,
+                                                            lineNumber: 429,
                                                             columnNumber: 54
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 415,
+                                                    lineNumber: 429,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -1957,13 +2039,13 @@ function PerformancePage() {
                                                             children: "--geo-prefer=YOUR_COUNTRY"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                            lineNumber: 416,
+                                                            lineNumber: 430,
                                                             columnNumber: 50
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 416,
+                                                    lineNumber: 430,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -1974,13 +2056,13 @@ function PerformancePage() {
                                                             children: "-v"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                            lineNumber: 417,
+                                                            lineNumber: 431,
                                                             columnNumber: 69
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 417,
+                                                    lineNumber: 431,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -1991,30 +2073,30 @@ function PerformancePage() {
                                                             children: "tor --verify-config"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                            lineNumber: 418,
+                                                            lineNumber: 432,
                                                             columnNumber: 55
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 418,
+                                                    lineNumber: 432,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 414,
+                                            lineNumber: 428,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 412,
+                                    lineNumber: 426,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 411,
+                                lineNumber: 425,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
@@ -2027,7 +2109,7 @@ function PerformancePage() {
                                             children: "Slow First Request"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 425,
+                                            lineNumber: 439,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -2037,38 +2119,38 @@ function PerformancePage() {
                                                     children: "Circuit building takes 2-3 seconds on first connection"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 427,
+                                                    lineNumber: 441,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Enable circuit prebuilding (default) to eliminate this delay"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 428,
+                                                    lineNumber: 442,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Consider fast mode for development where privacy isn't critical"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 429,
+                                                    lineNumber: 443,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 426,
+                                            lineNumber: 440,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 424,
+                                    lineNumber: 438,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 423,
+                                lineNumber: 437,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
@@ -2081,7 +2163,7 @@ function PerformancePage() {
                                             children: "Cache Not Working"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 436,
+                                            lineNumber: 450,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -2091,21 +2173,21 @@ function PerformancePage() {
                                                     children: "Only static assets are cached (JS, CSS, images, fonts)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 438,
+                                                    lineNumber: 452,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Check if your responses include proper Cache-Control headers"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 439,
+                                                    lineNumber: 453,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Private mode disables caching by default for security"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 440,
+                                                    lineNumber: 454,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2116,42 +2198,42 @@ function PerformancePage() {
                                                             children: "--cache-size=200"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                            lineNumber: 441,
+                                                            lineNumber: 455,
                                                             columnNumber: 66
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 441,
+                                                    lineNumber: 455,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 437,
+                                            lineNumber: 451,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 435,
+                                    lineNumber: 449,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                lineNumber: 434,
+                                lineNumber: 448,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 410,
+                        lineNumber: 424,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                lineNumber: 407,
+                lineNumber: 421,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2161,7 +2243,7 @@ function PerformancePage() {
                         children: "Performance CLI Options"
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 450,
+                        lineNumber: 464,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2178,7 +2260,7 @@ function PerformancePage() {
                                                 children: "Option"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 456,
+                                                lineNumber: 470,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2186,7 +2268,7 @@ function PerformancePage() {
                                                 children: "Default"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 457,
+                                                lineNumber: 471,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2194,18 +2276,18 @@ function PerformancePage() {
                                                 children: "Description"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                lineNumber: 458,
+                                                lineNumber: 472,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                        lineNumber: 455,
+                                        lineNumber: 469,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 454,
+                                    lineNumber: 468,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -2219,7 +2301,7 @@ function PerformancePage() {
                                                     children: "--mode"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 463,
+                                                    lineNumber: 477,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2227,7 +2309,7 @@ function PerformancePage() {
                                                     children: "balanced"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 464,
+                                                    lineNumber: 478,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2235,13 +2317,13 @@ function PerformancePage() {
                                                     children: "Tunnel mode: fast, balanced, or private"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 465,
+                                                    lineNumber: 479,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 462,
+                                            lineNumber: 476,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -2252,7 +2334,7 @@ function PerformancePage() {
                                                     children: "--cache-size"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 468,
+                                                    lineNumber: 482,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2260,7 +2342,7 @@ function PerformancePage() {
                                                     children: "100"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 469,
+                                                    lineNumber: 483,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2268,13 +2350,13 @@ function PerformancePage() {
                                                     children: "Cache size in MB"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 470,
+                                                    lineNumber: 484,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 467,
+                                            lineNumber: 481,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -2285,7 +2367,7 @@ function PerformancePage() {
                                                     children: "--cache-ttl"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 473,
+                                                    lineNumber: 487,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2293,7 +2375,7 @@ function PerformancePage() {
                                                     children: "300"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 474,
+                                                    lineNumber: 488,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2301,13 +2383,13 @@ function PerformancePage() {
                                                     children: "Cache TTL in seconds"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 475,
+                                                    lineNumber: 489,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 472,
+                                            lineNumber: 486,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -2318,7 +2400,7 @@ function PerformancePage() {
                                                     children: "--no-cache"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 478,
+                                                    lineNumber: 492,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2326,7 +2408,7 @@ function PerformancePage() {
                                                     children: "false"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 479,
+                                                    lineNumber: 493,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2334,13 +2416,13 @@ function PerformancePage() {
                                                     children: "Disable response caching"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 480,
+                                                    lineNumber: 494,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 477,
+                                            lineNumber: 491,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -2351,7 +2433,7 @@ function PerformancePage() {
                                                     children: "--geo-prefer"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 483,
+                                                    lineNumber: 497,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2359,7 +2441,7 @@ function PerformancePage() {
                                                     children: "-"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 484,
+                                                    lineNumber: 498,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2367,13 +2449,13 @@ function PerformancePage() {
                                                     children: "Preferred relay countries (ISO codes)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 485,
+                                                    lineNumber: 499,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 482,
+                                            lineNumber: 496,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -2384,7 +2466,7 @@ function PerformancePage() {
                                                     children: "--prebuild-circuits"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 488,
+                                                    lineNumber: 502,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2392,7 +2474,7 @@ function PerformancePage() {
                                                     children: "3"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 489,
+                                                    lineNumber: 503,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2400,13 +2482,13 @@ function PerformancePage() {
                                                     children: "Number of circuits to prebuild"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 490,
+                                                    lineNumber: 504,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 487,
+                                            lineNumber: 501,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -2417,7 +2499,7 @@ function PerformancePage() {
                                                     children: "--no-prebuild"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 493,
+                                                    lineNumber: 507,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2425,7 +2507,7 @@ function PerformancePage() {
                                                     children: "false"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 494,
+                                                    lineNumber: 508,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2433,36 +2515,36 @@ function PerformancePage() {
                                                     children: "Disable circuit prebuilding"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                                    lineNumber: 495,
+                                                    lineNumber: 509,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                            lineNumber: 492,
+                                            lineNumber: 506,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                                    lineNumber: 461,
+                                    lineNumber: 475,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                            lineNumber: 453,
+                            lineNumber: 467,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                        lineNumber: 452,
+                        lineNumber: 466,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/app/docs/performance/page.tsx",
-                lineNumber: 449,
+                lineNumber: 463,
                 columnNumber: 7
             }, this)
         ]
