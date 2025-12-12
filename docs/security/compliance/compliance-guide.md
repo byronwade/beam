@@ -1743,3 +1743,5 @@ class AttestationManager {
 ```
 
 This comprehensive compliance framework enables decentralized systems like Beam to achieve and maintain regulatory compliance while preserving the core benefits of decentralization: privacy, censorship resistance, and distributed resilience. The approach combines cryptographic enforcement, automated monitoring, and distributed accountability to meet regulatory requirements without compromising the decentralized architecture.
+
+

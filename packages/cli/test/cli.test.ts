@@ -89,16 +89,21 @@ describe("CLI Command Parsing", () => {
     const result = await runCLI(["--help"]);
     expect(result.stdout).toContain("Beam");
     expect(result.stdout.toLowerCase()).toContain("decentralized");
-    expect(result.stdout).toContain("-d, --domain");
-    expect(result.stdout).toContain("--dual");
-    expect(result.stdout).toContain("--tor");
-    expect(result.stdout).toContain("--https");
+    expect(result.stdout.toLowerCase()).toContain("decentralized");
+    // Global options are hidden now, check tunnel help for details
+
   });
 
-  it("should display start command help", async () => {
-    const result = await runCLI(["start", "--help"]);
-    expect(result.stdout).toContain("Start a tunnel");
+  it("should display tunnel command help", async () => {
+    const result = await runCLI(["tunnel", "--help"]);
+    expect(result.stdout).toContain("Start a private tunnel");
     expect(result.stdout).toContain("<port>");
+  });
+
+  it("should display defaults for magic command", async () => {
+    // beam --help should show [port] as argument
+    const result = await runCLI(["--help"]);
+    expect(result.stdout).toContain("[port]");
   });
 
   it("should reject invalid port (non-numeric)", async () => {
@@ -111,9 +116,8 @@ describe("CLI Command Parsing", () => {
     expect(result.code).not.toBe(0);
   });
 
-  it("should accept valid port with domain option", async () => {
-    // This will fail because daemon might not start, but parsing should work
-    const result = await runCLI(["--help"]);
+  it("should accept valid port with domain option (passed to tunnel)", async () => {
+    const result = await runCLI(["tunnel", "--help"]);
     expect(result.stdout).toContain("--domain");
   });
 });
@@ -123,42 +127,42 @@ describe("CLI Command Parsing", () => {
 // ============================================================================
 describe("CLI Options Validation", () => {
   it("should accept --domain with valid domain name", async () => {
-    const result = await runCLI(["--help"]);
+    const result = await runCLI(["tunnel", "--help"]);
     expect(result.stdout).toContain("-d, --domain <name>");
   });
 
   it("should accept --dns-port option", async () => {
-    const result = await runCLI(["--help"]);
+    const result = await runCLI(["tunnel", "--help"]);
     expect(result.stdout).toContain("--dns-port <port>");
   });
 
   it("should accept --tor-port option", async () => {
-    const result = await runCLI(["--help"]);
+    const result = await runCLI(["tunnel", "--help"]);
     expect(result.stdout).toContain("--tor-port <port>");
   });
 
   it("should accept --https option", async () => {
-    const result = await runCLI(["--help"]);
+    const result = await runCLI(["tunnel", "--help"]);
     expect(result.stdout).toContain("--https");
   });
 
   it("should accept --https-port option", async () => {
-    const result = await runCLI(["--help"]);
+    const result = await runCLI(["tunnel", "--help"]);
     expect(result.stdout).toContain("--https-port <port>");
   });
 
   it("should accept --verbose option", async () => {
-    const result = await runCLI(["--help"]);
+    const result = await runCLI(["tunnel", "--help"]);
     expect(result.stdout).toContain("-v, --verbose");
   });
 
   it("should accept --dual option", async () => {
-    const result = await runCLI(["--help"]);
+    const result = await runCLI(["tunnel", "--help"]);
     expect(result.stdout).toContain("--dual");
   });
 
   it("should accept --tor option", async () => {
-    const result = await runCLI(["--help"]);
+    const result = await runCLI(["tunnel", "--help"]);
     expect(result.stdout).toContain("--tor");
   });
 });
@@ -222,8 +226,8 @@ describe("Security - Input Validation", () => {
   });
 
   it("should handle special characters in domain", async () => {
-    const result = await runCLI(["--help"]);
-    // Just verify the help works - actual domain validation happens at runtime
+    const result = await runCLI(["tunnel", "--help"]);
+    // Just verify the help works
     expect(result.stdout).toContain("domain");
   });
 
@@ -253,7 +257,7 @@ describe("Security - Input Validation", () => {
   });
 
   it("should handle unicode in domain names", async () => {
-    const result = await runCLI(["--help"]);
+    const result = await runCLI(["tunnel", "--help"]);
     // Help should still work
     expect(result.stdout).toContain("domain");
   });

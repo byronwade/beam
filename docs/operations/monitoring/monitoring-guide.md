@@ -1388,3 +1388,5 @@ class DashboardWebSocket {
 ```
 
 This comprehensive monitoring system provides decentralized observability for Beam's P2P network, ensuring operators can maintain network health, detect issues early, and respond to incidents effectively across the distributed infrastructure.
+
+

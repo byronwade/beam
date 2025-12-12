@@ -37,7 +37,7 @@ beam register byronwade.local
 #### 🚀 Getting Started
 - **[Quick Start Guide](guides/getting-started/getting-started.md)** - Get tunneling in 5 minutes
 - **[Installation Guide](guides/installation/installation-guide.md)** - Install on any platform
-- **[CLI Reference](guides/usage/cli-reference.md)** - Complete command documentation
+- **[CLI Reference](guides/usage/cli-reference.md)** - Current & planned command reference
 
 #### 🏗️ Decentralized Architecture
 - **[Decentralized Architecture Overview](architecture/overview/decentralized-architecture.md)** - Core P2P design
@@ -47,6 +47,8 @@ beam register byronwade.local
 - **[Tor Integration](architecture/tor-integration/ngrok-style-tor-solution.md)** - Hidden services & censorship resistance
 - **[Performance Architecture](architecture/performance/performance-overview.md)** - High-performance P2P networking
 - **[System Architecture](architecture/overview/architecture.md)** - Technical implementation details
+- **[System Architecture](architecture/overview/architecture.md)** - Technical implementation details
+- **[Project Roadmap](roadmap.md)** - Future plans for I2P, Nym, WebRTC, and more
 
 #### 🔒 Security & Privacy
 - **[Security Overview](security/security-overview.md)** - Privacy-first security features

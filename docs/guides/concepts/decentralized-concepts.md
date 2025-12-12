@@ -398,3 +398,5 @@ Now that you understand decentralized concepts:
 4. **[Read Security Overview](../../security/security-overview.md)** - Learn about privacy benefits
 
 **Decentralization isn't just a technology - it's a philosophy of user empowerment and network resilience.** Welcome to the decentralized future! 🌐✨
+
+

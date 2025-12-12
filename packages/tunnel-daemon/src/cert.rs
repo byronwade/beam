@@ -77,3 +77,6 @@ pub fn get_or_create_cert(domain: &str, cert_dir: Option<&Path>) -> Result<(Vec<
     
     Ok((vec![cert], key))
 }
+
+
+

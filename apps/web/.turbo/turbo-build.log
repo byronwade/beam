@@ -1,32 +1,54 @@
 
-> @beam/web@0.1.0 build
+
+> @byronwade/beam-web@0.1.0 build
 > next build
 
- ⚠ `experimental.middlewarePrefetch` is deprecated. Please use `experimental.proxyPrefetch` instead in next.config.ts.
-   ▲ Next.js 16.0.7 (Turbopack)
+ [33m[1m⚠[22m[39m `experimental.middlewarePrefetch` is deprecated. Please use `experimental.proxyPrefetch` instead in next.config.ts.
+   [1m[38;2;173;127;168m▲ Next.js 16.0.7[39m[22m (Turbopack)
    - Environments: .env.local
    - Experiments (use with caution):
      · middlewarePrefetch: "flexible"
 
-   Creating an optimized production build ...
- ✓ Compiled successfully in 2.7s
-   Running TypeScript ...
-   Collecting page data using 9 workers ...
- ⚠ Using edge runtime on a page currently disables static generation for that page
-   Generating static pages using 9 workers (0/5) ...
-   Generating static pages using 9 workers (1/5) 
-   Generating static pages using 9 workers (2/5) 
-   Generating static pages using 9 workers (3/5) 
- ✓ Generating static pages using 9 workers (5/5) in 351.2ms
-   Finalizing page optimization ...
+ [37m[1m [22m[39m Creating an optimized production build ...
+ [32m[1m✓[22m[39m Compiled successfully in 3.5s
+[?25l [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G[?25h[?25l [37m[1m [22m[39m Finished TypeScript in 7.4s  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Finished TypeScript in 7.4s     [32m[1m✓[22m[39m Finished TypeScript in 7.4s 
+[?25l [37m[1m [22m[39m Collecting page data using 9 workers  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data using 9 workers  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting page data using 9 workers  [36m...[39m[2K[1G[?25h [37m[1m [22m[39m Collecting page data using 9 workers in 578.8ms     [32m[1m✓[22m[39m Collecting page data using 9 workers in 578.8ms 
+[?25l [37m[1m [22m[39m Generating static pages using 9 workers (0/32)  [36m[    ][39m[2K[1G [37m[1m [22m[39m Generating static pages using 9 workers (0/32)  [36m[=   ][39m[2K[1G [37m[1m [22m[39m Generating static pages using 9 workers (0/32)  [36m[==  ][39m[2K[1G [37m[1m [22m[39m Generating static pages using 9 workers (16/32)  [36m[=== ][39m[2K[1G[?25h [32m[1m✓[22m[39m Generating static pages using 9 workers (32/32) in 657.8ms
+[?25l [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Finalizing page optimization in 23.0ms     [32m[1m✓[22m[39m Finalizing page optimization in 23.0ms 
 
-Route (app)
+[4mRoute (app)[24m
 ┌ ○ /
 ├ ○ /_not-found
-├ ƒ /api/tunnel
-└ ○ /dashboard
+├ ○ /docs
+├ ○ /docs/architecture
+├ ○ /docs/cli-reference
+├ ○ /docs/comparisons
+├ ○ /docs/deployment
+├ ○ /docs/examples
+├ ○ /docs/frameworks
+├ ○ /docs/frameworks/angular
+├ ○ /docs/frameworks/astro
+├ ○ /docs/frameworks/gatsby
+├ ○ /docs/frameworks/nestjs
+├ ○ /docs/frameworks/nextjs
+├ ○ /docs/frameworks/nuxt
+├ ○ /docs/frameworks/quasar
+├ ○ /docs/frameworks/remix
+├ ○ /docs/frameworks/solidstart
+├ ○ /docs/frameworks/sveltekit
+├ ○ /docs/frameworks/vite
+├ ○ /docs/getting-started
+├ ○ /docs/p2p-networking
+├ ○ /docs/performance
+├ ○ /docs/roadmap
+├ ○ /docs/security
+├ ○ /docs/tor-network
+├ ○ /docs/troubleshooting
+├ ○ /docs/why-decentralized
+├ ○ /features
+└ ○ /how-it-works
 
 
-○  (Static)   prerendered as static content
-ƒ  (Dynamic)  server-rendered on demand
+○  (Static)  prerendered as static content
 
+[?25h⠙[1G[0K

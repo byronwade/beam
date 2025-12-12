@@ -228,7 +228,7 @@ cd my-nextjs-app
 beam init
 
 🔍 Detected: Next.js application
-📦 Installing: @beam/next
+📦 Installing: @byronwade/beam-next
 ⚙️  Configuring: next.config.js
 
 ✅ Beam integration complete!
@@ -529,12 +529,12 @@ const FRAMEWORK_DETECTORS = {
   next: {
     files: ['next.config.js', 'package.json'],
     detector: (files: string[]) => files.includes('next.config.js'),
-    integration: () => require('@beam/next')
+    integration: () => require('@byronwade/beam-next')
   },
   vite: {
     files: ['vite.config.ts', 'vite.config.js'],
     detector: (files: string[]) => files.some(f => f.includes('vite.config')),
-    integration: () => require('@beam/vite')
+    integration: () => require('@byronwade/beam-vite')
   }
 };
 

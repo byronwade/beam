@@ -73,8 +73,8 @@ export default function Home() {
           </h1>
 
           <p className="text-xl md:text-2xl text-white/50 max-w-2xl mx-auto leading-relaxed mb-12">
-            The decentralized alternative to ngrok. Expose your local server to the world using P2P networks and Tor hidden services.
-            <span className="block mt-2 text-white/80">Quick tunnels now ship with .onion endpoints by default. Add your own domain via a DNS TXT proof—no central infra required.</span>
+            The private, free alternative to ngrok. Expose your local server directly to the world.
+            <span className="block mt-2 text-white/80">No 3rd party relays. No data limits. Fully under your control.</span>
           </p>
 
           <div className="flex flex-col items-center gap-8">
@@ -109,27 +109,27 @@ export default function Home() {
             <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
               <Zap className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white">Instant Deployment</h3>
+            <h3 className="text-xl font-bold text-white">Direct & Fast</h3>
             <p className="text-white/50 leading-relaxed">
-              Just run <InlineCode>npx beam dev</InlineCode>. We auto-detect your framework and port. No configuration files needed.
+              Just run <InlineCode>npx beam dev</InlineCode>. Traffic flows directly from your device to the client. No middleman latency.
             </p>
           </div>
           <div className="space-y-4">
             <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center">
               <Shield className="w-6 h-6 text-purple-400" />
             </div>
-            <h3 className="text-xl font-bold text-white">Maximum Privacy</h3>
+            <h3 className="text-xl font-bold text-white">Private & Secure</h3>
             <p className="text-white/50 leading-relaxed">
-              Traffic connects peer-to-peer or via Tor. No central server logs your requests. End-to-end encrypted by default.
+              Your keys, your data. We don't see your traffic. Optional "Dark Mode" (Tor) available for anonymity.
             </p>
           </div>
           <div className="space-y-4">
             <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center">
               <Globe className="w-6 h-6 text-green-400" />
             </div>
-            <h3 className="text-xl font-bold text-white">Universal URL</h3>
+            <h3 className="text-xl font-bold text-white">Free Forever</h3>
             <p className="text-white/50 leading-relaxed">
-              Your domain works everywhere. Valid on localhost, valid on the global internet. One link to rule them all.
+              Since we don't host relays, we don't charge you. Unlimited bandwidth, unlimited usage. Truly free.
             </p>
           </div>
         </div>
@@ -140,7 +140,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <StatCard value="100%" label="Open Source" />
-            <StatCard value="0" label="Trackers" />
+            <StatCard value="0" label="Middlemen" />
             <StatCard value="∞" label="Bandwidth" />
             <StatCard value="$0" label="Cost Forever" />
           </div>

@@ -1065,3 +1065,5 @@ Beam is now installed and ready to use. Your decentralized tunneling journey beg
 **Need help?** Don't hesitate to reach out to our community or create an issue on GitHub.
 
 **Happy tunneling!** 🚀⚡🔗
+
+

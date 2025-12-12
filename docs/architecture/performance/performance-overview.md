@@ -634,3 +634,5 @@ pub async fn kernel_bypass_udp_burst(
 Beam delivers **enterprise-grade performance** with guaranteed SLAs, continuous optimization, and transparent benchmarking. Our commitment to performance excellence ensures your applications run at peak efficiency, regardless of scale or complexity.
 
 **Performance that scales with your ambition.** ⚡
+
+

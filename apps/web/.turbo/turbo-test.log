@@ -1,0 +1,16 @@
+
+> @byronwade/beam-web@0.1.0 test
+> vitest --config vitest.config.app.ts run
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+[1m[7m[36m RUN [39m[27m[22m [36mv2.1.9 [39m[90m/Users/byronwade/beam.byronwade.com/apps/web[39m
+
+ [32m✓[39m src/app/simple.test.ts [2m([22m[2m1 test[22m[2m)[22m[90m 1[2mms[22m[39m
+ [32m✓[39m src/app/page.test.tsx [2m([22m[2m2 tests[22m[2m | [22m[33m1 skipped[39m[2m)[22m[90m 45[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m2 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (3)[39m
+[2m   Start at [22m 00:24:40
+[2m   Duration [22m 766ms[2m (transform 30ms, setup 163ms, collect 84ms, tests 46ms, environment 492ms, prepare 101ms)[22m
+

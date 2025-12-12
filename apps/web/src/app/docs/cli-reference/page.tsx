@@ -1,441 +1,524 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Terminal,
-  CheckCircle,
-  Info,
-  Star,
-  Copy,
-  ArrowLeft,
-  GitBranch
-} from "lucide-react";
-import { useState } from "react";
+import { CodeBlock, InlineCode } from "@/components/code-block";
 
 export default function CLIReferencePage() {
-  const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
-
-  const copyToClipboard = async (text: string, commandId: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedCommand(commandId);
-      setTimeout(() => setCopiedCommand(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
-    }
-  };
-
-  const CopyButton = ({ text, commandId }: { text: string; commandId: string }) => (
-    <Button
-      variant="ghost"
-      size="sm"
-      onClick={() => copyToClipboard(text, commandId)}
-      className="h-6 w-6 p-0 ml-2"
-    >
-      {copiedCommand === commandId ? (
-        <CheckCircle className="h-3 w-3 text-green-500" />
-      ) : (
-        <Copy className="h-3 w-3" />
-      )}
-    </Button>
-  );
-
   return (
-    <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-4xl px-6 py-12">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Link href="/docs">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Docs
-            </Button>
-          </Link>
-          <div>
-            <h1 className="text-4xl font-bold text-foreground">CLI Reference</h1>
-            <p className="text-muted-foreground mt-2">
-              Complete guide to Beam CLI commands - implemented, in development, and planned
+    <article className="mx-auto max-w-4xl px-6 py-12">
+      {/* Header */}
+      <header className="mb-12">
+        <h1 className="text-4xl font-bold text-white mb-4">CLI Reference</h1>
+        <p className="text-lg text-white/70 leading-relaxed">
+          Complete reference for the Beam command-line interface. This page documents all available
+          commands, options, and configuration settings.
+        </p>
+      </header>
+
+      {/* Basic Usage */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-white mb-4">Basic Usage</h2>
+
+        <p className="text-white/70 mb-4">
+          The simplest way to use Beam is to specify a port number:
+        </p>
+
+        <div className="mb-4">
+          <CodeBlock
+            code="beam <port>"
+            language="bash"
+          />
+        </div>
+
+        <p className="text-white/70 mb-4">
+          This checks for UPnP support on your router and opens a direct, encrypted connection associated
+          with your public IP (using a <InlineCode>.nip.io</InlineCode> domain). This is the fastest and
+          most reliable mode, adding zero latency.
+        </p>
+      </section>
+
+      {/* beam <port> */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-white mb-4">beam &lt;port&gt;</h2>
+
+        <p className="text-white/70 mb-4">
+          Start a Direct Internet Mode tunnel. This exposes your local port directly to the internet
+          using UPnP/NAT-PMP and automates SSL generation (Green Lock).
+        </p>
+
+        <h3 className="text-lg font-medium text-white mb-3 mt-6">Behavior</h3>
+        <ul className="list-disc list-inside space-y-2 text-white/70 mb-6 ml-4">
+          <li>Auto-detects Public IP</li>
+          <li>Requests port mapping from router (UPnP)</li>
+          <li>Generates Trusted SSL Certificate (requires one-time sudo)</li>
+          <li>Provides a public <InlineCode>https://x.x.x.x.nip.io:port</InlineCode> URL</li>
+        </ul>
+
+        {/* beam tunnel <port> */}
+        <h2 className="text-2xl font-semibold text-white mb-4 mt-12">beam tunnel &lt;port&gt;</h2>
+
+        <p className="text-white/70 mb-4">
+          Start an Anonymous Tunnel (Tor). Use this if you are behind a strict firewall that blocks UPnP,
+          or if you need to hide your IP address.
+        </p>
+
+        <h3 className="text-lg font-medium text-white mb-3 mt-6">Tunnel Options</h3>
+
+        <div className="space-y-6">
+          {/* --mode */}
+          <div className="border-l-2 border-green-500/50 pl-4 bg-green-500/5 py-3 -ml-4 pl-8">
+            <h4 className="font-mono text-white mb-2">--mode &lt;mode&gt;, -m</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Select the anonymity mode (Applies to <InlineCode>beam tunnel</InlineCode> only).
+              <strong className="text-white"> Default: balanced</strong>
+            </p>
+            <div className="space-y-2 my-4">
+              <div className="flex items-start gap-3 text-sm">
+                <code className="text-green-400 font-mono">fast</code>
+                <span className="text-white/60">~50ms+, P2P assisted</span>
+              </div>
+              <div className="flex items-start gap-3 text-sm">
+                <code className="text-yellow-400 font-mono">balanced</code>
+                <span className="text-white/60">~150ms+, Single-hop Tor</span>
+              </div>
+              <div className="flex items-start gap-3 text-sm">
+                <code className="text-purple-400 font-mono">private</code>
+                <span className="text-white/60">~500ms+, Full 3-hop Tor (Hidden Service)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* --domain */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--domain &lt;name&gt;, -d</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Set a custom local domain name or .onion label.
+            </p>
+            <CodeBlock
+              code="beam tunnel 3000 --domain myapp"
+              language="bash"
+            />
+          </div>
+
+          {/* --https */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--https (Limited)</h4>
+            <p className="text-white/70 text-sm mb-2">
+              For Tor connections, HTTPS is handled by the onion protocol itself (end-to-end encryption).
+              This flag primarily affects the local proxy interface.
+            </p>
+          </div>
+
+          {/* --https-port */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--https-port &lt;port&gt;</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Specify the port for the HTTPS server. Defaults to 443 if running with elevated
+              privileges, otherwise 8443.
+            </p>
+            <CodeBlock
+              code="beam 3000 --https --https-port 9443"
+              language="bash"
+            />
+          </div>
+
+          {/* --dns-port */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--dns-port &lt;port&gt;</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Port for the local DNS server. Defaults to 5354. You may need to configure your
+              system's resolver to use this port for .local domains.
+            </p>
+            <CodeBlock
+              code="beam 3000 --domain myapp.local --dns-port 5353"
+              language="bash"
+            />
+          </div>
+
+          {/* --tor-port */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--tor-port &lt;port&gt;</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Port for the Tor SOCKS proxy. Defaults to 9050. Change this if you have an existing
+              Tor installation using that port.
+            </p>
+            <CodeBlock
+              code="beam 3000 --tor --tor-port 9150"
+              language="bash"
+            />
+          </div>
+
+          {/* --verbose */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--verbose, -v</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Enable verbose logging. Shows detailed information about Tor connection status,
+              DNS queries, HTTP requests, and internal state changes.
+            </p>
+            <CodeBlock
+              code="beam 3000 --verbose"
+              language="bash"
+            />
+            <p className="text-white/60 text-xs mt-2">
+              Useful for debugging connection issues or understanding Beam's behavior.
             </p>
           </div>
         </div>
 
-        <div className="mb-6">
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="default" className="bg-green-100 text-green-800">
-              <CheckCircle className="h-3 w-3 mr-1" />
-              ✅ Implemented
-            </Badge>
-            <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-              <Info className="h-3 w-3 mr-1" />
-              🚧 In Development
-            </Badge>
-            <Badge variant="outline">
-              <Star className="h-3 w-3 mr-1" />
-              📋 Planned
-            </Badge>
-          </div>
-        </div>
+        <h3 className="text-lg font-medium text-white mb-3 mt-8">Performance Options</h3>
 
         <div className="space-y-6">
-          {/* Implemented Commands */}
-          <Card className="border-green-200 bg-green-50/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-green-800">
-                <CheckCircle className="h-5 w-5 text-green-600" />
-                ✅ Implemented Commands
-              </CardTitle>
-              <CardDescription>
-                Fully functional and tested CLI commands
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="border rounded-lg p-4 bg-white">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <code className="text-sm font-mono font-bold">beam &lt;port&gt;</code>
-                    <Badge variant="outline" className="text-xs">Primary Command</Badge>
-                  </div>
-                  <CopyButton text="beam 3000" commandId="basic-tunnel" />
-                </div>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Start a tunnel to expose a local port through the decentralized network.
-                </p>
-                <div className="space-y-2">
-                  <h5 className="text-sm font-medium">Options:</h5>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
-                    <code className="bg-muted px-2 py-1 rounded">--domain &lt;name&gt;</code>
-                    <code className="bg-muted px-2 py-1 rounded">--dual</code>
-                    <code className="bg-muted px-2 py-1 rounded">--tor</code>
-                    <code className="bg-muted px-2 py-1 rounded">--dns-port &lt;port&gt;</code>
-                    <code className="bg-muted px-2 py-1 rounded">--tor-port &lt;port&gt;</code>
-                    <code className="bg-muted px-2 py-1 rounded">--https</code>
-                    <code className="bg-muted px-2 py-1 rounded">--https-port &lt;port&gt;</code>
-                    <code className="bg-muted px-2 py-1 rounded">--verbose, -v</code>
-                  </div>
-                </div>
-              </div>
+          {/* --cache / --no-cache */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--no-cache</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Disable response caching. By default, Beam caches static assets (JS, CSS, images, fonts)
+              to reduce round-trips, especially helpful in Tor modes.
+            </p>
+            <CodeBlock
+              code="beam 3000 --no-cache"
+              language="bash"
+            />
+          </div>
 
-              <div className="border rounded-lg p-4 bg-white">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <code className="text-sm font-mono font-bold">beam start &lt;port&gt;</code>
-                    <Badge variant="outline" className="text-xs">Explicit Start</Badge>
-                  </div>
-                  <CopyButton text="beam start 3000 --tor" commandId="explicit-start" />
-                </div>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Explicitly start a tunnel (same functionality as default command).
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  <strong>Note:</strong> Same options as the default tunnel command.
-                </p>
-              </div>
+          {/* --cache-size */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--cache-size &lt;mb&gt;</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Set the maximum cache size in megabytes. Default: 100MB.
+            </p>
+            <CodeBlock
+              code="beam 3000 --cache-size=200"
+              language="bash"
+            />
+          </div>
 
-              <div className="border rounded-lg p-4 bg-white">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <code className="text-sm font-mono font-bold">beam login --token &lt;token&gt;</code>
-                    <Badge variant="outline" className="text-xs">Authentication</Badge>
-                  </div>
-                  <CopyButton text="beam login --token your_token_here" commandId="login" />
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Authenticate with a personal access token for advanced features.
-                </p>
-                <p className="text-xs text-muted-foreground mt-2">
-                  Token is saved to <code>~/.beam/credentials.json</code> for future use.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          {/* --cache-ttl */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--cache-ttl &lt;seconds&gt;</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Set the cache time-to-live in seconds. Default: 300 (5 minutes).
+            </p>
+            <CodeBlock
+              code="beam 3000 --cache-ttl=600"
+              language="bash"
+            />
+          </div>
 
-          {/* In Development Commands */}
-          <Card className="border-blue-200 bg-blue-50/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-blue-800">
-                <Info className="h-5 w-5 text-blue-600" />
-                🚧 In Development
-              </CardTitle>
-              <CardDescription>
-                Commands currently being implemented
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="border rounded-lg p-4 bg-white">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <code className="text-sm font-mono">beam register &lt;domain&gt;</code>
-                    <Badge variant="outline" className="text-xs">P2P Domains</Badge>
-                  </div>
-                  <CopyButton text="beam register myapp.local" commandId="register-domain" />
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  Register a custom domain in the P2P network for persistent tunneling.
-                </p>
-                <div className="text-xs text-blue-700 bg-blue-50 p-2 rounded">
-                  <strong>Status:</strong> DHT infrastructure in development. Basic domain registration framework implemented.
-                </div>
-              </div>
+          {/* --geo-prefer */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--geo-prefer &lt;countries&gt;</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Specify preferred countries for Tor relay selection using ISO 3166-1 alpha-2 codes.
+              Reduces latency by selecting geographically closer relays.
+            </p>
+            <CodeBlock
+              code="beam 3000 --mode=balanced --geo-prefer=US,CA,MX"
+              language="bash"
+            />
+            <p className="text-white/60 text-xs mt-2">
+              <strong className="text-orange-400">Warning:</strong> Not recommended for private mode as it reduces anonymity.
+            </p>
+          </div>
 
-              <div className="border rounded-lg p-4 bg-white">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <code className="text-sm font-mono">beam list</code>
-                    <Badge variant="outline" className="text-xs">Management</Badge>
-                  </div>
-                  <CopyButton text="beam list" commandId="list-tunnels" />
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  List all currently active tunnels and their status.
-                </p>
-                <div className="text-xs text-blue-700 bg-blue-50 p-2 rounded">
-                  <strong>Status:</strong> Tunnel state management system in development. Basic tunnel tracking implemented.
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {/* --prebuild-circuits */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--prebuild-circuits &lt;count&gt;</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Number of Tor circuits to prebuild for faster initial connections. Default: 3.
+            </p>
+            <CodeBlock
+              code="beam 3000 --prebuild-circuits=5"
+              language="bash"
+            />
+          </div>
 
-          {/* Planned Commands */}
-          <Card className="border-gray-200 bg-gray-50/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-gray-800">
-                <Star className="h-5 w-5 text-gray-600" />
-                📋 Planned Commands
-              </CardTitle>
-              <CardDescription>
-                Future features in the development roadmap
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="border rounded-lg p-4 bg-white">
-                  <code className="text-sm font-mono block mb-2">beam stop &lt;name&gt;</code>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    Stop specific tunnels by name or ID
-                  </p>
-                  <Badge variant="outline" className="text-xs">Phase 3</Badge>
-                </div>
-
-                <div className="border rounded-lg p-4 bg-white">
-                  <code className="text-sm font-mono block mb-2">beam status</code>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    Show comprehensive system status
-                  </p>
-                  <Badge variant="outline" className="text-xs">Phase 2</Badge>
-                </div>
-
-                <div className="border rounded-lg p-4 bg-white">
-                  <code className="text-sm font-mono block mb-2">beam inspect &lt;tunnel&gt;</code>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    Detailed tunnel inspection and metrics
-                  </p>
-                  <Badge variant="outline" className="text-xs">Phase 3</Badge>
-                </div>
-
-                <div className="border rounded-lg p-4 bg-white">
-                  <code className="text-sm font-mono block mb-2">beam metrics</code>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    Real-time performance metrics
-                  </p>
-                  <Badge variant="outline" className="text-xs">Phase 3</Badge>
-                </div>
-
-                <div className="border rounded-lg p-4 bg-white">
-                  <code className="text-sm font-mono block mb-2">beam domains</code>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    P2P domain management operations
-                  </p>
-                  <Badge variant="outline" className="text-xs">Phase 2</Badge>
-                </div>
-
-                <div className="border rounded-lg p-4 bg-white">
-                  <code className="text-sm font-mono block mb-2">beam peer</code>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    P2P network peer management
-                  </p>
-                  <Badge variant="outline" className="text-xs">Phase 3</Badge>
-                </div>
-
-                <div className="border rounded-lg p-4 bg-white">
-                  <code className="text-sm font-mono block mb-2">beam tor</code>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    Tor service and circuit management
-                  </p>
-                  <Badge variant="outline" className="text-xs">Phase 3</Badge>
-                </div>
-
-                <div className="border rounded-lg p-4 bg-white">
-                  <code className="text-sm font-mono block mb-2">beam config</code>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    Advanced configuration management
-                  </p>
-                  <Badge variant="outline" className="text-xs">Phase 2</Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Implementation Roadmap */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <GitBranch className="h-5 w-5" />
-                Implementation Roadmap
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-green-600 text-sm font-bold">1</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-green-800">Phase 1: Core Tunneling ✅</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Basic tunnel creation, Tor integration, local domain resolution, authentication
-                    </p>
-                    <div className="flex gap-1 mt-2">
-                      <Badge variant="default" className="text-xs">beam &lt;port&gt;</Badge>
-                      <Badge variant="default" className="text-xs">beam start</Badge>
-                      <Badge variant="default" className="text-xs">beam login</Badge>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-blue-600 text-sm font-bold">2</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-blue-800">Phase 2: P2P Network Infrastructure 🚧</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Distributed Hash Table (DHT), peer discovery, decentralized domain registry
-                    </p>
-                    <div className="flex gap-1 mt-2 flex-wrap">
-                      <Badge variant="secondary" className="text-xs">beam register</Badge>
-                      <Badge variant="outline" className="text-xs">beam list</Badge>
-                      <Badge variant="outline" className="text-xs">beam domains</Badge>
-                      <Badge variant="outline" className="text-xs">beam config</Badge>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-gray-600 text-sm font-bold">3</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-800">Phase 3: Advanced Management 🔮</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Comprehensive monitoring, peer management, performance analytics, advanced networking
-                    </p>
-                    <div className="flex gap-1 mt-2 flex-wrap">
-                      <Badge variant="outline" className="text-xs">beam status</Badge>
-                      <Badge variant="outline" className="text-xs">beam metrics</Badge>
-                      <Badge variant="outline" className="text-xs">beam inspect</Badge>
-                      <Badge variant="outline" className="text-xs">beam peer</Badge>
-                      <Badge variant="outline" className="text-xs">beam tor</Badge>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-purple-600 text-sm font-bold">4</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-purple-800">Phase 4: Full P2P Ecosystem 🌟</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Enterprise features, advanced integrations, global P2P mesh networking
-                    </p>
-                    <div className="flex gap-1 mt-2 flex-wrap">
-                      <Badge variant="outline" className="text-xs">beam logs</Badge>
-                      <Badge variant="outline" className="text-xs">beam stop</Badge>
-                      <Badge variant="outline" className="text-xs">beam cache</Badge>
-                      <Badge variant="outline" className="text-xs">Advanced features</Badge>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* CLI Examples */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Copy className="h-5 w-5" />
-                CLI Usage Examples
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="bg-muted p-4 rounded-lg">
-                <h5 className="font-medium mb-3">Basic Local Development</h5>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <code className="text-sm font-mono">beam 3000</code>
-                    <CopyButton text="beam 3000" commandId="basic-example" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">Start a basic local tunnel</p>
-                </div>
-              </div>
-
-              <div className="bg-muted p-4 rounded-lg">
-                <h5 className="font-medium mb-3">Global Access with Tor</h5>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <code className="text-sm font-mono">beam 3000 --tor --domain myapp.local</code>
-                    <CopyButton text="beam 3000 --tor --domain myapp.local" commandId="tor-example" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">Create a globally accessible tunnel with custom domain</p>
-                </div>
-              </div>
-
-              <div className="bg-muted p-4 rounded-lg">
-                <h5 className="font-medium mb-3">Dual-Mode for Development</h5>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <code className="text-sm font-mono">beam 3000 --dual --https</code>
-                    <CopyButton text="beam 3000 --dual --https" commandId="dual-example" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">Local + Tor access with HTTPS support</p>
-                </div>
-              </div>
-
-              <div className="bg-muted p-4 rounded-lg">
-                <h5 className="font-medium mb-3">Authentication (Future)</h5>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <code className="text-sm font-mono">beam login --token your_token</code>
-                    <CopyButton text="beam login --token your_token" commandId="login-example" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">Authenticate with personal access token</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Navigation */}
-        <div className="mt-12 pt-8 border-t">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/docs">
-              <Button variant="outline">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Overview
-              </Button>
-            </Link>
-            <Link href="/docs/examples">
-              <Button>
-                Next: Examples
-              </Button>
-            </Link>
+          {/* --no-prebuild */}
+          <div className="border-l-2 border-white/20 pl-4">
+            <h4 className="font-mono text-white mb-2">--no-prebuild</h4>
+            <p className="text-white/70 text-sm mb-2">
+              Disable circuit prebuilding. Saves resources but increases latency on first connection.
+            </p>
+            <CodeBlock
+              code="beam 3000 --no-prebuild"
+              language="bash"
+            />
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* beam start */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-white mb-4">beam start &lt;port&gt;</h2>
+
+        <p className="text-white/70 mb-4">
+          Explicit form of the default command. Identical to <InlineCode>beam &lt;port&gt;</InlineCode>.
+          Use this when you want to be explicit about starting a tunnel.
+        </p>
+
+        <div className="mb-4">
+          <CodeBlock
+            code="beam start 3000 --domain myapp.local --mode=balanced"
+            language="bash"
+          />
+        </div>
+
+        <p className="text-white/60 text-sm">
+          Accepts all the same options as the default port command.
+        </p>
+      </section>
+
+      {/* Planned Commands */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-white mb-4">Planned Commands</h2>
+
+        <p className="text-white/70 mb-4">
+          The following commands are planned for future releases as part of the P2P networking
+          and advanced management features:
+        </p>
+
+        <div className="space-y-4">
+          <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
+            <h3 className="font-mono text-white/60 mb-2">beam register &lt;domain&gt;</h3>
+            <p className="text-white/50 text-sm">
+              Register a domain in the P2P network's distributed hash table. Will allow persistent,
+              human-readable names that resolve across the Beam network.
+            </p>
+          </div>
+
+          <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
+            <h3 className="font-mono text-white/60 mb-2">beam list</h3>
+            <p className="text-white/50 text-sm">
+              List all active tunnels. Will show tunnel status, addresses, and traffic statistics.
+            </p>
+          </div>
+
+          <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
+            <h3 className="font-mono text-white/60 mb-2">beam stop &lt;name&gt;</h3>
+            <p className="text-white/50 text-sm">
+              Stop a specific tunnel by name or ID. Currently, tunnels are stopped with Ctrl+C.
+            </p>
+          </div>
+
+          <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
+            <h3 className="font-mono text-white/60 mb-2">beam status</h3>
+            <p className="text-white/50 text-sm">
+              Show comprehensive system status including Tor connectivity, P2P network health,
+              and active tunnel information.
+            </p>
+          </div>
+
+          <div className="border border-white/10 rounded-lg p-4 bg-white/[0.02]">
+            <h3 className="font-mono text-white/60 mb-2">beam config</h3>
+            <p className="text-white/50 text-sm">
+              Manage Beam configuration. Will support setting defaults, viewing current config,
+              and managing persistent settings.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Configuration Files */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-white mb-4">Configuration Files</h2>
+
+        <p className="text-white/70 mb-4">
+          Beam stores configuration and data in the <InlineCode>~/.beam/</InlineCode> directory:
+        </p>
+
+        <ul className="space-y-3 text-white/70 ml-4">
+          <li>
+            <InlineCode>~/.beam/certs/</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Generated TLS certificates for HTTPS mode</p>
+          </li>
+          <li>
+            <InlineCode>~/.beam/tor/</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Tor data directory including hidden service keys</p>
+          </li>
+          <li>
+            <InlineCode>~/.beam/cache/</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Response cache for static assets (when caching enabled)</p>
+          </li>
+        </ul>
+      </section>
+
+      {/* Environment Variables */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-white mb-4">Environment Variables</h2>
+
+        <p className="text-white/70 mb-4">
+          Beam recognizes the following environment variables:
+        </p>
+
+        <ul className="space-y-3 text-white/70 ml-4">
+          <li>
+            <InlineCode>BEAM_MODE</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Default tunnel mode: "fast", "balanced", or "private" (default: balanced)</p>
+          </li>
+          <li>
+            <InlineCode>BEAM_TOR_SOCKS_PORT</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Override the default Tor SOCKS port (default: 9050)</p>
+          </li>
+          <li>
+            <InlineCode>BEAM_DNS_PORT</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Override the default DNS server port (default: 5354)</p>
+          </li>
+          <li>
+            <InlineCode>BEAM_CACHE_SIZE</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Default cache size in MB (default: 100)</p>
+          </li>
+          <li>
+            <InlineCode>BEAM_CACHE_TTL</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Default cache TTL in seconds (default: 300)</p>
+          </li>
+          <li>
+            <InlineCode>BEAM_PREBUILD_CIRCUITS</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Number of circuits to prebuild (default: 3)</p>
+          </li>
+          <li>
+            <InlineCode>BEAM_GEO_PREFER</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Comma-separated ISO country codes for relay preference</p>
+          </li>
+          <li>
+            <InlineCode>BEAM_VERBOSE</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Set to "1" or "true" to enable verbose logging by default</p>
+          </li>
+          <li>
+            <InlineCode>RUST_LOG</InlineCode>
+            <p className="text-white/60 text-sm mt-1">Control Rust daemon logging level (debug, info, warn, error)</p>
+          </li>
+        </ul>
+      </section>
+
+      {/* Exit Codes */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-white mb-4">Exit Codes</h2>
+
+        <p className="text-white/70 mb-4">
+          Beam uses standard exit codes:
+        </p>
+
+        <ul className="space-y-2 text-white/70 ml-4">
+          <li><InlineCode>0</InlineCode> — Success (tunnel stopped gracefully)</li>
+          <li><InlineCode>1</InlineCode> — General error</li>
+          <li><InlineCode>2</InlineCode> — Invalid arguments</li>
+          <li><InlineCode>130</InlineCode> — Interrupted (Ctrl+C)</li>
+        </ul>
+      </section>
+
+      {/* Examples */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-white mb-4">Examples</h2>
+
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-white mb-2">Basic (Direct Internet Mode)</h3>
+            <CodeBlock
+              code="beam 3000"
+              language="bash"
+            />
+            <p className="text-white/60 text-sm mt-2">Exposes localhost:3000 directly via UPnP with Trusted SSL (Green Lock). Fastest option.</p>
+          </div>
+
+          <div>
+            <h3 className="text-white mb-2">Private Tunnel (Maximum Anonymity)</h3>
+            <CodeBlock
+              code="beam tunnel 3000 --mode=private"
+              language="bash"
+            />
+            <p className="text-white/60 text-sm mt-2">Full 3-hop Tor onion routing with ~500ms latency. Hides your IP.</p>
+          </div>
+
+          <div>
+            <h3 className="text-white mb-2">Balanced Tunnel (Webhook Dev)</h3>
+            <CodeBlock
+              code="beam tunnel 3000 --mode=balanced"
+              language="bash"
+            />
+            <p className="text-white/60 text-sm mt-2">Single-hop Tor with ~150ms latency. Good for testing heavy payloads anonymously.</p>
+          </div>
+
+          <div>
+            <h3 className="text-white mb-2">Fast P2P Tunnel</h3>
+            <CodeBlock
+              code="beam tunnel 3000 --mode=fast"
+              language="bash"
+            />
+            <p className="text-white/60 text-sm mt-2">Direct P2P connection (~50ms) but requires specific network conditions.</p>
+          </div>
+
+          <div>
+            <h3 className="text-white mb-2">Optimized Tunnel (with Caching)</h3>
+            <CodeBlock
+              code="beam tunnel 3000 --mode=balanced --cache-size=200 --prebuild-circuits=5"
+              language="bash"
+            />
+            <p className="text-white/60 text-sm mt-2">Larger cache and more prebuilt circuits for better performance.</p>
+          </div>
+
+          <div>
+            <h3 className="text-white mb-2">Geographic Tunnel Optimization</h3>
+            <CodeBlock
+              code="beam tunnel 3000 --mode=balanced --geo-prefer=US,CA,UK"
+              language="bash"
+            />
+            <p className="text-white/60 text-sm mt-2">Prefer relays in US, Canada, and UK for lower latency.</p>
+          </div>
+
+          <div>
+            <h3 className="text-white mb-2">Real-time data (no caching)</h3>
+            <CodeBlock
+              code="beam tunnel 3000 --mode=balanced --no-cache"
+              language="bash"
+            />
+            <p className="text-white/60 text-sm mt-2">Disable caching for real-time or frequently changing data</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Next Steps */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-white mb-4">See Also</h2>
+
+        <ul className="space-y-3 text-white/70">
+          <li>
+            <Link href="/docs/getting-started" className="text-white underline hover:text-white/80">
+              Getting Started
+            </Link>
+            {" "}— Step-by-step guide to your first tunnel
+          </li>
+          <li>
+            <Link href="/docs/performance" className="text-white underline hover:text-white/80">
+              Performance Guide
+            </Link>
+            {" "}— Optimize latency with modes, caching, and circuit prebuilding
+          </li>
+          <li>
+            <Link href="/docs/examples" className="text-white underline hover:text-white/80">
+              Examples
+            </Link>
+            {" "}— Real-world usage patterns and workflows
+          </li>
+          <li>
+            <Link href="/docs/troubleshooting" className="text-white underline hover:text-white/80">
+              Troubleshooting
+            </Link>
+            {" "}— Common issues and solutions
+          </li>
+        </ul>
+      </section>
+
+      {/* Footer */}
+      <footer className="pt-8 border-t border-white/10">
+        <p className="text-white/50 text-sm">
+          Found an error in the documentation?{" "}
+          <a href="https://github.com/byronwade/beam/issues" className="text-white/70 underline hover:text-white" target="_blank" rel="noopener noreferrer">
+            Open an issue on GitHub
+          </a>.
+        </p>
+      </footer>
+    </article>
   );
 }
+
+

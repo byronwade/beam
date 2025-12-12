@@ -532,3 +532,5 @@ beam 3000 --tor
 *"In a world of centralized services, Beam represents digital sovereignty - the right to control your own infrastructure without permission or payment."*
 
 **Ready to break free?** [Get started now!](guides/getting-started/getting-started.md)
+
+

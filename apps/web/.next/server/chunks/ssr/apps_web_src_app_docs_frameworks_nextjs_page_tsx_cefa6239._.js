@@ -1,0 +1,18 @@
+module.exports=[26502,a=>{"use strict";var b=a.i(87924),c=a.i(62473),d=a.i(16341);function e(){return(0,b.jsxs)("div",{className:"mx-auto max-w-4xl py-12 px-6",children:[(0,b.jsxs)("header",{className:"mb-10",children:[(0,b.jsx)("h1",{className:"text-4xl font-bold text-white mb-4",children:"Next.js Integration"}),(0,b.jsx)("p",{className:"text-xl text-white/60",children:"Seamlessly integrate Beam into your Next.js workflow for automatic tunneling."})]}),(0,b.jsxs)("section",{className:"space-y-6 mb-12",children:[(0,b.jsx)("h2",{className:"text-2xl font-semibold text-white",children:"Installation"}),(0,b.jsxs)("div",{className:"space-y-4",children:[(0,b.jsx)("p",{className:"text-white/70",children:"Install the Beam CLI and Next.js plugin:"}),(0,b.jsx)(c.CodeBlock,{language:"bash",code:"npm install @byronwade/beam @byronwade/beam-next --save-dev"}),(0,b.jsx)("p",{className:"text-white/70",children:"Or using bun/pnpm/yarn:"}),(0,b.jsx)(c.CodeBlock,{language:"bash",code:"pnpm add -D @byronwade/beam @byronwade/beam-next"})]})]}),(0,b.jsxs)("section",{className:"space-y-6 mb-12",children:[(0,b.jsx)("h2",{className:"text-2xl font-semibold text-white",children:"Configuration"}),(0,b.jsxs)("div",{className:"space-y-4",children:[(0,b.jsxs)("p",{className:"text-white/70",children:["Wrap your ",(0,b.jsx)(c.InlineCode,{children:"next.config.js"})," with the Beam plugin. This will automatically start a tunnel when you run ",(0,b.jsx)(c.InlineCode,{children:"next dev"}),"."]}),(0,b.jsx)(c.CodeBlock,{language:"javascript",filename:"next.config.js",code:`const { withBeam } = require('@byronwade/beam-next');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Your existing config
+};
+
+module.exports = withBeam(nextConfig, {
+  enabled: process.env.NODE_ENV === 'development',
+  port: 3000 // default
+});`})]})]}),(0,b.jsxs)("section",{className:"space-y-6 mb-12",children:[(0,b.jsx)("h2",{className:"text-2xl font-semibold text-white",children:"Usage"}),(0,b.jsxs)("div",{className:"space-y-4",children:[(0,b.jsx)("p",{className:"text-white/70",children:"Just run your development server as usual:"}),(0,b.jsx)(c.CodeBlock,{language:"bash",code:"npm run dev"}),(0,b.jsx)("p",{className:"text-white/70",children:"You will see the Beam tunnel URL in your console output:"}),(0,b.jsx)(c.CodeBlock,{language:"text",code:`  ▲ Next.js 14.0.0
+  - Local:        http://localhost:3000
+  - Network:      http://192.168.1.5:3000
+  ➜  Beam:    Initializing tunnel...
+  ➜  Beam:    http://abcdef123456.onion
+  ➜  Beam:    http://project-name.local`})]})]}),(0,b.jsxs)("section",{className:"space-y-6 mb-12",children:[(0,b.jsx)("h2",{className:"text-2xl font-semibold text-white",children:"Persistent Domains"}),(0,b.jsxs)("div",{className:"space-y-4",children:[(0,b.jsxs)("p",{className:"text-white/70",children:["Beam allows you to own your domain identity on the Tor network. By generating a keypair once and reusing it, your ",(0,b.jsx)(c.InlineCode,{children:".onion"})," address remains the same across restarts."]}),(0,b.jsx)("p",{className:"text-white/70",children:"For Next.js projects, this means you can configure webhooks (e.g. Stripe, GitHub) to point to your stable onion address and never have to update them again during development."})]})]}),(0,b.jsx)(d.SupportSection,{})]})}a.s(["default",()=>e])}];
+
+//# sourceMappingURL=apps_web_src_app_docs_frameworks_nextjs_page_tsx_cefa6239._.js.map

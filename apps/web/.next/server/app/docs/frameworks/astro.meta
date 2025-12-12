@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/docs/layout,_N_T_/docs/frameworks/layout,_N_T_/docs/frameworks/astro/layout,_N_T_/docs/frameworks/astro/page,_N_T_/docs/frameworks/astro"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/docs/frameworks/astro/__PAGE__",
+    "/docs/frameworks/astro",
+    "/docs/frameworks",
+    "/docs",
+    "/_index",
+    "/_head"
+  ]
+}

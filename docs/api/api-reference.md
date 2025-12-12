@@ -34,7 +34,7 @@ curl "https://api.beam.dev/v1/tunnels?api_key=your_api_key_here"
 
 #### Authorization Code Flow
 ```typescript
-import { BeamAPI } from '@beam/sdk';
+import { BeamAPI } from '@byronwade/beam-sdk';
 
 const beam = new BeamAPI({
   clientId: 'your_client_id',
@@ -508,14 +508,14 @@ curl -X POST https://api.beam.dev/v1/webhooks \
 
 #### Installation
 ```bash
-npm install @beam/sdk
+npm install @byronwade/beam-sdk
 # or
-yarn add @beam/sdk
+yarn add @byronwade/beam-sdk
 ```
 
 #### Basic Usage
 ```typescript
-import { Beam } from '@beam/sdk';
+import { Beam } from '@byronwade/beam-sdk';
 
 const beam = new Beam({
   apiKey: 'your_api_key'
@@ -539,7 +539,7 @@ await tunnel.stop();
 
 #### Advanced Usage with Event Handling
 ```typescript
-import { Beam, TunnelEvents } from '@beam/sdk';
+import { Beam, TunnelEvents } from '@byronwade/beam-sdk';
 
 const beam = new Beam({
   apiKey: 'your_api_key'
@@ -786,7 +786,7 @@ ws.onmessage = (event) => {
 ### Complete Integration Example
 
 ```typescript
-import { Beam } from '@beam/sdk';
+import { Beam } from '@byronwade/beam-sdk';
 
 class BeamIntegration {
   private beam: Beam;
@@ -900,3 +900,5 @@ main().catch(console.error);
 - **Deprecation Notices**: https://api.beam.dev/deprecations
 
 **Happy coding with Beam!** 🚀✨
+
+

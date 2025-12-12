@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/docs/layout,_N_T_/docs/frameworks/layout,_N_T_/docs/frameworks/quasar/layout,_N_T_/docs/frameworks/quasar/page,_N_T_/docs/frameworks/quasar"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/docs/frameworks/quasar/__PAGE__",
+    "/docs/frameworks/quasar",
+    "/docs/frameworks",
+    "/docs",
+    "/_index",
+    "/_head"
+  ]
+}

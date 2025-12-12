@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import { ConvexClientProvider } from "@/lib/convex";
 import { Toaster } from "@/components/ui/sonner";
+import { RootLayoutClient } from "./layout-client";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   keywords: ["tor", "decentralized", "tunneling", "p2p", "privacy", "onion", "open source", "self-hosted"],
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,12 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0a0a0a]`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <ConvexClientProvider>
+          <RootLayoutClient>
             {children}
-            <Toaster />
-          </ConvexClientProvider>
+          </RootLayoutClient>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

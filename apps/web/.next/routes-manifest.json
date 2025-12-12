@@ -40,22 +40,178 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
-      "page": "/api/tunnel",
-      "regex": "^/api/tunnel(?:/)?$",
+      "page": "/docs",
+      "regex": "^/docs(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/api/tunnel(?:/)?$"
+      "namedRegex": "^/docs(?:/)?$"
     },
     {
-      "page": "/dashboard",
-      "regex": "^/dashboard(?:/)?$",
+      "page": "/docs/architecture",
+      "regex": "^/docs/architecture(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/dashboard(?:/)?$"
+      "namedRegex": "^/docs/architecture(?:/)?$"
+    },
+    {
+      "page": "/docs/cli-reference",
+      "regex": "^/docs/cli\\-reference(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/cli\\-reference(?:/)?$"
+    },
+    {
+      "page": "/docs/comparisons",
+      "regex": "^/docs/comparisons(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/comparisons(?:/)?$"
+    },
+    {
+      "page": "/docs/deployment",
+      "regex": "^/docs/deployment(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/deployment(?:/)?$"
+    },
+    {
+      "page": "/docs/examples",
+      "regex": "^/docs/examples(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/examples(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks",
+      "regex": "^/docs/frameworks(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/angular",
+      "regex": "^/docs/frameworks/angular(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/angular(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/astro",
+      "regex": "^/docs/frameworks/astro(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/astro(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/gatsby",
+      "regex": "^/docs/frameworks/gatsby(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/gatsby(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/nestjs",
+      "regex": "^/docs/frameworks/nestjs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/nestjs(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/nextjs",
+      "regex": "^/docs/frameworks/nextjs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/nextjs(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/nuxt",
+      "regex": "^/docs/frameworks/nuxt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/nuxt(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/quasar",
+      "regex": "^/docs/frameworks/quasar(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/quasar(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/remix",
+      "regex": "^/docs/frameworks/remix(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/remix(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/solidstart",
+      "regex": "^/docs/frameworks/solidstart(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/solidstart(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/sveltekit",
+      "regex": "^/docs/frameworks/sveltekit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/sveltekit(?:/)?$"
+    },
+    {
+      "page": "/docs/frameworks/vite",
+      "regex": "^/docs/frameworks/vite(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/frameworks/vite(?:/)?$"
+    },
+    {
+      "page": "/docs/getting-started",
+      "regex": "^/docs/getting\\-started(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/getting\\-started(?:/)?$"
+    },
+    {
+      "page": "/docs/p2p-networking",
+      "regex": "^/docs/p2p\\-networking(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/p2p\\-networking(?:/)?$"
+    },
+    {
+      "page": "/docs/performance",
+      "regex": "^/docs/performance(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/performance(?:/)?$"
+    },
+    {
+      "page": "/docs/roadmap",
+      "regex": "^/docs/roadmap(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/roadmap(?:/)?$"
+    },
+    {
+      "page": "/docs/security",
+      "regex": "^/docs/security(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/security(?:/)?$"
+    },
+    {
+      "page": "/docs/tor-network",
+      "regex": "^/docs/tor\\-network(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/tor\\-network(?:/)?$"
+    },
+    {
+      "page": "/docs/troubleshooting",
+      "regex": "^/docs/troubleshooting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/troubleshooting(?:/)?$"
+    },
+    {
+      "page": "/docs/why-decentralized",
+      "regex": "^/docs/why\\-decentralized(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/why\\-decentralized(?:/)?$"
     },
     {
       "page": "/favicon.ico",
       "regex": "^/favicon\\.ico(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/features",
+      "regex": "^/features(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/features(?:/)?$"
+    },
+    {
+      "page": "/how-it-works",
+      "regex": "^/how\\-it\\-works(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/how\\-it\\-works(?:/)?$"
     }
   ],
   "dataRoutes": [],

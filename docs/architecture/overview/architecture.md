@@ -2153,7 +2153,7 @@ export default defineSchema({
 
 #### **JavaScript SDK**
 ```typescript
-import { Beam } from '@beam/sdk';
+import { Beam } from '@byronwade/beam-sdk';
 
 const beam = new Beam({
   apiKey: 'your_api_key'
@@ -2177,7 +2177,7 @@ tunnel.on('request', (req) => {
 });
 
 // Framework integrations
-import { beam } from '@beam/nextjs';
+import { beam } from '@byronwade/beam-next';
 
 // In next.config.js
 export default beam({
@@ -2190,7 +2190,7 @@ export default beam({
 #### **CLI Integration**
 ```bash
 # Install framework plugin
-npm install @beam/nextjs
+npm install @byronwade/beam-next
 
 # Auto-detect and start
 npx beam dev

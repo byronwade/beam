@@ -309,3 +309,5 @@ interface AuditLogEntry {
 Beam is committed to maintaining the highest standards of security and privacy. We continuously invest in security research, implement industry best practices, and maintain transparent communication about our security measures and incidents.
 
 **Your security is our top priority.** 🛡️
+
+

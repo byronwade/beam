@@ -27,13 +27,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#pricing" className="transition-colors hover:text-foreground">
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link href="/dashboard" className="transition-colors hover:text-foreground">
-                  Dashboard
+                <Link href="/docs" className="transition-colors hover:text-foreground">
+                  Documentation
                 </Link>
               </li>
             </ul>

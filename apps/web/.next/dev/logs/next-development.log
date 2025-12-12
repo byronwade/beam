@@ -1,39 +1,4 @@
-[00:00:02.894] Server  LOG      ✓ Ready in 2.5s
-[00:00:06.912] Server  LOG      ○ Compiling / ...
-[00:00:13.421] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:03.202] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:15.327] Server  LOG      ✓ Compiled in 138ms
-[00:02:19.049] Server  LOG      ✓ Compiled in 114ms
-[00:02:24.306] Server  LOG      ✓ Compiled in 79ms
-[00:02:32.809] Server  LOG      ✓ Compiled in 84ms
-[00:02:34.788] Server  LOG      ✓ Compiled in 51ms
-[00:03:51.440] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:17.910] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:39.688] Server  LOG      ✓ Compiled in 734ms
-[00:04:40.038] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:59.209] Server  ERROR    ⨯ ReferenceError: AuthProvider is not defined
-[00:05:59.223] Server  LOG      ✓ Compiled in 0ms
-[00:05:59.284] Server  ERROR    ⨯ ReferenceError: AuthProvider is not defined
-[00:05:59.613] Server  ERROR    ⨯ ReferenceError: AuthProvider is not defined
-[00:05:59.931] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:59.931] Browser ERROR   uncaughtError: ReferenceError: AuthProvider is not defined
-[00:06:03.341] Server  LOG      ✓ Compiled in 169ms
-[00:06:03.832] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:06:16.429] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:06:21.911] Server  LOG      ✓ Compiled in 138ms
-[00:06:26.613] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:06:33.280] Server  LOG      ✓ Compiled in 116ms
-[00:08:01.268] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:09:38.620] Server  LOG      ✓ Compiled in 151ms
-[00:09:42.831] Server  LOG      ✓ Compiled in 216ms
-[00:09:53.857] Server  LOG      ✓ Compiled in 312ms
-[00:10:00.256] Server  LOG      ✓ Compiled in 225ms
-[00:10:05.437] Server  LOG      ✓ Compiled in 370ms
-[00:10:09.570] Server  LOG      ✓ Compiled in 76ms
-[00:10:15.136] Server  LOG      ✓ Compiled in 297ms
-[00:10:20.336] Server  LOG      ✓ Compiled in 43ms
-[00:15:01.737] Server  LOG      ✓ Compiled in 315ms
-[00:15:08.809] Server  LOG      ✓ Compiled in 264ms
-[00:15:13.939] Server  LOG      ✓ Compiled in 165ms
-[00:15:17.707] Server  LOG      ✓ Compiled in 180ms
-[00:15:20.847] Server  LOG      ✓ Compiled in 120ms
+[00:00:01.153] Server  LOG      ✓ Ready in 902ms
+[00:00:04.172] Server  LOG      ○ Compiling / ...
+[00:00:07.633] Server  WARN     ⚠ Cross origin request detected from 172.102.165.51.nip.io to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins

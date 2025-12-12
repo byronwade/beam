@@ -715,3 +715,5 @@ Beam's decentralized domain resolution represents a **paradigm shift** in how we
 ---
 
 *"Domain resolution without central authorities - the future of networking is here."*
+
+

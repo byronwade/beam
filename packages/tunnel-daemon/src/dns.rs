@@ -8,20 +8,23 @@ pub struct DualDNSResolver {
     tor_domain_map: HashMap<String, String>, // domain -> onion address
 }
 
+
 impl DualDNSResolver {
-    pub async fn new(_dns_server_port: u16) -> Result<Self, Box<dyn std::error::Error>> {
-        Ok(DualDNSResolver {
+    pub fn new() -> Self {
+        DualDNSResolver {
             local_domain_map: HashMap::new(),
             tor_domain_map: HashMap::new(),
-        })
+        }
     }
 
     pub async fn configure_dual_resolution(&mut self, domain: &str, onion_address: &str) -> Result<(), Box<dyn std::error::Error>> {
         // Map domain to localhost for local resolution
-        self.local_domain_map.insert(domain.to_string(), "127.0.0.1".parse()?);
+        let localhost: IpAddr = "127.0.0.1".parse()?;
+        self.local_domain_map.insert(domain.to_string(), localhost);
 
         // Map domain to onion address for external resolution
         self.tor_domain_map.insert(domain.to_string(), onion_address.to_string());
+
 
         info!("Configured dual resolution for {}: local=127.0.0.1, tor={}", domain, onion_address);
         Ok(())
@@ -110,3 +113,5 @@ impl DualDNSResolver {
         }
     }
 }
+
+

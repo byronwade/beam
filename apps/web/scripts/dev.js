@@ -18,8 +18,8 @@ if (portIndex !== -1 && args[portIndex + 1]) {
   args.shift();
 }
 
-// Spawn next dev with the specified port
-const child = spawn('next', ['dev', '-p', port, ...args], {
+// Spawn next dev via npm exec to ensure binary is found
+const child = spawn('npm', ['exec', 'next', 'dev', '--', '-p', port, ...args], {
   stdio: 'inherit',
   cwd: process.cwd(),
   env: { ...process.env, PORT: port }
@@ -33,3 +33,6 @@ child.on('error', (error) => {
   console.error('Failed to start dev server:', error);
   process.exit(1);
 });
+
+
+

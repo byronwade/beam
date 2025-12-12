@@ -1,37 +1,73 @@
 use hyper::server::conn::AddrStream;
 use hyper::service::{make_service_fn, service_fn};
-use hyper::{Body, Request, Response, Server, StatusCode, header};
+use hyper::{Body, Request, Response, Server, StatusCode, header, Client};
 use std::convert::Infallible;
 use std::net::SocketAddr;
 use std::sync::Arc;
+use std::sync::atomic::{AtomicU64, Ordering};
+use std::time::Instant;
 use tokio::net::TcpListener;
 use tokio_rustls::TlsAcceptor;
 use rustls::ServerConfig;
-use tracing::{info, error};
+use tracing::{info, error, debug, warn};
 
 use crate::dns::DualDNSResolver;
 use crate::context::{ContextDetector, AccessContext};
 use crate::cert;
 
+/// Request statistics for monitoring
+#[derive(Default)]
+pub struct RequestStats {
+    pub total_requests: AtomicU64,
+    pub successful_requests: AtomicU64,
+    pub failed_requests: AtomicU64,
+    pub total_bytes_in: AtomicU64,
+    pub total_bytes_out: AtomicU64,
+}
+
 pub struct TunnelDaemon {
-    local_port: u16,
+    listen_port: u16,
+    target_port: u16,
+    domain: String,
     https_port: Option<u16>,
     dns_resolver: Option<DualDNSResolver>,
     context_detector: ContextDetector,
     tls_config: Option<Arc<ServerConfig>>,
+    stats: Arc<RequestStats>,
+    start_time: Instant,
 }
 
 impl TunnelDaemon {
-    pub async fn new(local_port: u16) -> Result<Self, Box<dyn std::error::Error>> {
-        info!("Tunnel daemon initialized for port {}", local_port);
+    pub async fn new(listen_port: u16, target_port: u16, domain: String) -> Result<Self, Box<dyn std::error::Error>> {
+        info!("Tunnel daemon initialized: listen on {}, proxy to {}, domain {}", listen_port, target_port, domain);
 
         Ok(TunnelDaemon {
-            local_port,
+            listen_port,
+            target_port,
+            domain,
             https_port: None,
             dns_resolver: None,
             context_detector: ContextDetector::new(),
             tls_config: None,
+            stats: Arc::new(RequestStats::default()),
+            start_time: Instant::now(),
         })
+    }
+
+    /// Get current request statistics
+    pub fn get_stats(&self) -> (u64, u64, u64, u64, u64) {
+        (
+            self.stats.total_requests.load(Ordering::Relaxed),
+            self.stats.successful_requests.load(Ordering::Relaxed),
+            self.stats.failed_requests.load(Ordering::Relaxed),
+            self.stats.total_bytes_in.load(Ordering::Relaxed),
+            self.stats.total_bytes_out.load(Ordering::Relaxed),
+        )
+    }
+
+    /// Get uptime in seconds
+    pub fn uptime_secs(&self) -> u64 {
+        self.start_time.elapsed().as_secs()
     }
 
     pub fn set_dns_resolver(&mut self, resolver: DualDNSResolver) {
@@ -58,14 +94,13 @@ impl TunnelDaemon {
     }
 
     pub async fn run(self) -> Result<(), Box<dyn std::error::Error>> {
-        let local_port = self.local_port;
+        let listen_port = self.listen_port;
+        let target_port = self.target_port;
+        let domain = self.domain.clone();
         let https_port = self.https_port;
         let tls_config = self.tls_config.clone();
-        let domain = format!("beam-{}.local", std::time::SystemTime::now()
-            .duration_since(std::time::UNIX_EPOCH)?
-            .as_secs());
 
-        info!("Tunnel daemon running on port {}", local_port);
+        info!("Tunnel daemon running: listening on {}, proxying to {}, domain {}", listen_port, target_port, domain);
 
         // Create the service that will handle requests
         let daemon = Arc::new(self);
@@ -82,7 +117,7 @@ impl TunnelDaemon {
         });
 
         // Start HTTP server
-        let http_addr = ([127, 0, 0, 1], local_port).into();
+        let http_addr = ([127, 0, 0, 1], listen_port).into();
         let http_server = Server::bind(&http_addr).serve(make_svc);
         info!("HTTP server listening on http://{}", http_addr);
 
@@ -135,9 +170,9 @@ impl TunnelDaemon {
         println!();
         println!("🎉 Beam tunnel active!");
         println!("   Domain: {}", domain);
-        println!("   HTTP:  http://{}:{}", domain, local_port);
+        println!("   HTTP:  http://127.0.0.1:{} → localhost:{}", listen_port, target_port);
         if let Some(port) = https_port {
-            println!("   HTTPS: https://{}:{} (self-signed certificate)", domain, port);
+            println!("   HTTPS: https://127.0.0.1:{} → localhost:{} (self-signed certificate)", port, target_port);
             println!("   ⚠️  Browser will show security warning - this is normal for local development");
         }
         println!("   Status: Ready for local development");
@@ -167,6 +202,11 @@ impl TunnelDaemon {
         req: Request<Body>,
         remote_addr: SocketAddr,
     ) -> Result<Response<Body>, Infallible> {
+        let request_start = Instant::now();
+        self.stats.total_requests.fetch_add(1, Ordering::Relaxed);
+
+        let method = req.method().clone();
+        let uri = req.uri().clone();
         let user_agent = req.headers()
             .get(header::USER_AGENT)
             .and_then(|h| h.to_str().ok())
@@ -177,32 +217,70 @@ impl TunnelDaemon {
             .and_then(|h| h.to_str().ok())
             .map(|s| s.to_string());
 
+        let content_length = req.headers()
+            .get(header::CONTENT_LENGTH)
+            .and_then(|h| h.to_str().ok())
+            .and_then(|s| s.parse::<u64>().ok())
+            .unwrap_or(0);
+
+        // Track incoming bytes
+        self.stats.total_bytes_in.fetch_add(content_length, Ordering::Relaxed);
+
         let context = self.context_detector.detect_context(
             user_agent.as_deref(),
             remote_addr.ip(),
             referer.as_deref()
         );
 
-        info!("Request: {} {} from {} (context: {:?})",
-              req.method(), req.uri(), remote_addr, context);
+        // Detailed request logging
+        debug!("→ {} {} from {} (context: {:?}, UA: {:?})",
+              method, uri, remote_addr, context,
+              user_agent.as_ref().map(|s| if s.len() > 50 { &s[..50] } else { s }));
 
         // Route based on context
-        match context {
+        let response = match context {
             AccessContext::LocalBrowser => {
-                // Route to local application
                 self.proxy_to_local_app(req).await
             }
             AccessContext::WebhookService => {
-                // For webhooks, we need to handle them specially
-                // In dual mode, this might route through Tor
-                info!("Webhook detected - routing appropriately");
+                debug!("Webhook detected from {}", remote_addr);
                 self.handle_webhook_request(req).await
             }
             AccessContext::APIClient | AccessContext::ExternalAccess => {
-                // External API calls
                 self.handle_external_request(req, context).await
             }
+        };
+
+        // Track response stats
+        let elapsed = request_start.elapsed();
+        match &response {
+            Ok(res) => {
+                let status = res.status();
+                let response_size = res.headers()
+                    .get(header::CONTENT_LENGTH)
+                    .and_then(|h| h.to_str().ok())
+                    .and_then(|s| s.parse::<u64>().ok())
+                    .unwrap_or(0);
+
+                self.stats.total_bytes_out.fetch_add(response_size, Ordering::Relaxed);
+
+                if status.is_success() {
+                    self.stats.successful_requests.fetch_add(1, Ordering::Relaxed);
+                    info!("← {} {} {} {:?} ({})", method, uri, status.as_u16(), elapsed, format_bytes(response_size));
+                } else if status.is_client_error() || status.is_server_error() {
+                    self.stats.failed_requests.fetch_add(1, Ordering::Relaxed);
+                    warn!("← {} {} {} {:?}", method, uri, status.as_u16(), elapsed);
+                } else {
+                    info!("← {} {} {} {:?}", method, uri, status.as_u16(), elapsed);
+                }
+            }
+            Err(_) => {
+                self.stats.failed_requests.fetch_add(1, Ordering::Relaxed);
+                error!("← {} {} ERROR {:?}", method, uri, elapsed);
+            }
         }
+
+        response
     }
 
     async fn proxy_to_local_app(&self, req: Request<Body>) -> Result<Response<Body>, Infallible> {
@@ -237,35 +315,54 @@ impl TunnelDaemon {
         self.proxy_to_local_app(req).await
     }
 
-    async fn perform_local_proxy(&self, req: Request<Body>) -> Result<Response<Body>, Box<dyn std::error::Error>> {
-        // Extract the host and port from the request
-        let host = req.headers()
-            .get(header::HOST)
-            .and_then(|h| h.to_str().ok())
-            .unwrap_or("localhost");
+    async fn perform_local_proxy(&self, mut req: Request<Body>) -> Result<Response<Body>, Box<dyn std::error::Error>> {
+        // Create HTTP client
+        let client = hyper::Client::new();
 
-        // Parse the port from the host header
-        let target_port = if host.contains(':') {
-            host.split(':').nth(1)
-                .and_then(|p| p.parse().ok())
-                .unwrap_or(self.local_port)
-        } else {
-            self.local_port
-        };
+        // Modify the request URI to point to the target application
+        let target_uri = format!("http://127.0.0.1:{}{}", self.target_port, req.uri().path_and_query().map(|pq| pq.as_str()).unwrap_or(""));
 
-        // For demonstration, just return a response indicating the routing
-        let response_body = format!(
-            r#"{{"message": "Beam tunnel active", "host": "{}", "port": {}, "method": "{}"}}"#,
-            host, target_port, req.method()
+        // Update the request URI
+        *req.uri_mut() = target_uri.parse()?;
+
+        // Update Host header
+        req.headers_mut().insert(
+            header::HOST,
+            header::HeaderValue::from_str(&format!("127.0.0.1:{}", self.target_port))?,
         );
 
-        let response = Response::builder()
-            .status(StatusCode::OK)
-            .header("content-type", "application/json")
-            .header("x-beam-tunnel", "true")
-            .body(Body::from(response_body))
-            .unwrap();
-
-        Ok(response)
+        // Forward the request to the local application
+        match client.request(req).await {
+            Ok(response) => Ok(response),
+            Err(e) => {
+                error!("Failed to proxy request to local application: {}", e);
+                // Return a 502 Bad Gateway error
+                Ok(Response::builder()
+                    .status(StatusCode::BAD_GATEWAY)
+                    .header("content-type", "application/json")
+                    .body(Body::from(r#"{"error": "Failed to connect to local application"}"#))
+                    .unwrap())
+            }
+        }
     }
 }
+
+/// Format bytes in human-readable form
+fn format_bytes(bytes: u64) -> String {
+    const KB: u64 = 1024;
+    const MB: u64 = KB * 1024;
+    const GB: u64 = MB * 1024;
+
+    if bytes >= GB {
+        format!("{:.2} GB", bytes as f64 / GB as f64)
+    } else if bytes >= MB {
+        format!("{:.2} MB", bytes as f64 / MB as f64)
+    } else if bytes >= KB {
+        format!("{:.2} KB", bytes as f64 / KB as f64)
+    } else {
+        format!("{} B", bytes)
+    }
+}
+
+
+

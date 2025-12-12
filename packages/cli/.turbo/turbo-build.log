@@ -1,5 +1,6 @@
 
-> @beam/cli@0.1.0 build
+
+> @byronwade/beam@1.1.34 build
 > tsup src/index.ts --format esm,cjs --dts
 
 [34mCLI[39m Building entry: src/index.ts
@@ -10,13 +11,25 @@
 [34mCLI[39m Cleaning output folder
 [34mESM[39m Build start
 [34mCJS[39m Build start
-[32mESM[39m [1mdist/index.js     [22m[32m5.46 KB[39m
-[32mESM[39m [1mdist/index.js.map [22m[32m10.34 KB[39m
-[32mESM[39m ⚡️ Build success in 73ms
-[32mCJS[39m [1mdist/index.cjs     [22m[32m6.90 KB[39m
-[32mCJS[39m [1mdist/index.cjs.map [22m[32m10.43 KB[39m
-[32mCJS[39m ⚡️ Build success in 73ms
-[34mDTS[39m Build start
-[32mDTS[39m ⚡️ Build success in 1452ms
-[32mDTS[39m [1mdist/index.d.ts  [22m[32m20.00 B[39m
-[32mDTS[39m [1mdist/index.d.cts [22m[32m20.00 B[39m
+
+[90m[[90m12:37:44 AM[90m][39m [43m[30m WARN [39m[49m [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+
+    src/index.ts:771:4:
+[37m      771 │     [32mimport.meta[37m.url === [36mfile://${path.resolve(process.argv[1])}[39m ||
+          ╵     [32m~~~~~~~~~~~[0m
+
+  You need to set the output format to "esm" for "import.meta" to work correctly.
+
+
+
+[32mESM[39m [1mdist/index.js     [22m[32m47.37 KB[39m
+[32mESM[39m [1mdist/index.js.map [22m[32m89.53 KB[39m
+[32mESM[39m ⚡️ Build success in 48ms
+[32mCJS[39m [1mdist/index.cjs     [22m[32m50.32 KB[39m
+[32mCJS[39m [1mdist/index.cjs.map [22m[32m90.19 KB[39m
+[32mCJS[39m ⚡️ Build success in 48ms
+DTS Build start
+DTS ⚡️ Build success in 1012ms
+DTS dist/index.d.ts  1.26 KB
+DTS dist/index.d.cts 1.26 KB
+⠙[1G[0K

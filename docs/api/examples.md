@@ -1001,7 +1001,7 @@ results.forEach(result => {
 
 ```javascript
 const express = require('express');
-const { BeamMiddleware } = require('@beam/express-middleware');
+const { BeamMiddleware } = require('@byronwade/beam-express-middleware');
 
 const app = express();
 
@@ -1036,7 +1036,7 @@ app.listen(3000, () => {
 
 ```javascript
 // pages/api/beam/status.js
-import { BeamAPI } from '@beam/sdk';
+import { BeamAPI } from '@byronwade/beam-sdk';
 
 export default async function handler(req, res) {
   const beam = new BeamAPI({ apiKey: process.env.BEAM_API_KEY });
@@ -1147,3 +1147,5 @@ services:
 - Use webhooks for real-time notifications
 
 **Happy integrating with Beam!** 🎉✨
+
+

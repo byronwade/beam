@@ -1,0 +1,2 @@
+import{TunnelManager as u}from"@byronwade/beam";function g(o={}){let n=null;return{name:"vite-plugin-beam",configureServer(t){let r=t.printUrls;t.printUrls=async()=>{r();let l=t.config.server.port||5173;if(!o.silent&&!n){n=new u;try{(await n.start({targetPort:l,mode:"balanced"})).stdout?.on("data",s=>{let e=s.toString();(e.includes("onion")||e.includes(".local"))&&e.split(`
+`).filter(i=>i.trim()!=="").forEach(i=>{console.log(`  \u279C  Beam:    ${i.trim()}`)})})}catch{console.error("  \u279C  Beam:    Failed to start tunnel")}}}},buildEnd(){n&&n.stop()}}}export{g as beam};

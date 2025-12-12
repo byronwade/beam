@@ -619,3 +619,5 @@ Beam's P2P network transforms your machine from a passive client into an active 
 - **The system is resilient** - no single points of failure
 
 **Ready to join the decentralized network?** Start with `beam --help` and become part of the future of networking! 🚀
+
+
